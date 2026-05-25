@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon-dark.png" data-theme-icon />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monica Addepalli | Product Designer</title>
+    <meta
+      name="description"
+      content="Product designer with 1.5 years of experience, based in Bangalore, India. Currently with MediBuddy one of India’s leading digital healthcare platform."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        function setFavicon(theme) {
+          var link = document.querySelector('link[data-theme-icon]');
+          if (!link) return;
+          link.type = 'image/png';
+          link.href = theme === 'light' ? '/favicon-light.png' : '/favicon-dark.png';
+        }
+        try {
+          var t = localStorage.getItem('theme');
+          var theme = t === 'light' || t === 'dark' ? t : 'dark';
+          document.documentElement.dataset.theme = theme;
+          setFavicon(theme);
+        } catch (e) {
+          document.documentElement.dataset.theme = 'dark';
+          setFavicon('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

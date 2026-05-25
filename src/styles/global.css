@@ -1,0 +1,172 @@
+html,
+body {
+  height: 100%;
+}
+
+:root {
+  color-scheme: dark;
+  -webkit-tap-highlight-color: rgb(255 255 255 / 0.08);
+
+  /* Colours — dark is the site default */
+  --bg: #000000;
+  --primary: #e5e5e5;
+  --secondary: #a3a3a3;
+  --link: #0033a0;
+  --card-bg: #f2f2f2;
+  --card-text: #000000;
+
+  /* Typography */
+  --font: 'Manrope', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  -webkit-tap-highlight-color: rgb(0 0 0 / 0.06);
+
+  /* Colours */
+  --bg: #ffffff;
+  --primary: #111111;
+  --secondary: #a3a3a3;
+  --link: #0033a0;
+  --card-bg: #f2f2f2;
+  --card-text: #000000;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  -webkit-tap-highlight-color: rgb(255 255 255 / 0.08);
+
+  /* Colours */
+  --bg: #000000;
+  --primary: #e5e5e5;
+  --secondary: #a3a3a3;
+  --link: #0033a0;
+  --card-bg: #f2f2f2;
+  --card-text: #000000;
+}
+
+/*
+ * Force anchor paint in light and dark: UA :link / :visited / :hover use system blues and
+ * outrank a single CSS-module class. !important + theme tokens removes them sitewide.
+ */
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a:any-link:not([data-work-hit-area]):not([data-muted]):not([data-secondary-link]):not([data-accent-link]),
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a:any-link:not([data-work-hit-area]):not([data-muted]):not([data-secondary-link]):not([data-accent-link]):visited {
+  color: var(--primary) !important;
+  -webkit-text-fill-color: var(--primary) !important;
+  text-decoration-color: var(--primary) !important;
+}
+
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a:any-link:not([data-work-hit-area]):not([data-muted]):not([data-secondary-link]):not([data-accent-link]):hover,
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a:any-link:not([data-work-hit-area]):not([data-muted]):not([data-secondary-link]):not([data-accent-link]):active,
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a:any-link:not([data-work-hit-area]):not([data-muted]):not([data-secondary-link]):not([data-accent-link]):focus,
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a:any-link:not([data-work-hit-area]):not([data-muted]):not([data-secondary-link]):not([data-accent-link]):focus-visible {
+  color: var(--primary) !important;
+  -webkit-text-fill-color: var(--primary) !important;
+  text-decoration-color: var(--primary) !important;
+}
+
+/* Secondary inline links in body copy */
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a[data-secondary-link]:not([data-work-hit-area]),
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a[data-secondary-link]:not([data-work-hit-area]):visited {
+  color: var(--secondary) !important;
+  -webkit-text-fill-color: var(--secondary) !important;
+  text-decoration-color: var(--secondary) !important;
+}
+
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a[data-secondary-link]:not([data-work-hit-area]):hover,
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a[data-secondary-link]:not([data-work-hit-area]):active,
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a[data-secondary-link]:not([data-work-hit-area]):focus,
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a[data-secondary-link]:not([data-work-hit-area]):focus-visible {
+  color: var(--primary) !important;
+  -webkit-text-fill-color: var(--primary) !important;
+  text-decoration-color: var(--primary) !important;
+}
+
+/* Accent links (e.g. case study deep dives) */
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a[data-accent-link]:not([data-work-hit-area]),
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a[data-accent-link]:not([data-work-hit-area]):visited {
+  color: var(--link) !important;
+  -webkit-text-fill-color: var(--link) !important;
+  text-decoration-color: var(--link) !important;
+}
+
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a[data-accent-link]:not([data-work-hit-area]):hover,
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a[data-accent-link]:not([data-work-hit-area]):active,
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a[data-accent-link]:not([data-work-hit-area]):focus,
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a[data-accent-link]:not([data-work-hit-area]):focus-visible {
+  color: var(--link) !important;
+  -webkit-text-fill-color: var(--link) !important;
+  text-decoration-color: var(--link) !important;
+  opacity: 0.85;
+}
+
+/* Muted navigation links (e.g. vision “back”) */
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a[data-muted]:not([data-work-hit-area]),
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a[data-muted]:not([data-work-hit-area]):visited {
+  color: var(--secondary) !important;
+  -webkit-text-fill-color: var(--secondary) !important;
+  text-decoration-color: var(--secondary) !important;
+}
+
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a[data-muted]:not([data-work-hit-area]):hover,
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a[data-muted]:not([data-work-hit-area]):active,
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a[data-muted]:not([data-work-hit-area]):focus,
+:is(:root[data-theme='light'], :root[data-theme='dark'])
+  a[data-muted]:not([data-work-hit-area]):focus-visible {
+  color: var(--primary) !important;
+  -webkit-text-fill-color: var(--primary) !important;
+  text-decoration-color: var(--primary) !important;
+}
+
+:is(:root[data-theme='light'], :root[data-theme='dark']) button:hover,
+:is(:root[data-theme='light'], :root[data-theme='dark']) button:focus,
+:is(:root[data-theme='light'], :root[data-theme='dark']) button:focus-visible,
+:is(:root[data-theme='light'], :root[data-theme='dark']) button:active {
+  color: var(--primary) !important;
+  -webkit-text-fill-color: var(--primary) !important;
+}
+
+:is(:root[data-theme='light'], :root[data-theme='dark']) :focus-visible {
+  outline: 2px solid var(--secondary) !important;
+  outline-offset: 2px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  color: inherit;
+}

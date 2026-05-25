@@ -1,0 +1,507 @@
+.page {
+  background: var(--bg);
+  min-height: 100dvh;
+  color: var(--primary);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.copyToast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  z-index: 1000;
+  transform: translateX(-50%);
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: var(--primary);
+  color: var(--bg);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 20px;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: copyToastIn 0.2s ease;
+}
+
+@keyframes copyToastIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .copyToast {
+    animation: none;
+  }
+}
+
+.content {
+  max-width: 736px;
+  padding: 32px 24px 80px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 200px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.narrowText {
+  width: 100%;
+  max-width: none;
+}
+
+.topRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+}
+
+.topRow.narrowText {
+  width: 100%;
+  max-width: none;
+}
+
+@media (min-width: 521px) {
+  .narrowText,
+  .topRow.narrowText {
+    width: 75%;
+    max-width: 552px;
+  }
+}
+
+.nameBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: auto;
+  text-align: right;
+}
+
+.primaryText {
+  color: var(--primary);
+  margin: 0;
+}
+
+a.nameLink {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a.nameLink:hover {
+  text-decoration: none;
+}
+
+.secondaryText {
+  color: var(--secondary);
+  margin: 0;
+}
+
+a.link,
+a.link:hover,
+a.link:visited,
+a.link:active {
+  color: var(--primary);
+  -webkit-text-fill-color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: currentColor;
+}
+
+a.link:focus-visible {
+  color: var(--primary);
+  -webkit-text-fill-color: var(--primary);
+  outline: 2px solid var(--secondary);
+  outline-offset: 2px;
+}
+
+a.resumeInlineLink,
+a.resumeInlineLink:hover,
+a.resumeInlineLink:visited,
+a.resumeInlineLink:active {
+  color: var(--primary);
+  text-decoration: none;
+  -webkit-text-fill-color: var(--primary);
+}
+
+.underline {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: currentColor;
+}
+
+.noUnderline {
+  text-decoration: none;
+}
+
+.contactRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.contactLeft {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.emailRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.copyIconWrap {
+  width: 12px;
+  height: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copyButton {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  font-size: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: var(--primary);
+}
+
+.copyButton:hover {
+  color: var(--primary);
+}
+
+.copyIcon {
+  width: 16px;
+  height: 16px;
+  display: block;
+  margin: auto;
+}
+
+.contactRight {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.workSection {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.tabs {
+  position: relative;
+  display: inline-flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.tabIndicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: var(--primary);
+  pointer-events: none;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tab,
+.tabSelected {
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 20px;
+  border: 0;
+  background: transparent;
+  padding: 6px 4px;
+  cursor: default;
+  transition: color 0.35s ease;
+}
+
+.tab {
+  color: var(--secondary);
+  cursor: pointer;
+}
+
+.tabSelected {
+  color: var(--primary);
+}
+
+.tabPanels {
+  display: grid;
+  position: relative;
+  overflow: hidden;
+}
+
+.tabPanels > .tabPanel {
+  grid-area: 1 / 1;
+  width: 100%;
+  transition:
+    opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0.35s;
+}
+
+.tabPanelActive {
+  position: relative;
+  z-index: 2;
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.tabPanelInactive {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(8px);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tabIndicator {
+    transition: none;
+  }
+
+  .tabPanels > .tabPanel {
+    transition: none;
+  }
+
+  .tab,
+  .tabSelected {
+    transition: none;
+  }
+}
+
+.blogList {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.blogCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: blogCardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
+}
+
+@keyframes blogCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blogCard {
+    animation: none;
+  }
+}
+
+.workList {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+a.workItemLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  -webkit-text-fill-color: inherit;
+  cursor: pointer;
+}
+
+a.workItemLink:hover,
+a.workItemLink:visited,
+a.workItemLink:active {
+  color: inherit;
+  -webkit-text-fill-color: inherit;
+  text-decoration: none;
+}
+
+a.workItemLink .primaryText,
+a.workItemLink:hover .primaryText,
+a.workItemLink:visited .primaryText {
+  color: var(--primary);
+  -webkit-text-fill-color: var(--primary);
+}
+
+a.workItemLink .secondaryText,
+a.workItemLink:hover .secondaryText,
+a.workItemLink:visited .secondaryText {
+  color: var(--secondary);
+  -webkit-text-fill-color: var(--secondary);
+}
+
+a.workItemLink:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.workItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.workImage {
+  height: 360px;
+  position: relative;
+  overflow: hidden;
+}
+
+.workImageBg {
+  position: absolute;
+  inset: 0;
+  background: var(--card-bg);
+}
+
+.workImgTag {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.workText {
+  display: flex;
+  flex-direction: column;
+}
+
+.comingSoon {
+  color: var(--primary);
+}
+
+.footerStack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer {
+  display: inline-flex;
+  align-items: center;
+  gap: 21px;
+  color: var(--primary);
+}
+
+a.footerCredit {
+  display: inline;
+  margin: 0;
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--primary);
+  -webkit-text-fill-color: var(--primary);
+  text-decoration: none;
+}
+
+a.footerCredit:hover,
+a.footerCredit:visited,
+a.footerCredit:active,
+a.footerCredit:focus,
+a.footerCredit:focus-visible {
+  color: var(--primary);
+  -webkit-text-fill-color: var(--primary);
+  text-decoration: none;
+}
+
+a.footerLink {
+  color: var(--primary);
+  text-decoration: none;
+  -webkit-text-fill-color: var(--primary);
+}
+
+a.footerLink:hover {
+  color: var(--primary);
+  -webkit-text-fill-color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footerButton {
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 20px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--primary);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.footerButton:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 520px) {
+  .content {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  a.footerLink:hover,
+  .footerButton:hover {
+    text-decoration: none;
+  }
+
+  /* 200px at 360px viewport → 360px by 520px; desktop stays 360px */
+  .workImage {
+    height: clamp(200px, calc(100vw - 160px), 360px);
+  }
+}
+
