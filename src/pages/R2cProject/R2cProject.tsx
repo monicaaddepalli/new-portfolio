@@ -312,7 +312,13 @@ export function R2cProject() {
             </div>
           </section>
 
-          <MediaImage src={imgUserCalls} bordered />
+          <img
+            className={styles.mediaImg}
+            alt=""
+            src={imgUserCalls}
+            loading="lazy"
+            decoding="async"
+          />
 
           <section className={`${styles.sectionText} ${styles.stack60}`} data-node-id="143:633">
             <div className={`${styles.textBlock} ${styles.stack12}`} data-node-id="143:643">
@@ -389,7 +395,13 @@ export function R2cProject() {
             </div>
           </section>
 
-          <MediaImage src={imgAffinity} bordered />
+          <img
+            className={styles.mediaImg}
+            alt=""
+            src={imgAffinity}
+            loading="lazy"
+            decoding="async"
+          />
 
           <section className={styles.sectionText} data-node-id="143:687">
             <div className={styles.textBlock} data-node-id="143:697">
@@ -399,7 +411,13 @@ export function R2cProject() {
             </div>
           </section>
 
-          <MediaImage src={imgPrioritisation} bordered />
+          <img
+            className={styles.mediaImg}
+            alt=""
+            src={imgPrioritisation}
+            loading="lazy"
+            decoding="async"
+          />
 
           <section className={styles.sectionText} data-node-id="143:702">
             <div className={styles.textBlock} data-node-id="143:712">
@@ -409,7 +427,13 @@ export function R2cProject() {
             </div>
           </section>
 
-          <MediaImage src={imgIA} bordered />
+          <img
+            className={styles.mediaImg}
+            alt=""
+            src={imgIA}
+            loading="lazy"
+            decoding="async"
+          />
 
           <section className={styles.sectionText} data-node-id="143:717">
             <div className={styles.textBlock} data-node-id="143:727">
