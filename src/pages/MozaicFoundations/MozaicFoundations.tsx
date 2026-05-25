@@ -56,7 +56,7 @@ const strategies = [
 ];
 
 function MediaImage({ src }: { src: string }) {
-  return <img className={styles.mediaImg} alt="" src={src} />;
+  return <img className={styles.mediaImg} alt="" src={src} loading="lazy" decoding="async" />;
 }
 
 function MediaVideo({ src, title }: { src: string; title?: string }) {

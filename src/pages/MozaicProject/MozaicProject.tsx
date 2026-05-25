@@ -39,7 +39,14 @@ function MediaImage({
   return (
     <div className={wrapClass} style={fill ? { background: fill } : undefined}>
       <div className={styles.mediaInner} aria-hidden="true">
-        <img className={styles.mediaImg} alt="" src={src} />
+        <img
+          className={styles.mediaImg}
+          alt=""
+          src={src}
+          loading={hero ? 'eager' : 'lazy'}
+          decoding="async"
+          fetchPriority={hero ? 'high' : undefined}
+        />
       </div>
     </div>
   );
@@ -491,7 +498,7 @@ export function MozaicProject() {
                   <div key={rowIndex} className={styles.applicationRow}>
                     {row.map((src, cellIndex) => (
                       <div key={cellIndex} className={styles.applicationCell} aria-hidden="true">
-                        <img alt="" src={src} />
+                        <img alt="" src={src} loading="lazy" decoding="async" />
                       </div>
                     ))}
                   </div>

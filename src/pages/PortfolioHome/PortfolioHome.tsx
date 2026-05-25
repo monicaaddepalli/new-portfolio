@@ -1,5 +1,6 @@
 import { Fragment, useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import { OptimizedImage } from '../../components/OptimizedImage';
 import { applyTheme, getInitialTheme, type Theme } from '../../lib/theme';
 import styles from './PortfolioHome.module.css';
 
@@ -309,14 +310,19 @@ export function PortfolioHome() {
                 className={`${styles.tabPanel} ${activeTab === 'work' ? styles.tabPanelActive : styles.tabPanelInactive}`}
               >
                 <div className={styles.workList} data-node-id="15:38">
-              {selectedWork.map((item) => {
+              {selectedWork.map((item, index) => {
                 const titleId = `work-title-${item.title.replace(/\s+/g, '-').toLowerCase()}`;
 
                 const card = (
                   <article className={styles.workItem} data-node-id="16:51">
                     <div className={styles.workImage} aria-hidden="true">
                       <div className={styles.workImageBg} />
-                      <img className={styles.workImgTag} alt="" src={item.imageUrl} />
+                      <OptimizedImage
+                        className={styles.workImgTag}
+                        alt=""
+                        src={item.imageUrl}
+                        priority={index === 0}
+                      />
                     </div>
 
                     <div className={styles.workText}>
@@ -363,7 +369,7 @@ export function PortfolioHome() {
                         <div className={styles.workImage} aria-hidden="true" data-node-id="188:891">
                           <div className={styles.workImageBg} />
                           {post.imageUrl ? (
-                            <img className={styles.workImgTag} alt="" src={post.imageUrl} />
+                            <OptimizedImage className={styles.workImgTag} alt="" src={post.imageUrl} />
                           ) : null}
                         </div>
 

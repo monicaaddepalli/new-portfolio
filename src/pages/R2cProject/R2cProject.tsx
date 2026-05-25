@@ -59,7 +59,14 @@ function MediaImage({
   return (
     <div className={wrapClass} style={fill ? { background: fill } : undefined}>
       <div className={styles.mediaInner} aria-hidden="true">
-        <img className={styles.mediaImg} alt="" src={src} />
+        <img
+          className={styles.mediaImg}
+          alt=""
+          src={src}
+          loading={hero ? 'eager' : 'lazy'}
+          decoding="async"
+          fetchPriority={hero ? 'high' : undefined}
+        />
       </div>
     </div>
   );
@@ -111,10 +118,10 @@ function PhoneRowScroller() {
   return (
     <div className={styles.phoneRowSection}>
       <div className={styles.phoneRow} data-node-id="143:746">
-        <img className={styles.phoneShot} alt="" src={imgScreenReorder1} data-node-id="143:748" />
+        <img className={styles.phoneShot} alt="" src={imgScreenReorder1} loading="lazy" decoding="async" data-node-id="143:748" />
         <Card2Animation />
-        <img className={styles.phoneShot} alt="" src={imgScreenReorder3} data-node-id="143:751" />
-        <img className={styles.phoneShot} alt="" src={imgScreenReorder4} data-node-id="143:752" />
+        <img className={styles.phoneShot} alt="" src={imgScreenReorder3} loading="lazy" decoding="async" data-node-id="143:751" />
+        <img className={styles.phoneShot} alt="" src={imgScreenReorder4} loading="lazy" decoding="async" data-node-id="143:752" />
       </div>
     </div>
   );

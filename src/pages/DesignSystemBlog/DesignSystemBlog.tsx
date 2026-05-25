@@ -126,7 +126,14 @@ function MediaImage({
   return (
     <div className={wrapClass} style={fill ? { background: fill } : undefined}>
       <div className={styles.mediaInner} aria-hidden="true">
-        <img className={styles.mediaImg} alt="" src={src} />
+        <img
+          className={styles.mediaImg}
+          alt=""
+          src={src}
+          loading={hero ? 'eager' : 'lazy'}
+          decoding="async"
+          fetchPriority={hero ? 'high' : undefined}
+        />
       </div>
     </div>
   );
