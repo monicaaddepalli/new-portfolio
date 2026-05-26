@@ -4,7 +4,7 @@ import { applyTheme, getInitialTheme, type Theme } from '../../lib/theme';
 import styles from './MozaicProject.module.css';
 
 const imgHero = '/assets/mozaic/hero.png';
-const imgFoundations = '/assets/mozaic/foundations.png';
+const imgFoundations = '/assets/mozaic/foundations.png?v=2';
 const imgComponents = '/assets/mozaic/components.png';
 const imgApp1 = '/assets/mozaic/app-1.png';
 const imgApp2 = '/assets/mozaic/app-2.png';
@@ -12,7 +12,17 @@ const imgApp3 = '/assets/mozaic/app-3.png';
 const imgApp4 = '/assets/mozaic/app-4.png';
 const imgApp5 = '/assets/mozaic/app-5.png';
 const imgApp6 = '/assets/mozaic/app-6.png';
-const imgArrowOutward = '/assets/mozaic/icon-arrow-outward.svg';
+
+function ExternalLinkIcon() {
+  return (
+    <svg className={styles.externalLinkIcon} viewBox="0 0 20 20" aria-hidden="true">
+      <path
+        d="M5.33333 15L4.16667 13.8333L12.1667 5.83333H5V4.16667H15V14.1667H13.3333V7L5.33333 15Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
 
 function MediaImage({
   src,
@@ -77,9 +87,7 @@ function DeepDiveCta({
         data-accent-link
       >
         {label}
-        {showArrow ? (
-          <img className={styles.externalLinkIcon} alt="" src={imgArrowOutward} aria-hidden="true" />
-        ) : null}
+        {showArrow ? <ExternalLinkIcon /> : null}
       </a>
     );
   }
@@ -87,9 +95,7 @@ function DeepDiveCta({
   return (
     <p className={linkClass}>
       {label}
-      {showArrow ? (
-        <img className={styles.externalLinkIcon} alt="" src={imgArrowOutward} aria-hidden="true" />
-      ) : null}
+      {showArrow ? <ExternalLinkIcon /> : null}
     </p>
   );
 }
@@ -192,7 +198,7 @@ export function MozaicProject() {
               </div>
             </header>
 
-            <MediaImage src={imgHero} hero fill="#f2f2f2" className={styles.heroLeadImage} />
+            <MediaImage src={imgHero} hero fill="var(--hero-media-surface)" className={styles.heroLeadImage} />
 
             <div className={`${styles.sectionText} ${styles.projectMeta}`}>
               <div className={styles.metaRow} data-node-id="242:790">
@@ -360,7 +366,7 @@ export function MozaicProject() {
                   <p className={styles.heading} data-node-id="244:1089">
                     phase 2: Establishing Shared Foundations
                   </p>
-                  <MediaImage src={imgFoundations} figure />
+                  <MediaImage src={imgFoundations} className={styles.foundationsFigure} />
                   <div className={styles.stack12} data-node-id="244:1110">
                     <p className={styles.primary} data-node-id="244:1090">
                       We replaced raw values with a system of logic to reduce unnecessary &amp;
@@ -392,7 +398,7 @@ export function MozaicProject() {
                   <p className={styles.heading} data-node-id="244:1122">
                     phase 3: Scaling Through Components and Patterns
                   </p>
-                  <MediaImage src={imgComponents} figure />
+                  <MediaImage src={imgComponents} className={styles.componentsFigure} />
                   <div className={styles.stack12} data-node-id="244:1124">
                     <p className={styles.primary} data-node-id="244:1125">
                       With foundations in place, we targeted{' '}

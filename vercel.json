@@ -3,6 +3,13 @@
   "outputDirectory": "dist",
   "installCommand": "npm install",
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "redirects": [
+    {
+      "source": "/blog/design-system-component",
+      "destination": "/blog/ds-component",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",

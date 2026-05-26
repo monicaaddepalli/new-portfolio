@@ -237,22 +237,48 @@ a.backLink:hover {
   color: var(--card-text);
 }
 
-.mediaImg {
+.mediaImgNatural {
   display: block;
   width: 100%;
   max-width: 100%;
   height: auto;
   margin: 0;
+  border-radius: 4px;
+  object-fit: contain;
+  object-position: center center;
+}
+
+.mediaImg {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: clamp(180px, calc(180px + (100vw - 360px) * 9 / 8), 360px);
+  margin: 0;
+  border-radius: 4px;
+  object-fit: contain;
+  object-position: center center;
+}
+
+@media (min-width: 521px) and (max-width: 1199px) {
+  .mediaImg {
+    height: clamp(420px, 52vw, 520px);
+  }
+}
+
+@media (min-width: 1200px) {
+  .mediaImg {
+    height: 520px;
+  }
 }
 
 .mediaVideoFrame {
   width: 100%;
   max-width: 100%;
-  height: 166px;
+  height: clamp(180px, calc(180px + (100vw - 360px) * 9 / 8), 360px);
   box-sizing: border-box;
   border: 1px solid rgb(163 163 163 / 0.4);
   border-radius: 4px;
-  background: #ffffff;
+  background: var(--media-surface);
   overflow: hidden;
 }
 
@@ -276,7 +302,7 @@ a.backLink:hover {
   justify-content: center;
   overflow: hidden;
   line-height: 0;
-  background: #ffffff;
+  background: var(--media-surface);
 }
 
 .mediaVideo {
@@ -290,7 +316,28 @@ a.backLink:hover {
   margin: 0;
   object-fit: contain;
   object-position: center center;
+  border-radius: 12px;
   background: transparent;
+  box-shadow: none;
+}
+
+@media (min-width: 521px) and (max-width: 1199px) {
+  .mediaVideo {
+    border-radius: clamp(4px, 1.2vmin + 2px, 12px);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.08);
+  }
+}
+
+@media (min-width: 1200px) {
+  .mediaVideo {
+    border-radius: clamp(8px, 2.5vmin + 6px, 24px);
+  }
+}
+
+@media (min-width: 521px) {
+  :global(html[data-theme='dark']) .mediaVideo {
+    box-shadow: 0 1px 4px rgb(0 0 0 / 0.45);
+  }
 }
 
 .footer {
@@ -338,5 +385,10 @@ a.backLink:hover {
   .sectionText {
     padding-left: 0;
     padding-right: 0;
+  }
+
+  .mediaVideo {
+    border-radius: 12px;
+    box-shadow: none;
   }
 }

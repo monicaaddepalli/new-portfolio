@@ -106,11 +106,11 @@
     margin-top: 0;
   }
 
-  .projectMeta {
+  .heroLeadIntro {
     order: 3;
   }
 
-  .heroLeadIntro {
+  .projectMeta {
     order: 4;
   }
 }
@@ -258,16 +258,16 @@ a.backLink:hover {
 .mediaBordered {
   border: 1px solid rgb(163 163 163 / 0.4);
   border-radius: 4px;
-  background: var(--bg);
+  background: var(--media-surface);
 }
 
 .mediaBordered .mediaImg {
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 .mediaHero {
-  height: 166px;
-  background: #f2f2f2;
+  height: clamp(180px, calc(180px + (100vw - 360px) * 9 / 8), 360px);
+  background: var(--hero-media-surface);
 }
 
 @media (min-width: 521px) and (max-width: 1199px) {
@@ -298,8 +298,9 @@ a.backLink:hover {
 }
 
 .mediaFigure {
-  height: 166px;
-  background: #ffffff;
+  height: clamp(180px, calc(180px + (100vw - 360px) * 9 / 8), 360px);
+  background: var(--media-surface);
+  border-radius: 4px;
 }
 
 @media (min-width: 521px) and (max-width: 1199px) {
@@ -327,17 +328,45 @@ a.backLink:hover {
   max-height: none;
   object-fit: contain;
   object-position: center center;
+  border-radius: 4px;
+}
+
+.affinityImage {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.affinityImage .mediaInner {
+  width: 100%;
+  height: auto;
+  line-height: 0;
+}
+
+.affinityImage .mediaImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  margin: 0;
+  object-fit: contain;
+  object-position: center top;
+  border-radius: 0;
 }
 
 .mediaPlaceholder {
   position: relative;
   width: 100%;
   max-width: 100%;
-  height: 166px;
+  height: clamp(180px, calc(180px + (100vw - 360px) * 9 / 8), 360px);
   flex-shrink: 0;
   border: 1px solid rgb(163 163 163 / 0.4);
   border-radius: 4px;
-  background: var(--bg);
+  background: var(--media-surface);
 }
 
 @media (min-width: 521px) and (max-width: 1199px) {
@@ -355,13 +384,13 @@ a.backLink:hover {
 .media.mediaBordered.mediaVideoFrame {
   width: 100%;
   max-width: 100%;
-  height: 166px;
+  height: clamp(180px, calc(180px + (100vw - 360px) * 9 / 8), 360px);
   box-sizing: border-box;
   display: grid;
   grid-template-rows: 0.1fr 0.8fr 0.1fr;
   align-items: stretch;
   justify-items: stretch;
-  background: #ffffff;
+  background: var(--media-surface);
   border: 1px solid rgb(163 163 163 / 0.4);
   border-radius: 4px;
   overflow: hidden;
@@ -391,11 +420,6 @@ a.backLink:hover {
   line-height: 0;
 }
 
-/*
- * Do not set both width and height to 100% on <video> — many engines then mis-apply
- * object-fit and you only see a cropped “zoomed” region. Cap by max-* and let the
- * intrinsic aspect ratio shrink so the whole frame stays visible.
- */
 .media.mediaBordered.mediaVideoFrame .mediaVideo {
   display: block;
   width: auto;
@@ -407,13 +431,28 @@ a.backLink:hover {
   margin: 0;
   object-fit: contain;
   object-position: center center;
-  border-radius: clamp(8px, 2.5vmin + 6px, 24px);
+  border-radius: 12px;
   background: transparent;
-  box-shadow: 0 1px 3px rgb(0 0 0 / 0.08);
+  box-shadow: none;
 }
 
-:global(html[data-theme='dark']) .media.mediaBordered.mediaVideoFrame .mediaVideo {
-  box-shadow: 0 1px 4px rgb(0 0 0 / 0.45);
+@media (min-width: 521px) and (max-width: 1199px) {
+  .media.mediaBordered.mediaVideoFrame .mediaVideo {
+    border-radius: clamp(4px, 1.2vmin + 2px, 12px);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.08);
+  }
+}
+
+@media (min-width: 1200px) {
+  .media.mediaBordered.mediaVideoFrame .mediaVideo {
+    border-radius: clamp(8px, 2.5vmin + 6px, 24px);
+  }
+}
+
+@media (min-width: 521px) {
+  :global(html[data-theme='dark']) .media.mediaBordered.mediaVideoFrame .mediaVideo {
+    box-shadow: 0 1px 4px rgb(0 0 0 / 0.45);
+  }
 }
 
 .footer {
@@ -460,5 +499,10 @@ a.backLink:hover {
   .metaRow {
     flex-direction: column;
     gap: 20px;
+  }
+
+  .media.mediaBordered.mediaVideoFrame .mediaVideo {
+    border-radius: 8px;
+    box-shadow: none;
   }
 }

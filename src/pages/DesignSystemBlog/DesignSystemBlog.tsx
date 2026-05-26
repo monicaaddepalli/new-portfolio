@@ -4,13 +4,13 @@ import { applyTheme, getInitialTheme, type Theme } from '../../lib/theme';
 import styles from './DesignSystemBlog.module.css';
 
 const imgHero = '/assets/blog/hero.png';
-const imgAudit = '/assets/blog/audit.png';
-const imgApiDesign = '/assets/blog/api-design.png';
+const imgAudit = '/assets/blog/audit.png?v=2';
+const imgApiDesign = '/assets/blog/api-design.png?v=2';
 const imgPocNav = '/assets/blog/poc-nav.png';
-const imgBaseAvatar = '/assets/blog/base-avatar.png';
+const imgBaseAvatar = '/assets/blog/base-avatar.png?v=2';
 const imgVariants = '/assets/blog/variants.png';
-const imgDocumentation = '/assets/blog/documentation.png';
-const imgSlack = '/assets/blog/slack.png';
+const imgDocumentation = '/assets/blog/documentation.png?v=2';
+const imgSlack = '/assets/blog/slack.png?v=2';
 
 const TOC_SECTION_IDS = [
   'background',
@@ -308,7 +308,7 @@ export function DesignSystemBlog() {
               </div>
             </header>
 
-            <MediaImage src={imgHero} hero fill="#f2f2f2" />
+            <MediaImage src={imgHero} hero fill="var(--hero-media-surface)" />
           </div>
 
           <div className={styles.articleLayout}>
@@ -412,7 +412,7 @@ export function DesignSystemBlog() {
               src={imgAudit}
               caption="audit findings of top navigation bar across different products"
               contain
-              fill="#ffffff"
+              fill="var(--media-surface)"
             />
 
             <section
@@ -505,7 +505,7 @@ export function DesignSystemBlog() {
               src={imgApiDesign}
               caption="api design for beneficiary select chip component"
               contain
-              fill="#ffffff"
+              fill="var(--media-surface)"
             />
 
             <section
@@ -535,7 +535,7 @@ export function DesignSystemBlog() {
             <MediaFigure
               src={imgPocNav}
               caption="initial version of top nav bar component"
-              fill="#f9f9f9"
+              fill="var(--hero-media-surface)"
             />
 
             <section
@@ -601,7 +601,7 @@ export function DesignSystemBlog() {
             <MediaFigure
               src={imgBaseAvatar}
               caption="base component of avatar component"
-              fill="#ffffff"
+              fill="var(--media-surface)"
             />
 
             <section
@@ -635,7 +635,7 @@ export function DesignSystemBlog() {
             <MediaFigure
               src={imgVariants}
               caption="different variants of upload module component"
-              fill="#ffffff"
+              fill="var(--media-surface)"
             />
 
             <section
@@ -721,7 +721,7 @@ export function DesignSystemBlog() {
             <MediaFigure
               src={imgDocumentation}
               caption="documentation for upload module component"
-              fill="#f9f9f9"
+              fill="var(--hero-media-surface)"
             />
 
             <section
@@ -782,7 +782,7 @@ export function DesignSystemBlog() {
             <MediaFigure
               src={imgSlack}
               caption="published announcement on slack channel for the components"
-              fill="#ffffff"
+              fill="var(--media-surface)"
             />
 
             <section className={styles.sectionText} data-node-id="187:828">

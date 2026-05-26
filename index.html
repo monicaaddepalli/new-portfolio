@@ -36,6 +36,23 @@
     </script>
   </head>
   <body>
+    <script>
+      (function () {
+        try {
+          var storageKey = 'portfolio-scroll-positions';
+          var pathKey = location.pathname + location.search;
+          if (location.hash) return;
+          if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+          }
+          var positions = JSON.parse(sessionStorage.getItem(storageKey) || '{}');
+          var y = positions[pathKey];
+          if (typeof y === 'number' && y > 0) {
+            window.scrollTo(0, y);
+          }
+        } catch (e) {}
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

@@ -95,6 +95,11 @@
 
 .heroLeadImage {
   order: 4;
+  border-radius: 0;
+}
+
+.heroLeadImage .mediaImg {
+  border-radius: 0;
 }
 
 .projectMeta {
@@ -376,7 +381,7 @@ a.backLink:hover {
 }
 
 .accentRed {
-  color: #ff462e;
+  color: var(--orange);
   font-weight: 600;
 }
 
@@ -387,7 +392,11 @@ a.backLink:hover {
   overflow: hidden;
   flex-shrink: 0;
   background: var(--card-bg);
-  border-radius: 12px;
+  border-radius: 4px;
+}
+
+.media.heroLeadImage {
+  border-radius: 0;
 }
 
 .mediaInner {
@@ -409,8 +418,113 @@ a.backLink:hover {
   object-position: center top;
 }
 
+.framedPlainImage.mediaPlain.mediaBordered {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 3200 / 2000;
+  align-self: stretch;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--media-surface);
+}
+
+.framedPlainImage.mediaPlain .mediaInner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.framedPlainImage.mediaPlain .mediaImg {
+  width: auto;
+  height: 80%;
+  max-width: 100%;
+  max-height: 80%;
+  margin: 0;
+  border-radius: 4px;
+  object-fit: contain;
+  object-position: center center;
+}
+
+.userCallsImage.mediaPlain .mediaImg {
+  width: 80%;
+  height: 80%;
+  max-width: 80%;
+  max-height: 80%;
+}
+
+@media (min-width: 1200px) {
+  .framedPlainImage.mediaPlain.mediaBordered {
+    height: 520px;
+    aspect-ratio: auto;
+  }
+}
+
+.mediaPlain {
+  background: transparent;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.mediaPlain .mediaInner {
+  width: 100%;
+}
+
+.mediaPlain .mediaImg {
+  width: 100%;
+  height: auto;
+  max-height: min(85dvh, 880px);
+  object-fit: contain;
+  object-position: center top;
+}
+
+@media (min-width: 521px) and (max-width: 1199px) {
+  .mediaPlain:not(.framedPlainImage) {
+    height: clamp(420px, 52vw, 520px);
+    overflow: hidden;
+  }
+
+  .mediaPlain:not(.framedPlainImage) .mediaInner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mediaPlain:not(.framedPlainImage) .mediaImg {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: contain;
+    object-position: center center;
+  }
+}
+
+@media (min-width: 1200px) {
+  .mediaPlain:not(.framedPlainImage) {
+    height: 520px;
+    overflow: hidden;
+  }
+
+  .mediaPlain:not(.framedPlainImage) .mediaInner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mediaPlain:not(.framedPlainImage) .mediaImg {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: contain;
+    object-position: center center;
+  }
+}
+
 .mediaHero {
-  height: 166px;
+  height: clamp(180px, calc(180px + (100vw - 360px) * 9 / 8), 360px);
 }
 
 @media (min-width: 521px) and (max-width: 1199px) {
@@ -441,8 +555,9 @@ a.backLink:hover {
 }
 
 .mediaFigure {
-  height: 166px;
-  background: #ffffff;
+  height: clamp(180px, calc(180px + (100vw - 360px) * 9 / 8), 360px);
+  background: var(--media-surface);
+  border-radius: 4px;
 }
 
 @media (min-width: 521px) and (max-width: 1199px) {
@@ -470,16 +585,17 @@ a.backLink:hover {
   max-height: none;
   object-fit: contain;
   object-position: center center;
+  border-radius: 4px;
 }
 
 .mediaBordered {
   border: 1px solid rgb(163 163 163 / 0.4);
-  border-radius: 12px;
-  background: var(--bg);
+  border-radius: 4px;
+  background: var(--media-surface);
 }
 
 .mediaBordered .mediaImg {
-  border-radius: 12px;
+  border-radius: 4px;
 }
 
 .mediaBordered.mediaCardBg {
@@ -489,13 +605,13 @@ a.backLink:hover {
 .media.mediaBordered.mediaVideoFrame {
   width: 100%;
   max-width: 100%;
-  height: 166px;
+  height: clamp(180px, calc(180px + (100vw - 360px) * 9 / 8), 360px);
   box-sizing: border-box;
   display: grid;
   grid-template-rows: 0.1fr 0.8fr 0.1fr;
   align-items: stretch;
   justify-items: stretch;
-  background: #ffffff;
+  background: var(--media-surface);
   border: 1px solid rgb(163 163 163 / 0.4);
   border-radius: 4px;
   overflow: hidden;
@@ -536,13 +652,28 @@ a.backLink:hover {
   margin: 0;
   object-fit: contain;
   object-position: center center;
-  border-radius: clamp(8px, 2.5vmin + 6px, 24px);
+  border-radius: 12px;
   background: transparent;
-  box-shadow: 0 1px 3px rgb(0 0 0 / 0.08);
+  box-shadow: none;
 }
 
-:global(html[data-theme='dark']) .media.mediaBordered.mediaVideoFrame .mediaVideo {
-  box-shadow: 0 1px 4px rgb(0 0 0 / 0.45);
+@media (min-width: 521px) and (max-width: 1199px) {
+  .media.mediaBordered.mediaVideoFrame .mediaVideo {
+    border-radius: clamp(4px, 1.2vmin + 2px, 12px);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.08);
+  }
+}
+
+@media (min-width: 1200px) {
+  .media.mediaBordered.mediaVideoFrame .mediaVideo {
+    border-radius: clamp(8px, 2.5vmin + 6px, 24px);
+  }
+}
+
+@media (min-width: 521px) {
+  :global(html[data-theme='dark']) .media.mediaBordered.mediaVideoFrame .mediaVideo {
+    box-shadow: 0 1px 4px rgb(0 0 0 / 0.45);
+  }
 }
 
 .mediaPlaceholder {
@@ -551,7 +682,7 @@ a.backLink:hover {
   flex-shrink: 0;
   border: 1px solid rgb(163 163 163 / 0.4);
   border-radius: 4px;
-  background: var(--bg);
+  background: var(--media-surface);
 }
 
 @media (min-width: 521px) and (max-width: 1199px) {
@@ -589,37 +720,28 @@ a.backLink:hover {
 .phoneShot {
   flex: 0 0 calc((100% - 40px) / 2.25);
   width: calc((100% - 40px) / 2.25);
-  height: auto;
   aspect-ratio: 303 / 480;
-  object-fit: cover;
-  display: block;
   overflow: hidden;
+  border-radius: 4px;
+  position: relative;
 }
 
-.phoneShot canvas {
-  border-radius: 8px;
+img.phoneShot {
+  display: block;
+  height: auto;
+  object-fit: cover;
 }
 
-.media.wireframes {
-  width: 100%;
-  border-radius: 2px;
-  background-color: unset;
-}
-
-.media.wireframes .mediaInner {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.media.wireframes .mediaImg {
+.phoneRiveCanvas {
   width: 100%;
   height: 100%;
-  max-height: none;
-  object-fit: contain;
-  object-position: center center;
-  border-radius: 2px;
+}
+
+.phoneRiveCanvas canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 4px;
 }
 
 .footer {
@@ -677,5 +799,95 @@ a.backLink:hover {
   .statGrid,
   .impactGrid {
     grid-template-columns: 1fr;
+  }
+
+  .mediaHero {
+    height: 180px;
+  }
+
+  .mediaHero .mediaInner {
+    height: 100%;
+  }
+
+  .mediaHero .mediaImg {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: contain;
+    object-position: center center;
+  }
+
+  .framedPlainImage.mediaPlain.mediaBordered {
+    height: 180px;
+    aspect-ratio: auto;
+  }
+
+  .mediaPlain:not(.framedPlainImage) {
+    height: 180px;
+    overflow: hidden;
+  }
+
+  .mediaPlain:not(.framedPlainImage) .mediaInner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mediaPlain:not(.framedPlainImage) .mediaImg {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: contain;
+    object-position: center center;
+  }
+
+  .mediaFigure {
+    height: 180px;
+    aspect-ratio: auto;
+  }
+
+  .mediaFigure .mediaInner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mediaFigure .mediaImg {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: contain;
+    object-position: center center;
+  }
+
+  .media.mediaBordered.mediaVideoFrame {
+    height: 180px;
+    display: grid;
+    grid-template-rows: 0.1fr 0.8fr 0.1fr;
+  }
+
+  .media.mediaBordered.mediaVideoFrame .mediaVideoWrap {
+    height: 100%;
+  }
+
+  .media.mediaBordered.mediaVideoFrame .mediaVideo {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 12px;
+    box-shadow: none;
+  }
+
+  .phoneShot {
+    flex: 0 0 75%;
+    width: 75%;
+    aspect-ratio: 303 / 480;
+  }
+
+  img.phoneShot {
+    object-fit: contain;
   }
 }

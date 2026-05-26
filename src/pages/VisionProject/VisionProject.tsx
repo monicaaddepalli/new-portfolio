@@ -4,9 +4,9 @@ import { applyTheme, getInitialTheme, type Theme } from '../../lib/theme';
 import styles from './VisionProject.module.css';
 
 const imgHero = '/assets/vision/hero.png';
-const imgContext = '/assets/vision/context.png';
-const imgAffinity = '/assets/vision/affinity.png';
-const imgIA = '/assets/vision/ia.png';
+const imgContext = '/assets/vision/context.png?v=3';
+const imgAffinity = '/assets/vision/affinity.png?v=3';
+const imgIA = '/assets/vision/ia.png?v=2';
 /** Place the file at `public/assets/vision/landing-page-vision.mp4` or update this path. */
 const videoLandingPageVision = '/assets/vision/landing-page-vision.mp4';
 /** Same framed container as `videoLandingPageVision`; file: `public/assets/vision/form-section-vision.mp4`. */
@@ -142,7 +142,7 @@ export function VisionProject() {
             <MediaImage
               src={imgHero}
               hero
-              fill="#f2f2f2"
+              fill="var(--hero-media-surface)"
               className={styles.heroLeadImage}
             />
 
@@ -207,7 +207,7 @@ export function VisionProject() {
             </div>
           </section>
 
-          <MediaImage src={imgContext} bordered />
+          <MediaImage src={imgContext} bordered fill="#ffffff" />
 
           <div className={styles.stack80} data-node-id="79:62">
             <section className={styles.sectionText} data-node-id="65:683">
@@ -283,7 +283,9 @@ export function VisionProject() {
             </p>
           </section>
 
-          <MediaImage src={imgAffinity} bordered />
+          <section className={styles.sectionText}>
+            <MediaImage src={imgAffinity} className={styles.affinityImage} />
+          </section>
 
           <section className={styles.sectionText} data-node-id="103:337">
             <p className={`${styles.textBlock} ${styles.primary}`} data-node-id="103:348">
@@ -293,7 +295,7 @@ export function VisionProject() {
             </p>
           </section>
 
-          <MediaImage src={imgIA} bordered />
+          <MediaImage src={imgIA} bordered fill="var(--hero-media-surface)" />
 
           <section className={styles.sectionText} data-node-id="88:84">
             <div className={`${styles.textBlock} ${styles.stack20}`} data-node-id="88:94">

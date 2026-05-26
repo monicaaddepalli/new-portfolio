@@ -87,7 +87,7 @@ const blogPosts: BlogPost[] = [
     subtitle:
       'my experience understanding what it takes to design a design system component from scratch.',
     imageUrl: imgBlogDesignSystem,
-    path: '/blog/design-system-component',
+    path: '/blog/ds-component',
   },
   {
     title: 'how to build a responsive typographic system',

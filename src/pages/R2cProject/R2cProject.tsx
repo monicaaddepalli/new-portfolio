@@ -4,11 +4,11 @@ import { Alignment, Fit, Layout, useRive } from '@rive-app/react-canvas';
 import { applyTheme, getInitialTheme, type Theme } from '../../lib/theme';
 import styles from './R2cProject.module.css';
 
-const card2Layout = new Layout({ fit: Fit.Cover, alignment: Alignment.Center });
+const card2Layout = new Layout({ fit: Fit.Contain, alignment: Alignment.Center });
 
 const imgHero = '/assets/r2c/hero.png';
 const imgUserCalls = '/assets/r2c/user-calls.png';
-const imgAffinity = '/assets/r2c/affinity.png';
+const imgAffinity = '/assets/r2c/affinity.png?v=4';
 const imgPrioritisation = '/assets/r2c/prioritisation.png';
 const imgIA = '/assets/r2c/ia.png';
 const imgWireframes = '/assets/r2c/wireframes.png';
@@ -29,28 +29,27 @@ const videoFtue = '/assets/r2c/ftue.mp4';
 function MediaImage({
   src,
   bordered,
+  plain,
   hero,
-  wireframes,
   cardBg,
   fill,
   className,
 }: {
   src: string;
   bordered?: boolean;
+  plain?: boolean;
   hero?: boolean;
-  wireframes?: boolean;
   cardBg?: boolean;
   fill?: string;
   className?: string;
 }) {
   const wrapClass = [
     styles.media,
+    plain && styles.mediaPlain,
     bordered && styles.mediaBordered,
     cardBg && styles.mediaCardBg,
     hero && styles.mediaHero,
-    bordered && !hero && !wireframes && styles.mediaFigure,
-    wireframes && styles.mediaFigure,
-    wireframes && styles.wireframes,
+    bordered && !hero && !plain && styles.mediaFigure,
     className,
   ]
     .filter(Boolean)
@@ -111,7 +110,11 @@ function Card2Animation() {
     layout: card2Layout,
   });
 
-  return <RiveComponent className={styles.phoneShot} aria-hidden="true" />;
+  return (
+    <div className={styles.phoneShot}>
+      <RiveComponent className={styles.phoneRiveCanvas} aria-hidden="true" />
+    </div>
+  );
 }
 
 function PhoneRowScroller() {
@@ -176,7 +179,7 @@ export function R2cProject() {
             <MediaImage
               src={imgHero}
               hero
-              fill="#f2f2f2"
+              fill="var(--hero-media-surface)"
               className={styles.heroLeadImage}
             />
 
@@ -312,12 +315,11 @@ export function R2cProject() {
             </div>
           </section>
 
-          <img
-            className={styles.mediaImg}
-            alt=""
+          <MediaImage
             src={imgUserCalls}
-            loading="lazy"
-            decoding="async"
+            plain
+            bordered
+            className={`${styles.framedPlainImage} ${styles.userCallsImage}`}
           />
 
           <section className={`${styles.sectionText} ${styles.stack60}`} data-node-id="143:633">
@@ -395,13 +397,7 @@ export function R2cProject() {
             </div>
           </section>
 
-          <img
-            className={styles.mediaImg}
-            alt=""
-            src={imgAffinity}
-            loading="lazy"
-            decoding="async"
-          />
+          <MediaImage src={imgAffinity} plain bordered className={styles.framedPlainImage} />
 
           <section className={styles.sectionText} data-node-id="143:687">
             <div className={styles.textBlock} data-node-id="143:697">
@@ -411,13 +407,7 @@ export function R2cProject() {
             </div>
           </section>
 
-          <img
-            className={styles.mediaImg}
-            alt=""
-            src={imgPrioritisation}
-            loading="lazy"
-            decoding="async"
-          />
+          <MediaImage src={imgPrioritisation} plain bordered className={styles.framedPlainImage} />
 
           <section className={styles.sectionText} data-node-id="143:702">
             <div className={styles.textBlock} data-node-id="143:712">
@@ -427,13 +417,7 @@ export function R2cProject() {
             </div>
           </section>
 
-          <img
-            className={styles.mediaImg}
-            alt=""
-            src={imgIA}
-            loading="lazy"
-            decoding="async"
-          />
+          <MediaImage src={imgIA} plain bordered className={styles.framedPlainImage} />
 
           <section className={styles.sectionText} data-node-id="143:717">
             <div className={styles.textBlock} data-node-id="143:727">
@@ -443,7 +427,7 @@ export function R2cProject() {
             </div>
           </section>
 
-          <MediaImage src={imgWireframes} wireframes />
+          <MediaImage src={imgWireframes} plain bordered className={styles.framedPlainImage} />
 
           <section className={styles.sectionText} data-node-id="143:732">
             <div className={styles.textBlock} data-node-id="143:742">

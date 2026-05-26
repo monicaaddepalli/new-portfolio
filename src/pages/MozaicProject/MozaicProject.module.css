@@ -397,6 +397,8 @@ a.externalLink:focus-visible {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
+  display: block;
+  color: inherit;
 }
 
 .media {
@@ -428,7 +430,7 @@ a.externalLink:focus-visible {
 }
 
 .mediaHero {
-  height: 166px;
+  height: clamp(180px, calc(180px + (100vw - 360px) * 9 / 8), 360px);
 }
 
 @media (min-width: 521px) and (max-width: 1199px) {
@@ -459,9 +461,21 @@ a.externalLink:focus-visible {
 }
 
 .mediaFigure {
-  aspect-ratio: 1040 / 640;
-  height: auto;
-  background: #ffffff;
+  height: clamp(180px, calc(180px + (100vw - 360px) * 9 / 8), 360px);
+  background: var(--media-surface);
+  border-radius: 4px;
+}
+
+@media (min-width: 521px) and (max-width: 1199px) {
+  .mediaFigure {
+    height: clamp(420px, 52vw, 520px);
+  }
+}
+
+@media (min-width: 1200px) {
+  .mediaFigure {
+    height: 520px;
+  }
 }
 
 .mediaFigure .mediaInner {
@@ -477,6 +491,42 @@ a.externalLink:focus-visible {
   max-height: none;
   object-fit: cover;
   object-position: center center;
+  border-radius: 4px;
+}
+
+.foundationsFigure,
+.componentsFigure {
+  width: 100%;
+  height: auto;
+  background: var(--media-surface);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.foundationsFigure {
+  aspect-ratio: 520 / 320;
+}
+
+.componentsFigure {
+  aspect-ratio: 2000 / 1230;
+}
+
+.foundationsFigure .mediaInner,
+.componentsFigure .mediaInner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.foundationsFigure .mediaImg,
+.componentsFigure .mediaImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  border-radius: 4px;
 }
 
 .applicationGrid {
@@ -498,7 +548,7 @@ a.externalLink:focus-visible {
   border: 1px solid rgb(163 163 163 / 0.4);
   border-radius: 4px;
   overflow: hidden;
-  background: #f9f9f9;
+  background: var(--hero-media-surface);
 }
 
 .applicationCell img {

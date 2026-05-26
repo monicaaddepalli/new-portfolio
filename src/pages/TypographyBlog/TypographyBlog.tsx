@@ -79,7 +79,7 @@ export function TypographyBlog() {
             </div>
           </header>
 
-          <MediaImage src={imgHero} hero fill="#f2f2f2" />
+          <MediaImage src={imgHero} hero fill="var(--hero-media-surface)" />
 
           <section className={styles.section}>
             <blockquote className={styles.blockquote}>

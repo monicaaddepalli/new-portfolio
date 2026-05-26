@@ -55,8 +55,16 @@ const strategies = [
   },
 ];
 
-function MediaImage({ src }: { src: string }) {
-  return <img className={styles.mediaImg} alt="" src={src} loading="lazy" decoding="async" />;
+function MediaImage({ src, natural }: { src: string; natural?: boolean }) {
+  return (
+    <img
+      className={natural ? styles.mediaImgNatural : styles.mediaImg}
+      alt=""
+      src={src}
+      loading="lazy"
+      decoding="async"
+    />
+  );
 }
 
 function MediaVideo({ src, title }: { src: string; title?: string }) {
@@ -148,7 +156,7 @@ export function MozaicFoundations() {
                 <p className={styles.heading} data-node-id="250:2648">
                   Tokenisation
                 </p>
-                <MediaImage src={imgTokenisation} />
+                <MediaImage src={imgTokenisation} natural />
                 <div className={styles.stack12}>
                   <p className={styles.primary} data-node-id="250:2650">
                     Designers directly interacted with semantic tokens instead of primitive values.
@@ -173,7 +181,7 @@ export function MozaicFoundations() {
                 <p className={styles.heading} data-node-id="250:2664">
                   Building Typography System
                 </p>
-                <MediaImage src={imgTypography} />
+                <MediaImage src={imgTypography} natural />
                 <div className={styles.stack20}>
                   <p className={styles.primary} data-node-id="250:2666">
                     Setting up a responsive typographic system was crucial in baking in consistency in
@@ -225,7 +233,7 @@ export function MozaicFoundations() {
                   Elevation etc. in a similar semantic format keeping scalability and headless
                   architecture in mind.
                 </p>
-                <MediaImage src={imgObjectStyles} />
+                <MediaImage src={imgObjectStyles} natural />
               </div>
             </div>
           </section>

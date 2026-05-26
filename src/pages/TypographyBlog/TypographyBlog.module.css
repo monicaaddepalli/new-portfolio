@@ -295,6 +295,29 @@ a.inlineLink {
   margin-right: auto;
   object-fit: contain;
   object-position: center center;
+  border-radius: 4px;
+}
+
+.media:not(.mediaHero) {
+  height: auto;
+  overflow: visible;
+  background: transparent;
+}
+
+.media:not(.mediaHero) .mediaInner {
+  height: auto;
+  display: block;
+}
+
+.media:not(.mediaHero) .mediaImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  margin: 0;
+  object-fit: contain;
+  object-position: center center;
+  border-radius: 4px;
 }
 
 .mediaHero {
@@ -302,7 +325,7 @@ a.inlineLink {
   max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
-  height: 200px;
+  height: clamp(180px, calc(180px + (100vw - 360px) * 9 / 8), 360px);
 }
 
 @media (min-width: 521px) and (max-width: 1199px) {
@@ -353,5 +376,9 @@ a.inlineLink {
   .pageShell {
     padding-left: 16px;
     padding-right: 16px;
+  }
+
+  .mediaHero .mediaImg {
+    object-fit: contain;
   }
 }
