@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Alignment, Fit, Layout, useRive } from '@rive-app/react-canvas';
-import { applyTheme, getInitialTheme, type Theme } from '../../lib/theme';
+import { applyTheme, getInitialTheme } from '../../lib/theme';
 import styles from './R2cProject.module.css';
 
 const card2Layout = new Layout({ fit: Fit.Contain, alignment: Alignment.Center });
@@ -131,18 +131,9 @@ function PhoneRowScroller() {
 }
 
 export function R2cProject() {
-  const [theme, setTheme] = useState<Theme>(() => {
-    const initial = getInitialTheme();
-    applyTheme(initial);
-    return initial;
-  });
-
-  const onToggleTheme = () => {
-    const next: Theme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(next);
-    applyTheme(next);
-    localStorage.setItem('theme', next);
-  };
+  useLayoutEffect(() => {
+    applyTheme(getInitialTheme());
+  }, []);
 
   return (
     <div className={styles.pageWrap}>
@@ -805,12 +796,6 @@ export function R2cProject() {
               </ul>
             </div>
           </section>
-
-          <footer className={styles.footer}>
-            <button className={styles.footerButton} type="button" onClick={onToggleTheme}>
-              {theme === 'dark' ? 'light mode' : 'dark mode'}
-            </button>
-          </footer>
         </div>
       </div>
     </div>

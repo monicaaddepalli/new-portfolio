@@ -40,10 +40,6 @@
     padding-left: 182px;
     padding-right: 182px;
   }
-
-  .footer {
-    padding-left: 182px;
-  }
 }
 
 .textBlock {
@@ -371,6 +367,9 @@ a.backLink:hover {
 .externalLink {
   display: inline-flex;
   align-items: center;
+  align-self: flex-start;
+  width: fit-content;
+  max-width: 100%;
   gap: 4px;
   font-weight: 600;
   font-size: 14px;
@@ -382,11 +381,6 @@ a.backLink:hover {
   -webkit-text-fill-color: var(--link);
   text-decoration-color: var(--link);
   margin: 0;
-}
-
-a.externalLink:hover,
-a.externalLink:focus-visible {
-  opacity: 0.85;
 }
 
 .deepDiveCaps {
@@ -558,30 +552,6 @@ a.externalLink:focus-visible {
   height: 100%;
   object-fit: contain;
   border-radius: 4px;
-}
-
-.footer {
-  display: inline-flex;
-  align-items: center;
-  color: var(--primary);
-  margin-top: 60px;
-}
-
-.footerButton {
-  font-family: var(--font);
-  font-size: 14px;
-  line-height: 20px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: var(--primary);
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.footerButton:hover {
-  text-decoration: underline;
-  text-underline-offset: 2px;
 }
 
 .pageWrap {

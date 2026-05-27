@@ -1,6 +1,7 @@
 import { Fragment, useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { OptimizedImage } from '../../components/OptimizedImage';
+import { ThemeToggle } from '../../components/ThemeToggle';
 import { applyTheme, getInitialTheme, type Theme } from '../../lib/theme';
 import styles from './PortfolioHome.module.css';
 
@@ -166,20 +167,21 @@ export function PortfolioHome() {
       <div className={styles.content} data-node-id="24:486">
         <div className={styles.container} data-node-id="24:344" data-name="container">
           <header className={styles.intro} data-node-id="4:50">
-            <div className={`${styles.topRow} ${styles.narrowText}`} data-node-id="16:46">
-              <div className={styles.nameBlock} data-node-id="2:801">
-                <a className={styles.nameLink} href="/" aria-label="Home" data-node-id="2:4">
-                  monica addepalli
-                </a>
-                <p className={styles.secondaryText} data-node-id="2:6">
-                  product designer
-                </p>
+            <div className={`${styles.introTop} ${styles.narrowText}`}>
+              <div className={styles.topRow} data-node-id="16:46">
+                <div className={styles.nameBlock} data-node-id="2:801">
+                  <a className={styles.nameLink} href="/" aria-label="Home" data-node-id="2:4">
+                    monica
+                  </a>
+                  <p className={styles.secondaryText} data-node-id="2:6">
+                    product designer
+                  </p>
+                </div>
+                <div className={styles.location} data-node-id="16:75">
+                  <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+                </div>
               </div>
-              <div className={styles.location} data-node-id="16:75">
-                <p className={styles.secondaryText} data-node-id="16:44">
-                  bangalore, India
-                </p>
-              </div>
+              <hr className={styles.topRowDivider} aria-hidden="true" />
             </div>
 
             <p className={`${styles.primaryText} ${styles.narrowText}`} data-node-id="4:35">
@@ -189,72 +191,75 @@ export function PortfolioHome() {
 
             <p className={`${styles.primaryText} ${styles.narrowText}`} data-node-id="7:69">
               <span>{`currently designing seamless healthcare experiences for millions at `}</span>
-              <a className={styles.link} href="https://www.medibuddy.in/" target="_blank" rel="noreferrer">
+              <a
+                className={styles.link}
+                href="https://www.medibuddy.in/"
+                target="_blank"
+                rel="noreferrer"
+                data-accent-link
+              >
                 medibuddy
               </a>
               <span>{`. `}</span>
               <span className={styles.secondaryText}>(2024 - now)</span>
             </p>
 
-            <div className={`${styles.contactRow} ${styles.narrowText}`} data-node-id="8:594">
-              <div className={styles.contactLeft} data-node-id="5:63">
-                <p className={styles.primaryText} data-node-id="5:61">
-                  get in touch at
-                </p>
-                <div className={styles.emailRow} data-node-id="8:585">
-                  <a
-                    className={styles.link}
-                    href={`mailto:${EMAIL}`}
-                    data-node-id="5:64"
-                  >
-                    {EMAIL}
-                  </a>
-                  <button
-                    className={styles.copyButton}
-                    type="button"
-                    onClick={onCopyEmail}
-                    aria-label={emailCopied ? 'Copied' : 'Copy email'}
-                    data-node-id="8:582"
-                  >
-                    {emailCopied ? (
-                      <svg
-                        className={styles.copyIcon}
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="M13.7333 4.26667L6.8 11.2L2.26667 6.66667"
-                          stroke="currentColor"
-                          strokeWidth="1.4"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    ) : (
-                      <img className={styles.copyIcon} alt="" src={imgContentCopy} />
-                    )}
-                  </button>
-                </div>
-              </div>
-
-              <div className={styles.contactRight} data-node-id="8:588">
-                <span data-node-id="8:589">or</span>
-                <span data-node-id="8:597">view my</span>
+            <p className={`${styles.primaryText} ${styles.narrowText} ${styles.contactRow}`} data-node-id="8:594">
+              <span data-node-id="5:61">get in touch at </span>
+              <span className={styles.emailRow} data-node-id="8:585">
+                <a
+                  className={styles.link}
+                  href={`mailto:${EMAIL}`}
+                  data-node-id="5:64"
+                  data-accent-link
+                >
+                  {EMAIL}
+                </a>
+                <button
+                  className={styles.copyButton}
+                  type="button"
+                  onClick={onCopyEmail}
+                  aria-label={emailCopied ? 'Copied' : 'Copy email'}
+                  data-node-id="8:582"
+                >
+                  {emailCopied ? (
+                    <svg
+                      className={styles.copyIcon}
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M13.7333 4.26667L6.8 11.2L2.26667 6.66667"
+                        stroke="currentColor"
+                        strokeWidth="1.4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  ) : (
+                    <img className={styles.copyIcon} alt="" src={imgContentCopy} />
+                  )}
+                </button>
+              </span>
+              <span data-node-id="8:588"> or view my </span>
+              <span className={styles.resumePhrase}>
                 <a
                   className={styles.resumeInlineLink}
                   href="https://drive.google.com/file/d/1nwYkwOtMrwIv1kuXU2iqUVJTK4wdNjM6/view?usp=sharing"
                   data-node-id="8:595"
                   target="_blank"
                   rel="noreferrer"
+                  data-accent-link
                 >
-                  <span className={styles.underline}>resume</span>.
+                  <span className={styles.underline}>resume</span>
                 </a>
-              </div>
-            </div>
+                .
+              </span>
+            </p>
           </header>
 
           <section className={styles.workSection} data-node-id="15:39">
@@ -410,6 +415,7 @@ export function PortfolioHome() {
               href="https://www.linkedin.com/in/monica-addepalli-4a0b48299"
               target="_blank"
               rel="noreferrer"
+              data-accent-link
             >
               linkedin
             </a>
@@ -418,18 +424,18 @@ export function PortfolioHome() {
               href="https://drive.google.com/file/d/1nwYkwOtMrwIv1kuXU2iqUVJTK4wdNjM6/view?usp=sharing"
               target="_blank"
               rel="noreferrer"
+              data-accent-link
             >
               resume
             </a>
-            <button className={styles.footerButton} type="button" onClick={onToggleTheme}>
-              {theme === 'dark' ? 'light mode' : 'dark mode'}
-            </button>
+            <p className={`${styles.secondaryText} ${styles.footerUpdated}`}>last updated: may 2026</p>
           </footer>
           <a
-            className={styles.footerCredit}
+            className={`${styles.secondaryText} ${styles.footerCredit}`}
             href="https://cursor.com"
             target="_blank"
             rel="noreferrer"
+            data-muted
           >
             made with cursor
           </a>

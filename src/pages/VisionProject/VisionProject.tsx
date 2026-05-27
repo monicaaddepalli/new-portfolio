@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { applyTheme, getInitialTheme, type Theme } from '../../lib/theme';
+import { applyTheme, getInitialTheme } from '../../lib/theme';
 import styles from './VisionProject.module.css';
 
 const imgHero = '/assets/vision/hero.png';
@@ -84,18 +84,9 @@ function MediaVideo({
 }
 
 export function VisionProject() {
-  const [theme, setTheme] = useState<Theme>(() => {
-    const initial = getInitialTheme();
-    applyTheme(initial);
-    return initial;
-  });
-
-  const onToggleTheme = () => {
-    const next: Theme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(next);
-    applyTheme(next);
-    localStorage.setItem('theme', next);
-  };
+  useLayoutEffect(() => {
+    applyTheme(getInitialTheme());
+  }, []);
 
   return (
     <div className={styles.pageWrap}>
@@ -386,12 +377,6 @@ export function VisionProject() {
               </p>
             </div>
           </section>
-
-          <footer className={styles.footer}>
-            <button className={styles.footerButton} type="button" onClick={onToggleTheme}>
-              {theme === 'dark' ? 'light mode' : 'dark mode'}
-            </button>
-          </footer>
         </div>
       </div>
     </div>

@@ -518,30 +518,6 @@ a.backLink:hover {
   object-position: center center;
 }
 
-.footer {
-  display: inline-flex;
-  align-items: center;
-  color: var(--primary);
-  margin-top: 60px;
-}
-
-.footerButton {
-  font-family: var(--font);
-  font-size: 14px;
-  line-height: 20px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: var(--primary);
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.footerButton:hover {
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
 .sectionAnchor {
   scroll-margin-top: 120px;
 }

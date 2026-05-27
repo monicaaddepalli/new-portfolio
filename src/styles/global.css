@@ -13,7 +13,8 @@ body {
   --primary: #e5e5e5;
   --secondary: #a3a3a3;
   --orange: #ff462e;
-  --link: #4d7cff;
+  --link: #e24b25;
+  --link-hover-fill: #e24b2530;
   --card-bg: #141414;
   --card-text: #e5e5e5;
   --media-surface: var(--card-bg);
@@ -33,7 +34,8 @@ body {
   --primary: #111111;
   --secondary: #a3a3a3;
   --orange: #ff462e;
-  --link: #0033a0;
+  --link: #e24b25;
+  --link-hover-fill: #e24b2530;
   --card-bg: #f2f2f2;
   --card-text: #000000;
   --media-surface: #ffffff;
@@ -50,7 +52,8 @@ body {
   --primary: #e5e5e5;
   --secondary: #a3a3a3;
   --orange: #ff462e;
-  --link: #4d7cff;
+  --link: #e24b25;
+  --link-hover-fill: #e24b2530;
   --card-bg: #141414;
   --card-text: #e5e5e5;
   --media-surface: var(--card-bg);
@@ -114,20 +117,20 @@ body {
   color: var(--link) !important;
   -webkit-text-fill-color: var(--link) !important;
   text-decoration-color: var(--link) !important;
+  border-radius: 2px;
+  padding-inline: 2px;
+  margin-inline: -2px;
+  transition: background-color 0.15s ease;
 }
 
 :is(:root[data-theme='light'], :root[data-theme='dark'])
   a[data-accent-link]:not([data-work-hit-area]):hover,
 :is(:root[data-theme='light'], :root[data-theme='dark'])
-  a[data-accent-link]:not([data-work-hit-area]):active,
-:is(:root[data-theme='light'], :root[data-theme='dark'])
-  a[data-accent-link]:not([data-work-hit-area]):focus,
-:is(:root[data-theme='light'], :root[data-theme='dark'])
   a[data-accent-link]:not([data-work-hit-area]):focus-visible {
   color: var(--link) !important;
   -webkit-text-fill-color: var(--link) !important;
   text-decoration-color: var(--link) !important;
-  opacity: 0.85;
+  background-color: var(--link-hover-fill) !important;
 }
 
 /* Muted navigation links (e.g. vision “back”) */

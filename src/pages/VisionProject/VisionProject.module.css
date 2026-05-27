@@ -30,10 +30,6 @@
     padding-left: 182px;
     padding-right: 182px;
   }
-
-  .footer {
-    padding-left: 182px;
-  }
 }
 
 .textBlock {
@@ -453,30 +449,6 @@ a.backLink:hover {
   :global(html[data-theme='dark']) .media.mediaBordered.mediaVideoFrame .mediaVideo {
     box-shadow: 0 1px 4px rgb(0 0 0 / 0.45);
   }
-}
-
-.footer {
-  display: inline-flex;
-  align-items: center;
-  color: var(--primary);
-  margin-top: 60px;
-}
-
-.footerButton {
-  font-family: var(--font);
-  font-size: 14px;
-  line-height: 20px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: var(--primary);
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.footerButton:hover {
-  text-decoration: underline;
-  text-underline-offset: 2px;
 }
 
 .pageWrap {
