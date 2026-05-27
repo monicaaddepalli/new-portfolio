@@ -318,20 +318,20 @@ a.resumeInlineLink:active {
   }
 }
 
-.blogList {
+.notesList {
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
 
-.blogCard {
+.notesCard {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  animation: blogCardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
+  animation: notesCardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
 }
 
-@keyframes blogCardIn {
+@keyframes notesCardIn {
   from {
     opacity: 0;
     transform: translateY(14px);
@@ -344,7 +344,7 @@ a.resumeInlineLink:active {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .blogCard {
+  .notesCard {
     animation: none;
   }
 }

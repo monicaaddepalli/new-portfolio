@@ -274,7 +274,7 @@ export function DesignSystemBlog() {
             <header className={styles.sectionText} data-node-id="187:552">
               <div className={styles.stack60}>
                 <div className={styles.backRow} data-node-id="187:554">
-                  <Link className={styles.backLink} to="/?tab=blog" data-node-id="187:555" data-muted>
+                  <Link className={styles.backLink} to="/?tab=notes" data-node-id="187:555" data-muted>
                     <span className={styles.backIconWrap} aria-hidden="true">
                       <svg className={styles.backIcon} viewBox="0 0 16 16" width={16} height={16}>
                         <path

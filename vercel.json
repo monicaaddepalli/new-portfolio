@@ -6,7 +6,17 @@
   "redirects": [
     {
       "source": "/blog/design-system-component",
-      "destination": "/blog/ds-component",
+      "destination": "/notes/ds-component",
+      "permanent": true
+    },
+    {
+      "source": "/blog/ds-component",
+      "destination": "/notes/ds-component",
+      "permanent": true
+    },
+    {
+      "source": "/blog/responsive-typographic-system",
+      "destination": "/notes/responsive-typographic-system",
       "permanent": true
     }
   ],

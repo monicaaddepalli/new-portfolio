@@ -49,7 +49,7 @@ export function TypographyBlog() {
         <div className={styles.pageShell}>
           <header className={`${styles.contentColumn} ${styles.stack60}`}>
             <div className={styles.backRow}>
-              <Link className={styles.backLink} to="/?tab=blog" data-muted>
+              <Link className={styles.backLink} to="/?tab=notes" data-muted>
                 <span className={styles.backIconWrap} aria-hidden="true">
                   <svg className={styles.backIcon} viewBox="0 0 16 16" width={16} height={16}>
                     <path

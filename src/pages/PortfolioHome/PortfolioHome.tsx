@@ -33,7 +33,7 @@ async function copyToClipboard(text: string) {
   document.body.removeChild(textarea);
 }
 
-type TabId = 'work' | 'blog';
+type TabId = 'work' | 'notes';
 
 type WorkItem = {
   title: string;
@@ -43,7 +43,7 @@ type WorkItem = {
   caseStudyPath?: string;
 };
 
-type BlogPost = {
+type NotePost = {
   title: string;
   subtitle: string;
   imageUrl?: string;
@@ -79,23 +79,24 @@ const selectedWork: WorkItem[] = [
 ];
 
 function tabFromSearchParams(params: URLSearchParams): TabId {
-  return params.get('tab') === 'blog' ? 'blog' : 'work';
+  const tab = params.get('tab');
+  return tab === 'notes' || tab === 'blog' ? 'notes' : 'work';
 }
 
-const blogPosts: BlogPost[] = [
+const notesPosts: NotePost[] = [
   {
     title: 'behind the scenes of building design system component',
     subtitle:
       'my experience understanding what it takes to design a design system component from scratch.',
     imageUrl: imgBlogDesignSystem,
-    path: '/blog/ds-component',
+    path: '/notes/ds-component',
   },
   {
     title: 'how to build a responsive typographic system',
     subtitle:
       'a step-by-step guide to building a type system that works across every screen size.',
     imageUrl: imgBlogTypography,
-    path: '/blog/responsive-typographic-system',
+    path: '/notes/responsive-typographic-system',
   },
 ];
 
@@ -103,9 +104,15 @@ export function PortfolioHome() {
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTab = tabFromSearchParams(searchParams);
 
+  useLayoutEffect(() => {
+    if (searchParams.get('tab') === 'blog') {
+      setSearchParams({ tab: 'notes' }, { replace: true });
+    }
+  }, [searchParams, setSearchParams]);
+
   const selectTab = (tab: TabId) => {
-    if (tab === 'blog') {
-      setSearchParams({ tab: 'blog' }, { replace: true });
+    if (tab === 'notes') {
+      setSearchParams({ tab: 'notes' }, { replace: true });
     } else {
       setSearchParams({}, { replace: true });
     }
@@ -267,7 +274,7 @@ export function PortfolioHome() {
               ref={tabsRef}
               className={styles.tabs}
               role="tablist"
-              aria-label="Work and blog"
+              aria-label="Work and notes"
               data-node-id="9:3834"
             >
               <button
@@ -284,17 +291,17 @@ export function PortfolioHome() {
                 selected work
               </button>
               <button
-                id="tab-blog"
-                data-tab="blog"
-                className={activeTab === 'blog' ? styles.tabSelected : styles.tab}
+                id="tab-notes"
+                data-tab="notes"
+                className={activeTab === 'notes' ? styles.tabSelected : styles.tab}
                 type="button"
                 role="tab"
-                aria-selected={activeTab === 'blog'}
-                aria-controls="panel-blog"
-                onClick={() => selectTab('blog')}
+                aria-selected={activeTab === 'notes'}
+                aria-controls="panel-notes"
+                onClick={() => selectTab('notes')}
                 data-node-id="9:3832"
               >
-                blog
+                notes
               </button>
               <span
                 className={styles.tabIndicator}
@@ -359,18 +366,18 @@ export function PortfolioHome() {
               </div>
 
               <div
-                id="panel-blog"
+                id="panel-notes"
                 role="tabpanel"
-                aria-labelledby="tab-blog"
-                aria-hidden={activeTab !== 'blog'}
-                className={`${styles.tabPanel} ${activeTab === 'blog' ? styles.tabPanelActive : styles.tabPanelInactive}`}
+                aria-labelledby="tab-notes"
+                aria-hidden={activeTab !== 'notes'}
+                className={`${styles.tabPanel} ${activeTab === 'notes' ? styles.tabPanelActive : styles.tabPanelInactive}`}
               >
-                <div className={styles.blogList}>
-                  {blogPosts.map((post) => {
-                    const titleId = `blog-title-${post.title.replace(/\s+/g, '-').toLowerCase()}`;
+                <div className={styles.notesList}>
+                  {notesPosts.map((post) => {
+                    const titleId = `notes-title-${post.title.replace(/\s+/g, '-').toLowerCase()}`;
 
                     const card = (
-                      <article className={styles.blogCard} data-node-id="188:890">
+                      <article className={styles.notesCard} data-node-id="188:890">
                         <div className={styles.workImage} aria-hidden="true" data-node-id="188:891">
                           <div className={styles.workImageBg} />
                           {post.imageUrl ? (

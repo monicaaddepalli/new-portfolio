@@ -158,12 +158,21 @@ const router = createBrowserRouter([
       { path: '/work/vision-revamp', element: <VisionProject /> },
       { path: '/work/mozaic-design-system', element: <MozaicProject /> },
       { path: '/work/mozaic-design-system/foundations', element: <MozaicFoundations /> },
-      { path: '/blog/ds-component', element: <DesignSystemBlog /> },
+      { path: '/notes/ds-component', element: <DesignSystemBlog /> },
+      {
+        path: '/notes/design-system-component',
+        element: <Navigate to="/notes/ds-component" replace />,
+      },
+      { path: '/notes/responsive-typographic-system', element: <TypographyBlog /> },
+      { path: '/blog/ds-component', element: <Navigate to="/notes/ds-component" replace /> },
       {
         path: '/blog/design-system-component',
-        element: <Navigate to="/blog/ds-component" replace />,
+        element: <Navigate to="/notes/ds-component" replace />,
       },
-      { path: '/blog/responsive-typographic-system', element: <TypographyBlog /> },
+      {
+        path: '/blog/responsive-typographic-system',
+        element: <Navigate to="/notes/responsive-typographic-system" replace />,
+      },
     ],
   },
 ]);
