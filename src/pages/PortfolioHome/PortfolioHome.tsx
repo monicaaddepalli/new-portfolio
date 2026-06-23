@@ -256,7 +256,7 @@ export function PortfolioHome() {
               <span className={styles.resumePhrase}>
                 <a
                   className={styles.resumeInlineLink}
-                  href="https://drive.google.com/file/d/1nwYkwOtMrwIv1kuXU2iqUVJTK4wdNjM6/view?usp=sharing"
+                  href="/assets/monica-addepalli-resume.pdf"
                   data-node-id="8:595"
                   target="_blank"
                   rel="noreferrer"
@@ -428,14 +428,14 @@ export function PortfolioHome() {
             </a>
             <a
               className={styles.footerLink}
-              href="https://drive.google.com/file/d/1nwYkwOtMrwIv1kuXU2iqUVJTK4wdNjM6/view?usp=sharing"
+              href="/assets/monica-addepalli-resume.pdf"
               target="_blank"
               rel="noreferrer"
               data-accent-link
             >
               resume
             </a>
-            <p className={`${styles.secondaryText} ${styles.footerUpdated}`}>last updated: may 2026</p>
+            <p className={`${styles.secondaryText} ${styles.footerUpdated}`}>last updated: june 2026</p>
           </footer>
           <a
             className={`${styles.secondaryText} ${styles.footerCredit}`}
