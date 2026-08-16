@@ -12,6 +12,7 @@ const imgFrame3 = '/assets/home/work-vision.png';
 const imgBlogDesignSystem = '/assets/home/blog-design-system.png';
 const imgBlogTypography = '/assets/home/blog-typography.png';
 const imgContentCopy = '/assets/home/icon-copy.svg';
+const resumePdf = '/assets/monica-addepalli-resume.pdf?v=20260816';
 
 const EMAIL = 'lakshmimonica14@gmail.com';
 
@@ -256,7 +257,7 @@ export function PortfolioHome() {
               <span className={styles.resumePhrase}>
                 <a
                   className={styles.resumeInlineLink}
-                  href="/assets/monica-addepalli-resume.pdf"
+                  href={resumePdf}
                   data-node-id="8:595"
                   target="_blank"
                   rel="noreferrer"
@@ -428,7 +429,7 @@ export function PortfolioHome() {
             </a>
             <a
               className={styles.footerLink}
-              href="/assets/monica-addepalli-resume.pdf"
+              href={resumePdf}
               target="_blank"
               rel="noreferrer"
               data-accent-link
