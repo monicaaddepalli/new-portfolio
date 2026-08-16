@@ -53,8 +53,7 @@ type NotePost = {
 const selectedWork: WorkItem[] = [
   {
     title: 'improving doctor discovery',
-    subtitle:
-      'increasing search conversion from 18% to 32% with symptom-led discovery and smarter filters.',
+    subtitle: 'reducing friction in the journey from search to consultation.',
     imageUrl: imgFrameInclinicSearch,
     caseStudyPath: '/work/inclinic-search-filters',
   },
