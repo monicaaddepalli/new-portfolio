@@ -435,7 +435,7 @@ export function PortfolioHome() {
             >
               resume
             </a>
-            <p className={`${styles.secondaryText} ${styles.footerUpdated}`}>last updated: june 2026</p>
+            <p className={`${styles.secondaryText} ${styles.footerUpdated}`}>last updated: august 2026</p>
           </footer>
           <a
             className={`${styles.secondaryText} ${styles.footerCredit}`}
