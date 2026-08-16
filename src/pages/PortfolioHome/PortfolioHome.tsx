@@ -12,7 +12,7 @@ const imgFrame3 = '/assets/home/work-vision.png';
 const imgBlogDesignSystem = '/assets/home/blog-design-system.png';
 const imgBlogTypography = '/assets/home/blog-typography.png';
 const imgContentCopy = '/assets/home/icon-copy.svg';
-const resumePdf = '/assets/monica-addepalli-resume.pdf?v=20260816';
+const resumePdf = '/assets/monica-addepalli-resume.pdf?v=20260816-3';
 
 const EMAIL = 'lakshmimonica14@gmail.com';
 
