@@ -448,8 +448,8 @@ a.workItemLink:focus-visible {
 }
 
 :is(:root[data-theme='light'], :root[data-theme='dark']) a.footerCredit,
-:is(:root[data-theme='light'], :root[data-theme='dark']) a.footerCredit:hover,
 :is(:root[data-theme='light'], :root[data-theme='dark']) a.footerCredit:visited,
+:is(:root[data-theme='light'], :root[data-theme='dark']) a.footerCredit:hover,
 :is(:root[data-theme='light'], :root[data-theme='dark']) a.footerCredit:active,
 :is(:root[data-theme='light'], :root[data-theme='dark']) a.footerCredit:focus,
 :is(:root[data-theme='light'], :root[data-theme='dark']) a.footerCredit:focus-visible {
@@ -461,6 +461,7 @@ a.workItemLink:focus-visible {
   color: var(--secondary) !important;
   -webkit-text-fill-color: var(--secondary) !important;
   text-decoration: none;
+  background-color: transparent !important;
 }
 
 a.footerLink {

@@ -144,13 +144,13 @@ body {
 }
 
 :is(:root[data-theme='light'], :root[data-theme='dark'])
-  a[data-muted]:not([data-work-hit-area]):hover,
+  a[data-muted]:not([data-work-hit-area]):not([data-no-hover]):hover,
 :is(:root[data-theme='light'], :root[data-theme='dark'])
-  a[data-muted]:not([data-work-hit-area]):active,
+  a[data-muted]:not([data-work-hit-area]):not([data-no-hover]):active,
 :is(:root[data-theme='light'], :root[data-theme='dark'])
-  a[data-muted]:not([data-work-hit-area]):focus,
+  a[data-muted]:not([data-work-hit-area]):not([data-no-hover]):focus,
 :is(:root[data-theme='light'], :root[data-theme='dark'])
-  a[data-muted]:not([data-work-hit-area]):focus-visible {
+  a[data-muted]:not([data-work-hit-area]):not([data-no-hover]):focus-visible {
   color: var(--primary) !important;
   -webkit-text-fill-color: var(--primary) !important;
   text-decoration-color: var(--primary) !important;

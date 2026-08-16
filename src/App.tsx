@@ -15,6 +15,7 @@ import { DesignSystemBlog } from './pages/DesignSystemBlog/DesignSystemBlog';
 import { TypographyBlog } from './pages/TypographyBlog/TypographyBlog';
 import { MozaicProject } from './pages/MozaicProject/MozaicProject';
 import { MozaicFoundations } from './pages/MozaicFoundations/MozaicFoundations';
+import { InclinicSearchProject } from './pages/InclinicSearchProject/InclinicSearchProject';
 
 const BLOG_SCROLL_OFFSET = 120;
 const SCROLL_STORAGE_KEY = 'portfolio-scroll-positions';
@@ -154,6 +155,7 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { path: '/', element: <PortfolioHome /> },
+      { path: '/work/inclinic-search-filters', element: <InclinicSearchProject /> },
       { path: '/work/r2c-reorder', element: <R2cProject /> },
       { path: '/work/vision-revamp', element: <VisionProject /> },
       { path: '/work/mozaic-design-system', element: <MozaicProject /> },

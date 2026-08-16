@@ -5,10 +5,10 @@ import { ThemeToggle } from '../../components/ThemeToggle';
 import { applyTheme, getInitialTheme, type Theme } from '../../lib/theme';
 import styles from './PortfolioHome.module.css';
 
+const imgFrameInclinicSearch = '/assets/home/work-inclinic-search.png';
 const imgFrame1 = '/assets/home/work-r2c.png';
 const imgFrame2 = '/assets/home/work-mozaic.png';
 const imgFrame3 = '/assets/home/work-vision.png';
-const imgFrame4 = '/assets/home/work-inclinic.png';
 const imgBlogDesignSystem = '/assets/home/blog-design-system.png';
 const imgBlogTypography = '/assets/home/blog-typography.png';
 const imgContentCopy = '/assets/home/icon-copy.svg';
@@ -52,6 +52,13 @@ type NotePost = {
 
 const selectedWork: WorkItem[] = [
   {
+    title: 'improving doctor discovery',
+    subtitle:
+      'increasing search conversion from 18% to 32% with symptom-led discovery and smarter filters.',
+    imageUrl: imgFrameInclinicSearch,
+    caseStudyPath: '/work/inclinic-search-filters',
+  },
+  {
     title: 'r2c - reorder',
     subtitle: 'boosting 23% cashless adoption with behavioural design.',
     imageUrl: imgFrame1,
@@ -69,12 +76,6 @@ const selectedWork: WorkItem[] = [
       'improving the eyewear booking flow to reduce friction and increase conversions by 7%.',
     imageUrl: imgFrame3,
     caseStudyPath: '/work/vision-revamp',
-  },
-  {
-    title: 'inclinic hospital page',
-    subtitle: 'improving hospital discovery and appointment conversion.',
-    imageUrl: imgFrame4,
-    comingSoon: true,
   },
 ];
 
@@ -443,6 +444,7 @@ export function PortfolioHome() {
             target="_blank"
             rel="noreferrer"
             data-muted
+            data-no-hover
           >
             made with cursor
           </a>
