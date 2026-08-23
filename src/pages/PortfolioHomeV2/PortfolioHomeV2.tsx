@@ -117,7 +117,8 @@ export function PortfolioHomeV2() {
         <div className={styles.content}>
           <section className={styles.intro}>
             <h1 className={styles.headline}>
-              Monica is a design engineer and a professional overthinker
+              <span className={styles.headlineLine}>Monica is a design engineer and</span>
+              <span className={styles.headlineLine}>a professional overthinker</span>
             </h1>
             <div className={styles.actions}>
               <a className={styles.resume} href={resumePdf} target="_blank" rel="noreferrer">

@@ -153,6 +153,14 @@
   color: var(--primary);
 }
 
+.headlineLine {
+  display: block;
+}
+
+.headlineLine:last-child {
+  white-space: nowrap;
+}
+
 .actions {
   display: flex;
   align-items: center;
