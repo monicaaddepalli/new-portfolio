@@ -1,7 +1,6 @@
 export type Theme = 'light' | 'dark';
 
-const FAVICON_LIGHT = '/favicon-light.png';
-const FAVICON_DARK = '/favicon-dark.png';
+const FAVICON = '/favicon.png?v=20260823-2';
 
 export function getInitialTheme(): Theme {
   const stored = localStorage.getItem('theme');
@@ -18,7 +17,7 @@ function updateFavicon(theme: Theme) {
     document.head.appendChild(link);
   }
   link.type = 'image/png';
-  link.href = theme === 'light' ? FAVICON_LIGHT : FAVICON_DARK;
+  link.href = FAVICON;
 }
 
 export function applyTheme(theme: Theme) {
