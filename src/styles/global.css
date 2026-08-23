@@ -22,6 +22,97 @@ body {
 
   /* Typography */
   --font: 'Manrope', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-sans: var(--font);
+  --font-mono: 'Recursive', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-hand: 'Gloria Hallelujah', 'Segoe Script', 'Comic Sans MS', cursive;
+  --font-mono-variation: 'CASL' 0, 'CRSV' 0.5, 'MONO' 0;
+
+  /*
+   * v2 text tokens from Figma Home Desktop (415:47) and Mobile (437:1822).
+   * Mobile-first: 360 frame values, then desktop 1920 frame values at 768px.
+   */
+  --text-identity-family: var(--font-sans);
+  --text-identity-size: 14px;
+  --text-identity-line: 20px;
+  --text-identity-weight: 400;
+  --text-identity-letter: 0;
+  --text-identity-transform: lowercase;
+
+  --text-h1-family: var(--font-sans);
+  --text-h1-size: 18px;
+  --text-h1-line: 28px;
+  --text-h1-weight: 800;
+  --text-h1-letter: 0;
+  --text-h1-transform: uppercase;
+
+  --text-body-family: var(--font-sans);
+  --text-body-size: 14px;
+  --text-body-line: 20px;
+  --text-body-weight: 400;
+  --text-body-letter: 0;
+
+  --text-emphasis-family: var(--font-sans);
+  --text-emphasis-size: var(--text-body-size);
+  --text-emphasis-line: var(--text-body-line);
+  --text-emphasis-weight: 600;
+  --text-emphasis-letter: 0;
+
+  --page-bg: #ffffff;
+
+  --text-action-family: var(--font-sans);
+  --text-action-size: 14px;
+  --text-action-line: 20px;
+  --text-action-weight: 400;
+  --text-action-letter: 0;
+  --text-action-transform: lowercase;
+
+  --text-label-family: var(--font-sans);
+  --text-label-size: var(--text-body-size);
+  --text-label-line: var(--text-body-line);
+  --text-label-weight: 400;
+  --text-label-letter: 0;
+  --text-label-transform: lowercase;
+
+  --text-list-family: var(--font-sans);
+  --text-list-size: var(--text-body-size);
+  --text-list-line: var(--text-body-line);
+  --text-list-weight: 400;
+  --text-list-letter: 0;
+
+  --text-meta-family: var(--font-mono);
+  --text-meta-size: 14px;
+  --text-meta-line: 20px;
+  --text-meta-weight: 400;
+  --text-meta-letter: 0;
+
+  --text-hand-family: var(--font-hand);
+  --text-hand-size: 10px;
+  --text-hand-line: 16px;
+  --text-hand-weight: 400;
+  --text-hand-letter: 0;
+  --text-hand-transform: lowercase;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --text-identity-size: 18px;
+    --text-identity-line: 28px;
+
+    --text-h1-size: 40px;
+    --text-h1-line: 52px;
+
+    --text-body-size: 18px;
+    --text-body-line: 28px;
+
+    --text-action-size: 18px;
+    --text-action-line: 28px;
+
+    --text-meta-size: 18px;
+    --text-meta-line: 28px;
+
+    --text-hand-size: 16px;
+    --text-hand-line: 26px;
+  }
 }
 
 :root[data-theme='light'] {

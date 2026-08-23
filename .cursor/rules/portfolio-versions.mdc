@@ -1,0 +1,29 @@
+---
+description: v1.0 is production; v2.0 is the new UI. Do not ship v2 to main unless asked.
+alwaysApply: true
+---
+
+# Portfolio versions
+
+## v1.0 = current production (full site)
+
+When the user says **v1.0**, **v1**, or **production**, they mean the complete live site as it is today — the original home plus every existing case study and note. Not a partial or restyled stand-in.
+
+- Frozen as git tag `v1.0` on `main` (`e5ce338`)
+- Local route: `/v1` → `PortfolioHome`
+- Live site deploys from `main` via Vercel: https://github.com/monicaaddepalli/portfolio.git
+
+If they ask to “give me v1.0” or switch back, restore that full production experience.
+
+## v2.0 = the new UI
+
+When the user says **v2.0**, **v2**, or **the new UI**, they mean the redesigned homepage and any new UI that follows. Ship the **home page first**; add project pages one by one later. Until a case study is rebuilt, keep using the existing production project/note pages.
+
+- Local route: `/` → `PortfolioHomeV2`
+- Work on branch `v2`
+- Do not merge to `main`, push to `main`, or deploy unless the user explicitly says to go live
+
+## Local
+
+- v2 home: http://localhost:5173/
+- v1 home: http://localhost:5173/v1

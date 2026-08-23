@@ -9,6 +9,7 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { PortfolioHome } from './pages/PortfolioHome/PortfolioHome';
+import { PortfolioHomeV2 } from './pages/PortfolioHomeV2/PortfolioHomeV2';
 import { R2cProject } from './pages/R2cProject/R2cProject';
 import { VisionProject } from './pages/VisionProject/VisionProject';
 import { DesignSystemBlog } from './pages/DesignSystemBlog/DesignSystemBlog';
@@ -154,7 +155,8 @@ const router = createBrowserRouter([
   {
     element: <RootLayout />,
     children: [
-      { path: '/', element: <PortfolioHome /> },
+      { path: '/', element: <PortfolioHomeV2 /> },
+      { path: '/v1', element: <PortfolioHome /> },
       { path: '/work/inclinic-search-filters', element: <InclinicSearchProject /> },
       { path: '/work/r2c-reorder', element: <R2cProject /> },
       { path: '/work/vision-revamp', element: <VisionProject /> },
