@@ -16,7 +16,7 @@ type ListItem = {
 
 const projects: ListItem[] = [
   {
-    title: 'Improving doctor discovery and increasing booking conversion to 32%',
+    title: 'improving hospital discovery and appointment conversion',
     year: '2026',
     path: '/work/inclinic-search-filters',
   },
@@ -50,6 +50,32 @@ const writings: ListItem[] = [
   },
 ];
 
+function HeaderActions({ className }: { className?: string }) {
+  return (
+    <div className={className}>
+      <a className={styles.resume} href={resumePdf} target="_blank" rel="noreferrer">
+        resume
+      </a>
+      <div className={styles.socials}>
+        <a
+          className={`${styles.social} ${styles.socialLinkedin}`}
+          href="https://www.linkedin.com/in/monica-addepalli-4a0b48299"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="LinkedIn"
+        />
+        <a
+          className={`${styles.social} ${styles.socialGithub}`}
+          href="https://github.com/monicaaddepalli"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="GitHub"
+        />
+      </div>
+    </div>
+  );
+}
+
 function ListSection({
   label,
   items,
@@ -81,11 +107,19 @@ export function PortfolioHomeV2() {
 
   return (
     <div className={styles.page} data-name="Home / v2">
+      <div className={styles.headerBlur} aria-hidden="true">
+        <div className={styles.headerBlurBg} />
+        <div className={`${styles.headerBlurFilter} ${styles.headerBlurSoft}`} />
+        <div className={`${styles.headerBlurFilter} ${styles.headerBlurMedium}`} />
+        <div className={`${styles.headerBlurFilter} ${styles.headerBlurStrong}`} />
+        <div className={`${styles.headerBlurFilter} ${styles.headerBlurExtra}`} />
+      </div>
       <div className={styles.shell}>
         <header className={styles.header}>
           <a className={styles.identity} href="/" aria-label="Home">
             monica addepalli
           </a>
+          <HeaderActions className={`${styles.actions} ${styles.headerActions}`} />
         </header>
 
         <div className={styles.hero}>
@@ -114,35 +148,13 @@ export function PortfolioHomeV2() {
           </div>
         </div>
 
-        <div className={styles.content}>
-          <section className={styles.intro}>
-            <h1 className={styles.headline}>
-              <span className={styles.headlineLine}>Monica is a design engineer and</span>
-              <span className={styles.headlineLine}>a professional overthinker</span>
-            </h1>
-            <div className={styles.actions}>
-              <a className={styles.resume} href={resumePdf} target="_blank" rel="noreferrer">
-                resume
-              </a>
-              <div className={styles.socials}>
-                <a
-                  className={`${styles.social} ${styles.socialLinkedin}`}
-                  href="https://www.linkedin.com/in/monica-addepalli-4a0b48299"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="LinkedIn"
-                />
-                <a
-                  className={`${styles.social} ${styles.socialGithub}`}
-                  href="https://github.com/monicaaddepalli"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="GitHub"
-                />
-              </div>
-            </div>
-          </section>
+        <h1 className={styles.headline}>
+          <span className={styles.headlineLine}>Monica is a design engineer and</span>
+          <span className={styles.headlineLine}>a professional overthinker</span>
+        </h1>
+        <HeaderActions className={`${styles.actions} ${styles.introActions}`} />
 
+        <div className={styles.body}>
           <section className={styles.about} aria-label="About">
             <p>
               i believe good design is about making complex things feel simple. i like thinking
