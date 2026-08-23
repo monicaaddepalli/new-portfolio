@@ -178,7 +178,7 @@ export function PortfolioHome() {
             <div className={`${styles.introTop} ${styles.narrowText}`}>
               <div className={styles.topRow} data-node-id="16:46">
                 <div className={styles.nameBlock} data-node-id="2:801">
-                  <a className={styles.nameLink} href="/" aria-label="Home" data-node-id="2:4">
+                  <a className={styles.nameLink} href="/v1" aria-label="Home" data-node-id="2:4">
                     monica
                   </a>
                   <p className={styles.secondaryText} data-node-id="2:6">
