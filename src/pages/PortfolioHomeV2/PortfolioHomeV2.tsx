@@ -16,7 +16,7 @@ type ListItem = {
 
 const projects: ListItem[] = [
   {
-    title: 'improving hospital discovery and appointment conversion',
+    title: 'Improving Doctor Booking Conversion to 32%',
     year: '2026',
     path: '/work/inclinic-search-filters',
   },
