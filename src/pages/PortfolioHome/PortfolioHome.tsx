@@ -7,7 +7,6 @@ import styles from './PortfolioHome.module.css';
 
 const imgFrameInclinicSearch = '/assets/home/work-inclinic-search.png';
 const imgFrame1 = '/assets/home/work-r2c.png';
-const imgFrame2 = '/assets/home/work-mozaic.png';
 const imgFrame3 = '/assets/home/work-vision.png';
 const imgBlogDesignSystem = '/assets/home/blog-design-system.png';
 const imgBlogTypography = '/assets/home/blog-typography.png';
@@ -63,12 +62,6 @@ const selectedWork: WorkItem[] = [
     subtitle: 'boosting 23% cashless adoption with behavioural design.',
     imageUrl: imgFrame1,
     caseStudyPath: '/work/r2c-reorder',
-  },
-  {
-    title: 'mozaic design system',
-    subtitle: 'achieving consistency at scale across multi-service B2B2C platform.',
-    imageUrl: imgFrame2,
-    caseStudyPath: '/work/mozaic-design-system',
   },
   {
     title: 'vision revamp',

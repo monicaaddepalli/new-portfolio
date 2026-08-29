@@ -26,11 +26,6 @@ const projects: ListItem[] = [
     path: '/work/r2c-reorder',
   },
   {
-    title: 'achieving consistency at scale across multi-service B2B2C platform (mozaic design system)',
-    year: '2026',
-    path: '/work/mozaic-design-system',
-  },
-  {
     title: 'improving the eyewear booking flow to reduce friction and increase conversions by 7%',
     year: '2025',
     path: '/work/vision-revamp',
