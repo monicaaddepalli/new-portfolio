@@ -39,7 +39,7 @@ const writings: ListItem[] = [
     path: '/notes/responsive-typographic-system',
   },
   {
-    title: 'designing a design system component from scratch',
+    title: 'building a design system component',
     year: '2025',
     path: '/notes/ds-component',
   },

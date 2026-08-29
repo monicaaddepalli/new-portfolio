@@ -12,7 +12,7 @@ import { PortfolioHome } from './pages/PortfolioHome/PortfolioHome';
 import { PortfolioHomeV2 } from './pages/PortfolioHomeV2/PortfolioHomeV2';
 import { R2cProjectV2 } from './pages/R2cProjectV2/R2cProjectV2';
 import { VisionProjectV2 } from './pages/VisionProjectV2/VisionProjectV2';
-import { DesignSystemBlog } from './pages/DesignSystemBlog/DesignSystemBlog';
+import { DesignSystemBlogV2 } from './pages/DesignSystemBlogV2/DesignSystemBlogV2';
 import { TypographyBlogV2 } from './pages/TypographyBlogV2/TypographyBlogV2';
 import { MozaicProject } from './pages/MozaicProject/MozaicProject';
 import { MozaicFoundations } from './pages/MozaicFoundations/MozaicFoundations';
@@ -162,7 +162,7 @@ const router = createBrowserRouter([
       { path: '/work/vision-revamp', element: <VisionProjectV2 /> },
       { path: '/work/mozaic-design-system', element: <MozaicProject /> },
       { path: '/work/mozaic-design-system/foundations', element: <MozaicFoundations /> },
-      { path: '/notes/ds-component', element: <DesignSystemBlog /> },
+      { path: '/notes/ds-component', element: <DesignSystemBlogV2 /> },
       {
         path: '/notes/design-system-component',
         element: <Navigate to="/notes/ds-component" replace />,
