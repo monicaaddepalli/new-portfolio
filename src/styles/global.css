@@ -91,6 +91,16 @@ body {
   --text-hand-weight: 400;
   --text-hand-letter: 0;
   --text-hand-transform: lowercase;
+
+  /*
+   * Case study stats / impact / revenue values.
+   * Mobile-first: 24/36, then desktop 32/48 at 768px.
+   */
+  --text-stat-family: var(--font-sans);
+  --text-stat-size: 24px;
+  --text-stat-line: 36px;
+  --text-stat-weight: 700;
+  --text-stat-letter: 0;
 }
 
 @media (min-width: 768px) {
@@ -112,6 +122,9 @@ body {
 
     --text-hand-size: 16px;
     --text-hand-line: 26px;
+
+    --text-stat-size: 32px;
+    --text-stat-line: 48px;
   }
 }
 

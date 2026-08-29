@@ -3,6 +3,7 @@
   --accent: #0066dc;
   --card-surface: #f7f9fa;
   min-height: 100dvh;
+  overflow-x: clip;
   background: var(--page-bg);
   color: var(--primary);
   font-family: var(--font-sans);
@@ -68,10 +69,13 @@
 .shell {
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   width: 100%;
   max-width: min(800px, 100%);
+  min-width: 0;
   margin: 0 auto;
-  padding: 40px 0 80px;
+  overflow-x: clip;
+  padding: 40px var(--gutter) 80px;
 }
 
 .header {
@@ -80,10 +84,12 @@
   z-index: 40;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  align-self: stretch;
   width: 100%;
   max-width: 736px;
-  align-self: center;
-  padding: 0 var(--gutter);
+  margin-inline: 0;
+  padding: 0;
 }
 
 .identity {
@@ -105,6 +111,7 @@
   align-items: center;
   gap: 48px;
   width: 100%;
+  min-width: 0;
   margin-top: 44px;
   padding-bottom: 40px;
 }
@@ -123,7 +130,6 @@
   gap: 12px;
   width: 100%;
   max-width: 800px;
-  padding: 0 var(--gutter);
   text-align: center;
 }
 
@@ -143,7 +149,7 @@
   margin: 0;
   font-family: var(--font-sans);
   font-size: 24px;
-  line-height: 32px;
+  line-height: 36px;
   font-weight: 800;
   color: var(--primary);
   text-transform: lowercase;
@@ -155,12 +161,17 @@
   gap: 24px;
   width: 100%;
   max-width: 800px;
+  min-width: 0;
   margin: 0;
-  padding: 0 var(--gutter);
 }
 
 .figureCaptioned {
   align-items: center;
+}
+
+.figureHero .media {
+  background: #eff8ff;
+  border: 0;
 }
 
 .media {
@@ -169,6 +180,8 @@
   aspect-ratio: 800 / 378;
   overflow: hidden;
   background: #f2f2f2;
+  border: 1px solid rgb(163 163 163 / 0.4);
+  border-radius: 8px;
 }
 
 .media img {
@@ -185,7 +198,7 @@
   font-family: var(--font-sans);
   font-size: var(--text-body-size);
   line-height: var(--text-body-line);
-  font-weight: 500;
+  font-weight: 400;
   color: var(--secondary);
   -webkit-text-fill-color: var(--secondary);
   text-transform: lowercase;
@@ -198,7 +211,6 @@
   gap: 20px;
   width: 100%;
   max-width: 620px;
-  padding: 0 var(--gutter);
 }
 
 .heading {
@@ -219,7 +231,7 @@
   font-family: var(--font-sans);
   font-size: var(--text-body-size);
   line-height: var(--text-body-line);
-  font-weight: 500;
+  font-weight: 400;
   color: var(--primary);
   text-transform: lowercase;
 }
@@ -242,7 +254,7 @@
   font-family: var(--font-sans);
   font-size: var(--text-body-size);
   line-height: var(--text-body-line);
-  font-weight: 500;
+  font-weight: 400;
   color: var(--primary);
   text-transform: lowercase;
 }
@@ -260,7 +272,7 @@
 }
 
 .filterPair .figure {
-  padding: 0 var(--gutter);
+  padding: 0;
 }
 
 .impact {
@@ -288,10 +300,10 @@
 
 .statValue {
   margin: 0;
-  font-family: var(--font-sans);
-  font-size: 28px;
-  line-height: 40px;
-  font-weight: 700;
+  font-family: var(--text-stat-family);
+  font-size: var(--text-stat-size);
+  line-height: var(--text-stat-line);
+  font-weight: var(--text-stat-weight);
   color: var(--accent);
   -webkit-text-fill-color: var(--accent);
   text-transform: uppercase;
@@ -302,7 +314,7 @@
   font-family: var(--font-sans);
   font-size: var(--text-body-size);
   line-height: var(--text-body-line);
-  font-weight: 500;
+  font-weight: 400;
   color: var(--primary);
   text-transform: lowercase;
 }
@@ -343,7 +355,7 @@
   font-family: var(--font-sans);
   font-size: var(--text-body-size);
   line-height: var(--text-body-line);
-  font-weight: 500;
+  font-weight: 400;
   color: var(--primary);
 }
 
@@ -357,7 +369,7 @@
   font-family: var(--font-sans);
   font-size: var(--text-body-size);
   line-height: var(--text-body-line);
-  font-weight: 500;
+  font-weight: 400;
   color: var(--primary);
   text-transform: lowercase;
 }
@@ -366,7 +378,7 @@
   font-family: var(--font-sans);
   font-size: var(--text-body-size);
   line-height: var(--text-body-line);
-  font-weight: 500;
+  font-weight: 400;
   color: var(--secondary);
   -webkit-text-fill-color: var(--secondary);
 }
@@ -391,6 +403,7 @@
   }
 
   .header {
+    align-self: center;
     padding: 0;
   }
 
@@ -401,7 +414,7 @@
   }
 
   .hero {
-    gap: 48px;
+    gap: 60px;
   }
 
   .intro,
@@ -440,10 +453,5 @@
     flex: 1 1 0;
     min-width: 0;
     padding: 32px 32px 32px 24px;
-  }
-
-  .statValue {
-    font-size: 32px;
-    line-height: 48px;
   }
 }

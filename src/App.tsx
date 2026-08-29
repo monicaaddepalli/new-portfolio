@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom';
 import { PortfolioHome } from './pages/PortfolioHome/PortfolioHome';
 import { PortfolioHomeV2 } from './pages/PortfolioHomeV2/PortfolioHomeV2';
-import { R2cProject } from './pages/R2cProject/R2cProject';
+import { R2cProjectV2 } from './pages/R2cProjectV2/R2cProjectV2';
 import { VisionProject } from './pages/VisionProject/VisionProject';
 import { DesignSystemBlog } from './pages/DesignSystemBlog/DesignSystemBlog';
 import { TypographyBlog } from './pages/TypographyBlog/TypographyBlog';
@@ -158,7 +158,7 @@ const router = createBrowserRouter([
       { path: '/', element: <PortfolioHomeV2 /> },
       { path: '/v1', element: <PortfolioHome /> },
       { path: '/work/inclinic-search-filters', element: <InclinicProjectV2 /> },
-      { path: '/work/r2c-reorder', element: <R2cProject /> },
+      { path: '/work/r2c-reorder', element: <R2cProjectV2 /> },
       { path: '/work/vision-revamp', element: <VisionProject /> },
       { path: '/work/mozaic-design-system', element: <MozaicProject /> },
       { path: '/work/mozaic-design-system/foundations', element: <MozaicFoundations /> },

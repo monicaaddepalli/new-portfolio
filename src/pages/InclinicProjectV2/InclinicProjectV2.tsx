@@ -16,13 +16,15 @@ function Figure({
   src,
   caption,
   priority,
+  hero,
 }: {
   src: string;
   caption?: string;
   priority?: boolean;
+  hero?: boolean;
 }) {
   return (
-    <figure className={`${styles.figure} ${caption ? styles.figureCaptioned : ''}`}>
+    <figure className={`${styles.figure} ${caption ? styles.figureCaptioned : ''} ${hero ? styles.figureHero : ''}`}>
       <div className={styles.media}>
         <OptimizedImage src={src} alt="" width={1600} height={756} priority={priority} />
       </div>
@@ -70,9 +72,9 @@ export function InclinicProjectV2() {
 
         <main className={styles.main}>
           <div className={styles.hero}>
-            <Figure src={imgHero} priority />
+            <Figure src={imgHero} hero priority />
             <div className={styles.intro}>
-              <p className={styles.year}>2025</p>
+              <p className={styles.year}>2026</p>
               <h1 className={styles.title}>Improving Doctor Booking Conversion to 32%</h1>
             </div>
           </div>
