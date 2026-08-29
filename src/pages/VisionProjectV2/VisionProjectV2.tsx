@@ -4,7 +4,7 @@ import { applyTheme } from '../../lib/theme';
 import styles from './VisionProjectV2.module.css';
 
 const imgHero = '/assets/v2/vision/hero.png';
-const imgOldExperience = '/assets/v2/vision/old-experience.png';
+const imgOldExperience = '/assets/v2/vision/old-experience.png?v=20260830-2';
 const imgIa = '/assets/v2/vision/ia.png';
 const videoLanding = '/assets/vision/landing-page-vision.mp4';
 const videoForm = '/assets/vision/form-section-vision.mp4';
@@ -46,16 +46,19 @@ function Figure({
   priority,
   hero,
   ia,
+  old,
 }: {
   src: string;
   priority?: boolean;
   hero?: boolean;
   ia?: boolean;
+  old?: boolean;
 }) {
   const figureClass = [
     styles.figure,
     hero && styles.figureHero,
     ia && styles.figureIa,
+    old && styles.figureOld,
   ]
     .filter(Boolean)
     .join(' ');
@@ -63,7 +66,13 @@ function Figure({
   return (
     <figure className={figureClass}>
       <div className={styles.media}>
-        <OptimizedImage src={src} alt="" width={1600} height={756} priority={priority} />
+        <OptimizedImage
+          src={src}
+          alt=""
+          width={old ? 2394 : 1600}
+          height={old ? 1128 : 756}
+          priority={priority}
+        />
       </div>
     </figure>
   );
@@ -201,7 +210,7 @@ export function VisionProjectV2() {
                 </p>
               </div>
             </Copy>
-            <Figure src={imgOldExperience} />
+            <Figure src={imgOldExperience} old />
           </div>
 
           <Copy heading="investigation and findings">
