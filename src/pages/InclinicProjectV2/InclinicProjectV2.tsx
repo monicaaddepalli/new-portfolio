@@ -3,7 +3,7 @@ import { OptimizedImage } from '../../components/OptimizedImage';
 import { applyTheme } from '../../lib/theme';
 import styles from './InclinicProjectV2.module.css';
 
-const imgHero = '/assets/v2/inclinic/hero.png?v=20260828-3';
+const imgHero = '/assets/v2/inclinic/hero.png?v=20260829-1';
 const imgContext = '/assets/v2/inclinic/context.png?v=20260828-3';
 const imgPainPoints = '/assets/v2/inclinic/pain-points.png?v=20260828-3';
 const imgSymptomSearch = '/assets/v2/inclinic/symptom-search.png?v=20260828-3';
