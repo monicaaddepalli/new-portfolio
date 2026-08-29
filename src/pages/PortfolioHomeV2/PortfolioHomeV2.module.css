@@ -26,7 +26,7 @@
   width: 100%;
   max-width: min(736px, 100%);
   margin: 0 auto;
-  padding: var(--fold-space) 0 40px;
+  padding: var(--fold-space) 0 var(--page-pad-bottom);
 }
 
 .headerBlur {
@@ -424,7 +424,7 @@
   .shell {
     max-width: min(1200px, 100%);
     padding-top: 60px;
-    padding-bottom: 80px;
+    padding-bottom: var(--page-pad-bottom);
   }
 
   .header {

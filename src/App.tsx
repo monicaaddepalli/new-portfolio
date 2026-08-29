@@ -11,7 +11,7 @@ import {
 import { PortfolioHome } from './pages/PortfolioHome/PortfolioHome';
 import { PortfolioHomeV2 } from './pages/PortfolioHomeV2/PortfolioHomeV2';
 import { R2cProjectV2 } from './pages/R2cProjectV2/R2cProjectV2';
-import { VisionProject } from './pages/VisionProject/VisionProject';
+import { VisionProjectV2 } from './pages/VisionProjectV2/VisionProjectV2';
 import { DesignSystemBlog } from './pages/DesignSystemBlog/DesignSystemBlog';
 import { TypographyBlog } from './pages/TypographyBlog/TypographyBlog';
 import { MozaicProject } from './pages/MozaicProject/MozaicProject';
@@ -159,7 +159,7 @@ const router = createBrowserRouter([
       { path: '/v1', element: <PortfolioHome /> },
       { path: '/work/inclinic-search-filters', element: <InclinicProjectV2 /> },
       { path: '/work/r2c-reorder', element: <R2cProjectV2 /> },
-      { path: '/work/vision-revamp', element: <VisionProject /> },
+      { path: '/work/vision-revamp', element: <VisionProjectV2 /> },
       { path: '/work/mozaic-design-system', element: <MozaicProject /> },
       { path: '/work/mozaic-design-system/foundations', element: <MozaicFoundations /> },
       { path: '/notes/ds-component', element: <DesignSystemBlog /> },

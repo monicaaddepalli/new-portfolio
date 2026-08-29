@@ -45,7 +45,7 @@
 
 .content {
   max-width: 736px;
-  padding: 32px 24px 80px;
+  padding: 32px 24px var(--page-pad-bottom);
   margin-left: auto;
   margin-right: auto;
   display: flex;

@@ -1,7 +1,7 @@
 .page {
   --gutter: 16px;
   --accent: #0066dc;
-  --card-surface: #f7f9fa;
+  --card-tint: #eff8ff;
   min-height: 100dvh;
   overflow-x: clip;
   background: var(--page-bg);
@@ -71,7 +71,7 @@
   flex-direction: column;
   box-sizing: border-box;
   width: 100%;
-  max-width: min(800px, 100%);
+  max-width: min(1000px, 100%);
   min-width: 0;
   margin: 0 auto;
   overflow-x: clip;
@@ -157,20 +157,22 @@
 .figure {
   display: flex;
   flex-direction: column;
-  gap: 24px;
   width: 100%;
   max-width: 800px;
   min-width: 0;
   margin: 0;
 }
 
-.figureCaptioned {
-  align-items: center;
-}
-
 .figureHero .media {
   background: #f2f2f2;
   border: 0;
+}
+
+.figureIa .media {
+  aspect-ratio: 800 / 253;
+  background: #f5f5f5;
+  border: 1.732px solid #c7c7c7;
+  border-radius: 10px;
 }
 
 .media {
@@ -192,16 +194,12 @@
   object-fit: cover;
 }
 
-.caption {
-  margin: 0;
-  font-family: var(--font-sans);
-  font-size: var(--text-body-size);
-  line-height: var(--text-body-line);
-  font-weight: 400;
-  color: var(--secondary);
-  -webkit-text-fill-color: var(--secondary);
-  text-transform: lowercase;
-  text-align: center;
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
 }
 
 .copy {
@@ -239,11 +237,23 @@
   margin: 0;
 }
 
-.prose strong {
+.prose strong,
+.hmw strong,
+.impactList strong {
   font-weight: 700;
 }
 
-.opportunities {
+.quotes {
+  display: flex;
+  flex-direction: column;
+}
+
+.quotes p {
+  margin: 0;
+}
+
+.hmw,
+.impactList {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -258,73 +268,33 @@
   text-transform: lowercase;
 }
 
-.opportunities li {
+.impactList {
+  list-style: disc;
+}
+
+.hmw li,
+.impactList li {
   padding-left: 0.25em;
 }
 
-.filterPair {
+.themeGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  width: min(800px, 100%);
+  min-width: 0;
+}
+
+.themeCard {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  width: 100%;
-  max-width: 800px;
+  gap: 20px;
+  padding: 20px 20px 28px;
+  border-radius: 8px;
+  background: var(--card-tint);
 }
 
-.filterPair .figure {
-  padding: 0;
-}
-
-.impact {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  width: 100%;
-}
-
-.statGrid {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 100%;
-}
-
-.statCard {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 24px;
-  border-radius: 12px;
-  background: var(--card-surface);
-}
-
-.statValue {
-  margin: 0;
-  font-family: var(--text-stat-family);
-  font-size: var(--text-stat-size);
-  line-height: var(--text-stat-line);
-  font-weight: var(--text-stat-weight);
-  color: var(--accent);
-  -webkit-text-fill-color: var(--accent);
-  text-transform: uppercase;
-}
-
-.statLabel {
-  margin: 0;
-  font-family: var(--font-sans);
-  font-size: var(--text-body-size);
-  line-height: var(--text-body-line);
-  font-weight: 400;
-  color: var(--primary);
-  text-transform: lowercase;
-}
-
-.metrics {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.metricsTitle {
+.themeTitle {
   margin: 0;
   font-family: var(--font-sans);
   font-size: var(--text-body-size);
@@ -334,52 +304,65 @@
   text-transform: lowercase;
 }
 
-.metricList {
+.themeList {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.metricList li {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-}
-
-.metricDash {
-  flex: 0 0 auto;
+  padding: 0 0 0 1.5em;
   font-family: var(--font-sans);
-  font-size: var(--text-body-size);
-  line-height: var(--text-body-line);
-  font-weight: 400;
-  color: var(--primary);
-}
-
-.metricList li > span:last-child {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
-.metricName {
-  font-family: var(--font-sans);
-  font-size: var(--text-body-size);
-  line-height: var(--text-body-line);
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 400;
   color: var(--primary);
   text-transform: lowercase;
 }
 
-.metricValue {
-  font-family: var(--font-sans);
-  font-size: var(--text-body-size);
-  line-height: var(--text-body-line);
-  font-weight: 400;
-  color: var(--secondary);
-  -webkit-text-fill-color: var(--secondary);
+.flows {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 32px;
+  align-self: stretch;
+  width: auto;
+  min-width: 0;
+}
+
+.flowRow {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  width: min(1000px, 100%);
+  min-width: 0;
+  margin-inline: auto;
+}
+
+.flowCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 480px;
+}
+
+.videoFrame {
+  width: 100%;
+  max-width: 264px;
+  aspect-ratio: 754 / 1582;
+  overflow: hidden;
+  border-radius: 28px;
+  background: transparent;
+  flex-shrink: 0;
+  align-self: center;
+  margin-inline: auto;
+}
+
+.videoFrame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -417,7 +400,9 @@
 
   .intro,
   .figure,
-  .copy {
+  .copy,
+  .stack,
+  .flowRow {
     padding: 0;
   }
 
@@ -430,26 +415,42 @@
     gap: 28px;
   }
 
-  .filterPair {
-    gap: 60px;
+  .stack {
+    gap: 28px;
   }
 
-  .filterPair .figure {
-    padding: 0;
+  .themeGrid {
+    grid-template-columns: 1fr 1fr;
   }
 
-  .impact {
-    gap: 40px;
+  .flows {
+    gap: 80px;
   }
 
-  .statGrid {
+  .flowRow,
+  .flowRowReverse {
     flex-direction: row;
-    gap: 20px;
+    gap: 80px;
+    justify-content: center;
+    align-items: center;
   }
 
-  .statCard {
-    flex: 1 1 0;
-    min-width: 0;
-    padding: 32px 32px 32px 24px;
+  .flowRowReverse {
+    flex-direction: row-reverse;
+  }
+
+  .flowCopy {
+    flex: 1 1 480px;
+    gap: 28px;
+  }
+
+  .videoFrame {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+    height: 640px;
+    aspect-ratio: 754 / 1582;
+    border-radius: 32px;
+    margin-inline: 0;
   }
 }

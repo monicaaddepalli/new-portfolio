@@ -26,7 +26,7 @@ const projects: ListItem[] = [
     path: '/work/r2c-reorder',
   },
   {
-    title: 'improving the eyewear booking flow to reduce friction and increase conversions by 7%',
+    title: 'Making it easier to use vision benefits',
     year: '2025',
     path: '/work/vision-revamp',
   },

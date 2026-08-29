@@ -58,6 +58,7 @@ body {
   --text-emphasis-letter: 0;
 
   --page-bg: #ffffff;
+  --page-pad-bottom: 100px;
 
   --text-action-family: var(--font-sans);
   --text-action-size: 14px;

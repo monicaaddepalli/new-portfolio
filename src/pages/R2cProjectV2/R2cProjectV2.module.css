@@ -77,7 +77,7 @@
   min-width: 0;
   margin: 0 auto;
   overflow-x: clip;
-  padding: 40px var(--gutter) 80px;
+  padding: 40px var(--gutter) var(--page-pad-bottom);
 }
 
 .header {
@@ -116,7 +116,6 @@
   width: auto;
   min-width: 0;
   margin-top: 44px;
-  padding-bottom: 40px;
 }
 
 .hero {
@@ -976,7 +975,7 @@
   }
 
   .shell {
-    padding: 60px 0 80px;
+    padding: 60px 0 var(--page-pad-bottom);
   }
 
   .header {
@@ -987,7 +986,6 @@
   .main {
     gap: 100px;
     margin-top: 80px;
-    padding: 0 0 80px;
   }
 
   .hero {
