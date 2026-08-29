@@ -682,6 +682,25 @@
   margin-inline: auto;
 }
 
+.phoneCard {
+  min-width: 0;
+  opacity: 0;
+  transform: translateY(150px);
+  will-change: transform, opacity;
+}
+
+.phoneGridIn .phoneCard {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1.2, 0.36, 1),
+    opacity 0.45s ease-out;
+}
+
+.phoneGridIn .phoneCard:nth-child(even) {
+  transition-delay: 0.3s;
+}
+
 .phoneShot {
   display: block;
   width: 100%;
@@ -966,6 +985,14 @@
 
   .headerBlurBg {
     opacity: 0.95;
+  }
+
+  .phoneCard,
+  .phoneGridIn .phoneCard,
+  .phoneGridIn .phoneCard:nth-child(even) {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 
@@ -1261,9 +1288,11 @@
   }
 
   .videoFrame {
-    flex: 0 0 360px;
-    width: 360px;
-    max-width: 360px;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+    height: 640px;
+    aspect-ratio: 754 / 1582;
     border-radius: 32px;
     margin-inline: 0;
   }

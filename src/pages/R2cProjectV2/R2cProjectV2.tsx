@@ -1,4 +1,4 @@
-import { useLayoutEffect, type ReactNode } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { Alignment, Fit, Layout, useRive } from '@rive-app/react-canvas';
 import { OptimizedImage } from '../../components/OptimizedImage';
 import { applyTheme } from '../../lib/theme';
@@ -122,6 +122,39 @@ function Copy({
       ) : null}
       {children}
     </section>
+  );
+}
+
+function PhoneGrid({ children }: { children: ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || visible) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setVisible(true);
+        observer.disconnect();
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -10% 0px' },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [visible]);
+
+  return (
+    <div ref={ref} className={`${styles.phoneGrid} ${visible ? styles.phoneGridIn : ''}`}>
+      {children}
+    </div>
   );
 }
 
@@ -392,30 +425,38 @@ export function R2cProjectV2() {
 
           <div className={`${styles.block} ${styles.block40}`}>
             <Copy label="final solution" title="Driving Cashless Orders through New Reorder Flow" />
-            <div className={styles.phoneGrid}>
-              <img
-                className={styles.phoneShot}
-                src={imgScreenReorder1}
-                alt=""
-                loading="lazy"
-                decoding="async"
-              />
-              <Card2Animation />
-              <img
-                className={styles.phoneShot}
-                src={imgScreenReorder3}
-                alt=""
-                loading="lazy"
-                decoding="async"
-              />
-              <img
-                className={styles.phoneShot}
-                src={imgScreenReorder4}
-                alt=""
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
+            <PhoneGrid>
+              <div className={styles.phoneCard}>
+                <img
+                  className={styles.phoneShot}
+                  src={imgScreenReorder1}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div className={styles.phoneCard}>
+                <Card2Animation />
+              </div>
+              <div className={styles.phoneCard}>
+                <img
+                  className={styles.phoneShot}
+                  src={imgScreenReorder3}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div className={styles.phoneCard}>
+                <img
+                  className={styles.phoneShot}
+                  src={imgScreenReorder4}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </PhoneGrid>
           </div>
 
           <div className={styles.flows}>
