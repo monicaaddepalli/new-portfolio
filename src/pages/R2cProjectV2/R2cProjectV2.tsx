@@ -125,7 +125,7 @@ function Copy({
   );
 }
 
-function PhoneGrid({ children }: { children: ReactNode }) {
+function PhoneCard({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -144,7 +144,7 @@ function PhoneGrid({ children }: { children: ReactNode }) {
         setVisible(true);
         observer.disconnect();
       },
-      { threshold: 0.12, rootMargin: '0px 0px -10% 0px' },
+      { threshold: 0.25, rootMargin: '0px 0px -12% 0px' },
     );
 
     observer.observe(el);
@@ -152,7 +152,7 @@ function PhoneGrid({ children }: { children: ReactNode }) {
   }, [visible]);
 
   return (
-    <div ref={ref} className={`${styles.phoneGrid} ${visible ? styles.phoneGridIn : ''}`}>
+    <div ref={ref} className={`${styles.phoneCard} ${visible ? styles.phoneCardIn : ''}`}>
       {children}
     </div>
   );
@@ -425,8 +425,8 @@ export function R2cProjectV2() {
 
           <div className={`${styles.block} ${styles.block40}`}>
             <Copy label="final solution" title="Driving Cashless Orders through New Reorder Flow" />
-            <PhoneGrid>
-              <div className={styles.phoneCard}>
+            <div className={styles.phoneGrid}>
+              <PhoneCard>
                 <img
                   className={styles.phoneShot}
                   src={imgScreenReorder1}
@@ -434,11 +434,11 @@ export function R2cProjectV2() {
                   loading="lazy"
                   decoding="async"
                 />
-              </div>
-              <div className={styles.phoneCard}>
+              </PhoneCard>
+              <PhoneCard>
                 <Card2Animation />
-              </div>
-              <div className={styles.phoneCard}>
+              </PhoneCard>
+              <PhoneCard>
                 <img
                   className={styles.phoneShot}
                   src={imgScreenReorder3}
@@ -446,8 +446,8 @@ export function R2cProjectV2() {
                   loading="lazy"
                   decoding="async"
                 />
-              </div>
-              <div className={styles.phoneCard}>
+              </PhoneCard>
+              <PhoneCard>
                 <img
                   className={styles.phoneShot}
                   src={imgScreenReorder4}
@@ -455,8 +455,8 @@ export function R2cProjectV2() {
                   loading="lazy"
                   decoding="async"
                 />
-              </div>
-            </PhoneGrid>
+              </PhoneCard>
+            </div>
           </div>
 
           <div className={styles.flows}>
