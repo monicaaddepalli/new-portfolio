@@ -1,7 +1,7 @@
 import { useLayoutEffect, type ReactNode } from 'react';
 import { OptimizedImage } from '../../components/OptimizedImage';
 import { applyTheme } from '../../lib/theme';
-import styles from './InclinicProjectV2.module.css';
+import styles from './InclinicProject.module.css';
 
 const imgHero = '/assets/v2/inclinic/hero.png?v=20260829-1';
 const imgContext = '/assets/v2/inclinic/context.png?v=20260828-3';
@@ -48,7 +48,7 @@ function Copy({
   );
 }
 
-export function InclinicProjectV2() {
+export function InclinicProject() {
   useLayoutEffect(() => {
     applyTheme('light');
   }, []);

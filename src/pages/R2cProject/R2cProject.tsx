@@ -1,103 +1,159 @@
-import { useLayoutEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { Alignment, Fit, Layout, useRive } from '@rive-app/react-canvas';
-import { applyTheme, getInitialTheme } from '../../lib/theme';
+import { OptimizedImage } from '../../components/OptimizedImage';
+import { applyTheme } from '../../lib/theme';
 import styles from './R2cProject.module.css';
 
-const card2Layout = new Layout({ fit: Fit.Contain, alignment: Alignment.Center });
-
-const imgHero = '/assets/r2c/hero.png';
+const imgHero = '/assets/v2/r2c/hero.png';
 const imgUserCalls = '/assets/r2c/user-calls.png';
-const imgAffinity = '/assets/r2c/affinity.png?v=4';
 const imgPrioritisation = '/assets/r2c/prioritisation.png';
 const imgIA = '/assets/r2c/ia.png';
-const imgWireframes = '/assets/r2c/wireframes.png';
+const imgWireBoard = '/assets/v2/r2c/wireframes-board.png';
+const imgWireFlowGrid = '/assets/v2/r2c/wireframes-flow-grid.png';
+const imgWireFlow = '/assets/v2/r2c/wireframes-flow.png';
+const imgWireStories = '/assets/v2/r2c/wireframes-stories.png';
 const imgScreenReorder1 = '/assets/r2c/screen-reorder-1.png';
-const card2Animation = '/assets/r2c/card2-animation.riv';
 const imgScreenReorder3 = '/assets/r2c/screen-reorder-3.png';
 const imgScreenReorder4 = '/assets/r2c/screen-reorder-4.png';
-const imgDesignSystem = '/assets/r2c/design-system.png';
-/** Place the file at `public/assets/r2c/seamless-checkout.mp4` or update this path. */
+const imgPlaygroundPages = '/assets/v2/r2c/playground-pages.png';
+const imgPlaygroundFlows = '/assets/v2/r2c/playground-flows.png';
+const imgPlaygroundFlowsMobile = '/assets/v2/r2c/playground-flows-mobile.png';
+const imgPlaygroundLabel = '/assets/v2/r2c/playground-label.png';
+const imgPlaygroundLabelMobile = '/assets/v2/r2c/playground-label-mobile.png';
+const imgClosing = '/assets/v2/r2c/closing.png';
+const card2Animation = '/assets/r2c/card2-animation.riv';
+const videoPlayground = '/assets/v2/r2c/component-library.mp4';
 const videoSeamlessCheckout = '/assets/r2c/seamless-checkout.mp4';
-/** Place the file at `public/assets/r2c/digitization.mp4` or update this path. */
 const videoDigitization = '/assets/r2c/digitization.mp4';
-/** Place the file at `public/assets/r2c/fast-checkout.mp4` or update this path. */
 const videoFastCheckout = '/assets/r2c/fast-checkout.mp4';
-/** Place the file at `public/assets/r2c/ftue.mp4` or update this path. */
 const videoFtue = '/assets/r2c/ftue.mp4';
+const iconBookOpenUser = '/assets/v2/r2c/icon-book-open-user.svg';
+const iconFastForward = '/assets/v2/r2c/icon-fast-forward.svg';
+const iconHandshake = '/assets/v2/r2c/icon-handshake.svg';
+const iconSmiley = '/assets/v2/r2c/icon-smiley.svg';
 
-function MediaImage({
+const card2Layout = new Layout({ fit: Fit.Cover, alignment: Alignment.Center });
+
+const themes = [
+  {
+    icon: iconBookOpenUser,
+    title: 'user education',
+    points: [
+      'Educate users on cashless benefits through a dedicated benefits page, collaterals, and FAQs.',
+      'Highlight key benefits of cashless over reimbursement process.',
+    ],
+  },
+  {
+    icon: iconFastForward,
+    title: 'Fast Checkout',
+    points: [
+      'Auto-fill user details (cart items, beneficiary info) to simplify checkout.',
+      'Streamline the flow from Reorder to Payout, aiming for an eventual one-tap checkout.',
+    ],
+  },
+  {
+    icon: iconHandshake,
+    title: 'Build User Trust',
+    points: [
+      'Clearly explain the digitization of reimbursement data into reorder cards.',
+      'Enable users to verify and report issues with digitized prescriptions for continuous feedback.',
+    ],
+  },
+  {
+    icon: iconSmiley,
+    title: 'Improve Convenience and Delight',
+    points: [
+      'Personalize the page with dynamically arranged service carousels based on user behaviour.',
+      'Enhance engagement with micro-interactions like animations and tooltips.',
+    ],
+  },
+];
+
+function Figure({
   src,
-  bordered,
-  plain,
+  wide,
+  ia,
+  surface,
   hero,
-  cardBg,
-  fill,
-  className,
+  priority,
 }: {
   src: string;
-  bordered?: boolean;
-  plain?: boolean;
+  wide?: boolean;
+  ia?: boolean;
+  surface?: boolean;
   hero?: boolean;
-  cardBg?: boolean;
-  fill?: string;
-  className?: string;
+  priority?: boolean;
 }) {
-  const wrapClass = [
-    styles.media,
-    plain && styles.mediaPlain,
-    bordered && styles.mediaBordered,
-    cardBg && styles.mediaCardBg,
-    hero && styles.mediaHero,
-    bordered && !hero && !plain && styles.mediaFigure,
-    className,
+  const figureClass = [
+    styles.figure,
+    wide && styles.figureWide,
+    ia && styles.figureIa,
+    surface && styles.figureSurface,
+    hero && styles.figureHero,
   ]
     .filter(Boolean)
     .join(' ');
 
   return (
-    <div className={wrapClass} style={fill ? { background: fill } : undefined}>
-      <div className={styles.mediaInner} aria-hidden="true">
-        <img
-          className={styles.mediaImg}
-          alt=""
-          src={src}
-          loading={hero ? 'eager' : 'lazy'}
-          decoding="async"
-          fetchPriority={hero ? 'high' : undefined}
-        />
+    <figure className={figureClass}>
+      <div className={styles.media}>
+        <OptimizedImage src={src} alt="" priority={priority} />
       </div>
-    </div>
+    </figure>
   );
 }
 
-function MediaVideo({
-  src,
-  bordered = true,
+function Copy({
+  label,
   title,
+  children,
 }: {
-  src: string;
-  bordered?: boolean;
+  label?: string;
   title?: string;
+  children?: ReactNode;
 }) {
-  const wrapClass = [styles.media, bordered && styles.mediaBordered, styles.mediaVideoFrame]
-    .filter(Boolean)
-    .join(' ');
+  return (
+    <section className={styles.copy}>
+      {label || title ? (
+        <div className={styles.copyHead}>
+          {label ? <p className={styles.label}>{label}</p> : null}
+          {title ? <h2 className={styles.display}>{title}</h2> : null}
+        </div>
+      ) : null}
+      {children}
+    </section>
+  );
+}
+
+function PhoneCard({ children }: { children: ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || visible) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setVisible(true);
+        observer.disconnect();
+      },
+      { threshold: 0.25, rootMargin: '0px 0px -12% 0px' },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [visible]);
 
   return (
-    <div className={wrapClass}>
-      <div className={styles.mediaVideoWrap}>
-        <video
-          className={styles.mediaVideo}
-          src={src}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          {...(title !== undefined ? { title } : {})}
-        />
-      </div>
+    <div ref={ref} className={`${styles.phoneCard} ${visible ? styles.phoneCardIn : ''}`}>
+      {children}
     </div>
   );
 }
@@ -111,692 +167,597 @@ function Card2Animation() {
   });
 
   return (
-    <div className={styles.phoneShot}>
-      <RiveComponent className={styles.phoneRiveCanvas} aria-hidden="true" />
+    <div className={`${styles.phoneShot} ${styles.phoneShotRive}`}>
+      <RiveComponent className={styles.phoneRive} aria-hidden="true" />
     </div>
   );
 }
 
-function PhoneRowScroller() {
+function FlowVideo({ src, title }: { src: string; title: string }) {
   return (
-    <div className={styles.phoneRowSection}>
-      <div className={styles.phoneRow} data-node-id="143:746">
-        <img className={styles.phoneShot} alt="" src={imgScreenReorder1} loading="lazy" decoding="async" data-node-id="143:748" />
-        <Card2Animation />
-        <img className={styles.phoneShot} alt="" src={imgScreenReorder3} loading="lazy" decoding="async" data-node-id="143:751" />
-        <img className={styles.phoneShot} alt="" src={imgScreenReorder4} loading="lazy" decoding="async" data-node-id="143:752" />
+    <div className={styles.videoFrame}>
+      <video src={src} autoPlay loop muted playsInline preload="metadata" title={title} />
+    </div>
+  );
+}
+
+function FlowRow({
+  reverse,
+  title,
+  badge,
+  children,
+  videoSrc,
+  videoTitle,
+}: {
+  reverse?: boolean;
+  title: string;
+  badge?: string;
+  children: ReactNode;
+  videoSrc: string;
+  videoTitle: string;
+}) {
+  return (
+    <div className={`${styles.flowRow} ${reverse ? styles.flowRowReverse : ''}`}>
+      <div className={styles.flowCopy}>
+        <div className={styles.flowHead}>
+          {badge ? <p className={styles.badge}>{badge}</p> : null}
+          <h3 className={styles.featureHeading}>{title}</h3>
+        </div>
+        {children}
       </div>
+      <FlowVideo src={videoSrc} title={videoTitle} />
     </div>
   );
 }
 
 export function R2cProject() {
   useLayoutEffect(() => {
-    applyTheme(getInitialTheme());
+    applyTheme('light');
   }, []);
 
   return (
-    <div className={styles.pageWrap}>
-      <div className={styles.page} data-node-id="143:536" data-name="r2c project">
-        <div className={styles.main}>
-          <div className={styles.heroLead}>
-            <header className={styles.sectionText} data-node-id="143:538">
-              <div className={styles.stack60}>
-                <div className={styles.backRow} data-node-id="143:539">
-                  <Link className={styles.backLink} to="/" data-node-id="143:540" data-muted>
-                    <span className={styles.backIconWrap} aria-hidden="true">
-                      <svg className={styles.backIcon} viewBox="0 0 16 16" width={16} height={16}>
-                        <path
-                          fill="currentColor"
-                          d="M5.50312 12.0865L1.41667 8L5.50312 3.91354L6.27729 4.6875L3.50646 7.45833H14.5833V8.54167H3.50646L6.27729 11.3125L5.50312 12.0865Z"
-                        />
-                      </svg>
-                    </span>
-                    <span className={styles.backLinkLabel}>back</span>
-                  </Link>
-                </div>
+    <div className={styles.page} data-name="r2c">
+      <div className={styles.headerBlur} aria-hidden="true">
+        <div className={styles.headerBlurBg} />
+        <div className={`${styles.headerBlurFilter} ${styles.headerBlurSoft}`} />
+        <div className={`${styles.headerBlurFilter} ${styles.headerBlurMedium}`} />
+        <div className={`${styles.headerBlurFilter} ${styles.headerBlurStrong}`} />
+        <div className={`${styles.headerBlurFilter} ${styles.headerBlurExtra}`} />
+      </div>
 
-                <div className={`${styles.textBlock} ${styles.stack0}`} data-node-id="143:555">
-                  <p className={styles.primary} data-node-id="143:556">
-                    r2c - reorder
-                  </p>
-                  <p className={styles.secondary} data-node-id="143:557">
-                    boosting 23% cashless adoption with behavioural design
-                  </p>
-                </div>
-              </div>
-            </header>
+      <div className={styles.shell}>
+        <header className={styles.header}>
+          <a className={styles.identity} href="/" aria-label="Home">
+            monica addepalli
+          </a>
+        </header>
 
-            <MediaImage
-              src={imgHero}
-              hero
-              fill="var(--hero-media-surface)"
-              className={styles.heroLeadImage}
-            />
-
-            <div className={`${styles.sectionText} ${styles.projectMeta}`}>
-              <div className={styles.stack12} data-node-id="143:558">
-                <div className={styles.metaRow} data-node-id="143:559">
-                  <div className={styles.metaItem} data-node-id="143:560">
-                    <p className={styles.secondary} data-node-id="143:561">
-                      product
-                    </p>
-                    <p className={styles.primary} data-node-id="143:563">
-                      medibuddy
-                    </p>
-                  </div>
-                  <div className={styles.metaItem} data-node-id="143:565">
-                    <p className={styles.secondary} data-node-id="143:566">
-                      role
-                    </p>
-                    <p className={styles.primary} data-node-id="143:568">
-                      product designer
-                    </p>
-                  </div>
-                  <div className={styles.metaItem} data-node-id="143:570">
-                    <p className={styles.secondary} data-node-id="143:571">
-                      duration
-                    </p>
-                    <p className={styles.primary} data-node-id="143:573">
-                      6 months
-                    </p>
-                  </div>
-                  <div className={`${styles.metaItem} ${styles.metaItemWide}`} data-node-id="143:575">
-                    <p className={styles.secondary} data-node-id="143:576">
-                      skills
-                    </p>
-                    <p className={styles.primary} data-node-id="143:577">
-                      ideation, visual direction and ui design, prototyping and testing, component
-                      library for design system, dev handoff and feedback.
-                    </p>
-                  </div>
-                </div>
-                <div className={`${styles.metaItem} ${styles.metaItemFull}`} data-node-id="143:579">
-                  <p className={styles.secondary} data-node-id="143:580">
-                    team
-                  </p>
-                  <p className={styles.primary} data-node-id="143:582">
-                    2 product designers, 1 developer, 1 qa, 1 pm
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className={`${styles.sectionText} ${styles.heroLeadIntro}`}>
-              <div className={`${styles.textBlock} ${styles.stack8}`} data-node-id="143:584">
-                <p className={styles.primary} data-node-id="143:585">
-                  mediBuddy, a b2b2c digital healthcare platform, offers corporate employees services
-                  like consultations, lab tests, and medicine delivery. employee benefits allows the
-                  use of a pre-funded wallet (&quot;<strong>cashless</strong>&quot;) or{' '}
-                  <strong>reimbursement</strong> of any out-of-pocket payment.
-                </p>
-                <p className={styles.primary} data-node-id="143:586">
-                  this project aimed to increase cashless transactions, which were significantly lower
-                  than reimbursements. we wanted to create a smooth and personalised reordering
-                  process that leveraged digitised reimbursement data &amp; would encourage customers
-                  to switch from reimbursements to cashless payments.
-                </p>
-                <p className={styles.primary} data-node-id="143:587">
-                  this initiative was projected to generate <strong>₹100 crore</strong> in annual
-                  revenue and improve customer satisfaction and retention.
-                </p>
-              </div>
+        <main className={styles.main}>
+          <div className={styles.hero}>
+            <Figure src={imgHero} hero priority />
+            <div className={styles.intro}>
+              <p className={styles.year}>2025</p>
+              <h1 className={styles.title}>
+                boosting 23% cashless adoption with behavioural design
+              </h1>
             </div>
           </div>
 
-          <section className={styles.sectionText} data-node-id="143:589">
-            <div className={`${styles.textBlock} ${styles.stack12}`} data-node-id="143:599">
-              <div className={styles.stack0} data-node-id="143:600">
-                <p className={styles.heading} data-node-id="143:601">
-                  business challenge
+          <Copy label="background" title="Project Overview">
+            <div className={styles.prose}>
+              <p>
+                mediBuddy, a b2b2c digital healthcare platform, offers corporate employees services
+                like consultations, lab tests, and medicine delivery. employee benefits allows the
+                use of a pre-funded wallet (&quot;<strong>cashless</strong>&quot;) or{' '}
+                <strong>reimbursement</strong> of any out-of-pocket payment.
+              </p>
+              <p>
+                this project aimed to increase cashless transactions, which were significantly lower
+                than reimbursements. we wanted to create a smooth and personalised reordering
+                process that leveraged digitised reimbursement data &amp; would encourage customers
+                to switch from reimbursements to cashless payments.
+              </p>
+              <p>
+                this initiative was projected to generate <strong>₹100 crore</strong> in annual
+                revenue and improve customer satisfaction and retention.
+              </p>
+            </div>
+          </Copy>
+
+          <Copy label="business challenge" title="how might we boost cashless orders">
+            <div className={styles.stack20}>
+              <div className={styles.prose}>
+                <p>
+                  medibuddy exclusively generates revenue from cashless orders, not reimbursements.
+                  however,
                 </p>
-                <p className={styles.subheading} data-node-id="143:602">
-                  how might we boost cashless orders
+                <p className={styles.emphasis}>
+                  only <span className={styles.accentRed}>15%</span> users ordered cashless
                 </p>
+                <p>
+                  a major opportunity to increase revenue lied in shifting users from reimbursements
+                  to cashless payments. enabling hassle-free reorders became the gateway to changing
+                  this user behaviour.
+                </p>
+                <p className={styles.emphasis}>reorders were frequent:</p>
               </div>
-              <p className={styles.primary} data-node-id="143:603">
-                medibuddy exclusively generates revenue from cashless orders, not reimbursements.
-                however, <strong>only</strong> <span className={styles.accentRed}>15%</span>{' '}
-                <strong>users ordered cashless</strong>
-              </p>
-              <p className={styles.primary} data-node-id="143:604">
-                a major opportunity to increase revenue lied in shifting users from reimbursements to
-                cashless payments. enabling hassle free reorders became the gateway to changing this
-                user behaviour.
-              </p>
-              <p className={styles.primary} data-node-id="143:606">
-                reorders were frequent:
-              </p>
-              <div className={styles.statGrid} data-node-id="143:610">
-                <div className={styles.statCard} data-node-id="143:611">
-                  <p className={styles.statValue} data-node-id="143:612">
-                    32%
-                  </p>
-                  <p className={styles.statLabel} data-node-id="143:613">
+              <div className={styles.statRow}>
+                <div className={styles.statPlain}>
+                  <p className={styles.statValue}>32%</p>
+                  <p className={styles.statLabel}>
                     of total users had repeating orders using the same prescription
                   </p>
                 </div>
-                <div className={styles.statCard} data-node-id="143:614">
-                  <p className={styles.statValue} data-node-id="143:615">
-                    70%
-                  </p>
-                  <p className={styles.statLabel} data-node-id="143:616">
+                <div className={styles.statPlain}>
+                  <p className={styles.statValue}>70%</p>
+                  <p className={styles.statLabel}>
                     of total users were chronic illness patients likely to reorder services
                   </p>
                 </div>
               </div>
             </div>
-          </section>
+          </Copy>
 
-          <section className={styles.sectionText} data-node-id="143:617">
-            <div className={`${styles.textBlock} ${styles.stack12}`} data-node-id="143:627">
-              <div className={styles.stack0} data-node-id="143:628">
-                <p className={styles.heading} data-node-id="143:629">
-                  understanding pain points
-                </p>
-                <p className={styles.subheading} data-node-id="143:630">
-                  users were frustrated...
-                </p>
-              </div>
-              <p className={styles.primary} data-node-id="143:631">
-                We conducted <strong>100 user calls</strong> with users across various corporates, pan
-                India to gather insights about their struggles with their reimbursement process. Here is
-                what we found:
-              </p>
-            </div>
-          </section>
-
-          <MediaImage
-            src={imgUserCalls}
-            plain
-            bordered
-            className={`${styles.framedPlainImage} ${styles.userCallsImage}`}
-          />
-
-          <section className={`${styles.sectionText} ${styles.stack60}`} data-node-id="143:633">
-            <div className={`${styles.textBlock} ${styles.stack12}`} data-node-id="143:643">
-              <p className={styles.numberedHeading} data-node-id="143:644">
-                <span data-node-id="143:645">01</span>
-                <span data-node-id="143:646">convoluted reimbursement process ~</span>
-              </p>
-              <div className={styles.stack20} data-node-id="143:647">
-                <div className={styles.statCard} data-node-id="143:648">
-                  <p className={styles.statValue} data-node-id="143:649">
-                    62%
-                  </p>
-                  <p className={styles.statLabel} data-node-id="143:650">
-                    users expressed one or more issues with the reimbursement process
+          <div className={`${styles.block} ${styles.block40}`}>
+            <Copy label="understanding pain points" title="users were frustrated..." />
+            <Figure src={imgUserCalls} />
+            <div className={styles.copy}>
+              <div className={styles.painBlock}>
+                <h3 className={styles.subheading}>convoluted reimbursement process ~</h3>
+                <div className={styles.statPlain}>
+                  <p className={styles.statValue}>62%</p>
+                  <p className={styles.statLabel}>
+                    users expressed one or more issues with the reimbursement process.
                   </p>
                 </div>
-                <ul className={styles.bulletList} data-node-id="143:651">
-                  <li data-node-id="143:652">lengthy processes (1 - 2 weeks)</li>
-                  <li data-node-id="143:653">claims get rejected frequently</li>
-                  <li data-node-id="143:654">unclear policy and coverage guidelines</li>
+                <ul className={styles.bullets}>
+                  <li>lengthy processes (1 - 2 weeks)</li>
+                  <li>claims get rejected frequently</li>
+                  <li>unclear policy and coverage guidelines</li>
+                </ul>
+              </div>
+              <div className={styles.divider} role="separator" />
+              <div className={styles.painBlock}>
+                <h3 className={styles.subheading}>cashless: better but with caveats ~</h3>
+                <div className={`${styles.prose} ${styles.proseTight}`}>
+                  <p>
+                    cashless was <strong>instant</strong>, <strong>hassle free</strong> and there
+                    wasn&apos;t a chance of claims getting rejected.
+                  </p>
+                  <p>
+                    however converting users to cashless was <strong>NOT</strong> going to be easy,
+                    because:
+                  </p>
+                </div>
+                <div className={styles.statPlain}>
+                  <p className={styles.statValue}>51%</p>
+                  <p className={styles.statLabel}>
+                    users also expressed frustrations related to the cashless process.
+                  </p>
+                </div>
+                <ul className={styles.bullets}>
+                  <li>doctors or medicines not available in user&apos;s area</li>
+                  <li>lack of trust in online healthcare</li>
+                  <li>lack of understanding of the cashless system</li>
+                  <li>unaware of their health benefits</li>
                 </ul>
               </div>
             </div>
+          </div>
 
-            <div className={`${styles.textBlock} ${styles.stack12}`} data-node-id="143:655">
-              <p className={styles.numberedHeading} data-node-id="143:656">
-                <span data-node-id="143:657">02</span>
-                <span data-node-id="143:658">cashless: better but with caveats ~</span>
-              </p>
-              <div className={styles.stack8} data-node-id="143:659">
-                <p className={styles.primary} data-node-id="143:660">
-                  cashless was <strong>instant</strong>, <strong>hassle free</strong> and there
-                  wasn&apos;t a chance of claims getting rejected.
-                </p>
-                <p className={styles.primary} data-node-id="143:661">
-                  however converting users to cashless was <strong>NOT</strong> going to be easy,
-                  because:
-                </p>
-              </div>
-              <div className={styles.stack20} data-node-id="143:662">
-                <div className={styles.statCard} data-node-id="143:663">
-                  <p className={styles.statValue} data-node-id="143:664">
-                    51%
-                  </p>
-                  <p className={styles.statLabel} data-node-id="143:665">
-                    users also expressed frustrations related to the cashless process
-                  </p>
-                </div>
-                <ul className={styles.bulletList} data-node-id="143:666">
-                  <li data-node-id="143:667">doctors or medicines not available in user&apos;s area</li>
-                  <li data-node-id="143:668">lack of trust in online healthcare</li>
-                  <li data-node-id="143:669">lack of understanding of the cashless system</li>
-                  <li data-node-id="143:670">unaware of their health benefits</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section className={styles.sectionText} data-node-id="143:671">
-            <div className={`${styles.textBlock} ${styles.stack12}`} data-node-id="143:681">
-              <div className={styles.stack0} data-node-id="143:682">
-                <p className={styles.heading} data-node-id="143:683">
-                  design thinking
-                </p>
-                <p className={styles.subheading} data-node-id="143:684">
-                  brainstorming solutions
-                </p>
-              </div>
-              <p className={styles.primary} data-node-id="143:685">
+          <div className={styles.block}>
+            <Copy label="design thinking" title="brainstorming solutions">
+              <p className={styles.proseSingle}>
                 Collaborated with the PMs of each service line, Operations, Tech, and the CEO in an
                 Affinity Mapping session to deeply analyze user pain points, which guided the
                 development of our solution themes.
               </p>
+            </Copy>
+            <div className={styles.themeGrid}>
+              {themes.map((theme) => (
+                <article key={theme.title} className={styles.themeCard}>
+                  <div className={styles.themeTitleRow}>
+                    <span className={styles.themeIcon}>
+                      <img src={theme.icon} alt="" width={28} height={28} />
+                    </span>
+                    <h3 className={styles.themeTitle}>{theme.title}</h3>
+                  </div>
+                  <ul className={styles.themeList}>
+                    {theme.points.map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
             </div>
-          </section>
+          </div>
 
-          <MediaImage src={imgAffinity} plain bordered className={styles.framedPlainImage} />
-
-          <section className={styles.sectionText} data-node-id="143:687">
-            <div className={styles.textBlock} data-node-id="143:697">
-              <p className={styles.heading} data-node-id="143:699">
-                prioritisation matrix
-              </p>
+          <div className={styles.block}>
+            <div className={styles.copy}>
+              <h3 className={styles.subheading}>prioritisation matrix</h3>
             </div>
-          </section>
+            <Figure src={imgPrioritisation} />
+          </div>
 
-          <MediaImage src={imgPrioritisation} plain bordered className={styles.framedPlainImage} />
-
-          <section className={styles.sectionText} data-node-id="143:702">
-            <div className={styles.textBlock} data-node-id="143:712">
-              <p className={styles.heading} data-node-id="143:714">
-                information architecture
-              </p>
+          <div className={styles.block}>
+            <div className={styles.copy}>
+              <h3 className={styles.subheading}>information architecture</h3>
             </div>
-          </section>
+            <Figure src={imgIA} ia />
+          </div>
 
-          <MediaImage src={imgIA} plain bordered className={styles.framedPlainImage} />
-
-          <section className={styles.sectionText} data-node-id="143:717">
-            <div className={styles.textBlock} data-node-id="143:727">
-              <p className={styles.heading} data-node-id="143:729">
-                wireframes and early designs
-              </p>
+          <div className={styles.block}>
+            <div className={styles.copy}>
+              <h3 className={styles.subheading}>wireframes and early designs</h3>
             </div>
-          </section>
-
-          <MediaImage src={imgWireframes} plain bordered className={styles.framedPlainImage} />
-
-          <section className={styles.sectionText} data-node-id="143:732">
-            <div className={styles.textBlock} data-node-id="143:742">
-              <p className={styles.heading} data-node-id="143:744">
-                solution
-              </p>
-              <p className={styles.subheading} data-node-id="143:745">
-                driving cashless orders through new reorder flow
-              </p>
+            <div className={styles.wireframes}>
+              <div className={styles.wireframesTop}>
+                <div className={styles.wireframesBoard}>
+                  <OptimizedImage src={imgWireBoard} alt="" />
+                </div>
+                <div className={styles.wireframesFlow}>
+                  <OptimizedImage src={imgWireFlowGrid} alt="" />
+                  <OptimizedImage src={imgWireFlow} alt="" />
+                </div>
+              </div>
+              <div className={styles.wireframesStories}>
+                <div className={styles.wireframesStoriesMedia}>
+                  <OptimizedImage src={imgWireStories} alt="" />
+                </div>
+                <div className={styles.wireframesStoriesCopy}>
+                  <p className={styles.wireframesStoriesTitle}>tested user stories</p>
+                  <p className={styles.wireframesStoriesBody}>
+                    As screens were getting developed we tested the flows with internal users and
+                    stakeholders.
+                  </p>
+                  <div className={styles.wireframesStat}>
+                    <p className={styles.wireframesStatValue}>40+</p>
+                    <p className={styles.wireframesStatLabel}>user flows tested</p>
+                  </div>
+                  <div className={styles.wireframesStat}>
+                    <p className={styles.wireframesStatValue}>20+</p>
+                    <p className={styles.wireframesStatLabel}>prototypes</p>
+                  </div>
+                </div>
+              </div>
             </div>
-          </section>
+          </div>
 
-          <PhoneRowScroller />
+          <div className={`${styles.block} ${styles.block40}`}>
+            <Copy label="final solution" title="Driving Cashless Orders through New Reorder Flow" />
+            <div className={styles.phoneGrid}>
+              <PhoneCard>
+                <img
+                  className={styles.phoneShot}
+                  src={imgScreenReorder1}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </PhoneCard>
+              <PhoneCard>
+                <Card2Animation />
+              </PhoneCard>
+              <PhoneCard>
+                <img
+                  className={styles.phoneShot}
+                  src={imgScreenReorder3}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </PhoneCard>
+              <PhoneCard>
+                <img
+                  className={styles.phoneShot}
+                  src={imgScreenReorder4}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </PhoneCard>
+            </div>
+          </div>
 
-          <section className={styles.sectionText} data-node-id="143:753">
-            <div className={`${styles.textBlock} ${styles.stack20}`} data-node-id="143:763">
-              <p className={styles.heading} data-node-id="143:765">
-                effortless checkout process
-              </p>
-              <ul className={styles.bulletList} data-node-id="143:766">
-                <li data-node-id="143:767">
-                  <strong>simplified checkout:</strong> easily fill and verify required details before
-                  purchase.
+          <div className={styles.flows}>
+            <div className={styles.copy}>
+              <h3 className={styles.subheading}>Hi-Fidelity Screens and Core Flows</h3>
+            </div>
+
+            <FlowRow
+              title="effortless checkout process"
+              videoSrc={videoSeamlessCheckout}
+              videoTitle="Seamless checkout"
+            >
+              <ul className={styles.flowList}>
+                <li>
+                  <strong>simplified checkout:</strong> easily fill and verify required details
+                  before purchase.
                 </li>
-                <li data-node-id="143:768">
+                <li>
                   <strong>add beneficiary on-the-go:</strong> quickly include a beneficiary during
                   checkout if needed.
                 </li>
               </ul>
-            </div>
-          </section>
+            </FlowRow>
 
-          <MediaVideo src={videoSeamlessCheckout} bordered title="Seamless checkout" />
-
-          <section className={styles.sectionText} data-node-id="143:770">
-            <div className={`${styles.textBlock} ${styles.stack20}`} data-node-id="143:780">
-              <p className={styles.heading} data-node-id="143:782">
-                service specific checkout flows
-              </p>
-              <ul className={styles.bulletList} data-node-id="143:783">
-                <li data-node-id="143:784">
-                  <strong>view original prescription:</strong> easily access the digitized prescription
-                  of each reorder card.
+            <FlowRow
+              reverse
+              title="Service Specific Checkout Flows"
+              videoSrc={videoDigitization}
+              videoTitle="Digitization"
+            >
+              <ul className={styles.flowList}>
+                <li>
+                  <strong>View Original Prescription:</strong> Easily access the digitized
+                  prescription of each reorder card.
                 </li>
-                <li data-node-id="143:785">
-                  <strong>report card issues instantly:</strong> Quickly flag and resolve any problems,
-                  ensuring user trust and convenience for the user.
+                <li>
+                  <strong>Report Card Issues Instantly:</strong> Quickly flag and resolve any
+                  problems, ensuring user trust and convenience for the user.
                 </li>
               </ul>
-            </div>
-          </section>
+            </FlowRow>
 
-          <MediaVideo src={videoDigitization} bordered title="Digitization" />
-
-          <section className={styles.sectionText} data-node-id="143:787">
-            <div className={`${styles.textBlock} ${styles.stack20}`} data-node-id="143:797">
-              <div className={styles.stack0} data-node-id="143:798">
-                <p className={styles.subheading} data-node-id="143:799">
-                  experiment
-                </p>
-                <p className={styles.heading} data-node-id="143:800">
-                  new one page checkout
-                </p>
-              </div>
-              <ul className={styles.bulletList} data-node-id="143:801">
-                <li data-node-id="143:802">
-                  <strong>experience unification:</strong> reduced steps and cognitive load by
-                  consolidating information, enabling faster transactions and laying the foundation for
-                  a unified checkout experience.
+            <FlowRow
+              badge="experiment"
+              title="New One-Page Checkout"
+              videoSrc={videoFastCheckout}
+              videoTitle="Fast checkout"
+            >
+              <ul className={styles.flowList}>
+                <li>
+                  <strong>Experience Unification:</strong> Reduced steps and cognitive load by
+                  consolidating information, enabling faster transactions and laying the foundation
+                  for a unified checkout experience.
                 </li>
-                <li data-node-id="143:803">
-                  <strong>focus on speed:</strong> the design prioritizes efficiency, enabling users to
-                  complete transactions in seconds, improving overall satisfaction.
+                <li>
+                  <strong>Focus on Speed:</strong> The design prioritizes efficiency, enabling users
+                  to complete transactions in seconds, improving overall satisfaction.
                 </li>
               </ul>
-            </div>
-          </section>
+            </FlowRow>
 
-          <MediaVideo src={videoFastCheckout} bordered title="Fast checkout" />
-
-          <section className={styles.sectionText} data-node-id="143:805">
-            <div className={`${styles.textBlock} ${styles.stack20}`} data-node-id="143:815">
-              <p className={styles.heading} data-node-id="143:818">
-                FTUE and storytelling
-              </p>
-              <ul className={styles.bulletList} data-node-id="143:819">
-                <li data-node-id="143:820">
-                  <strong>guided onboarding:</strong> a prominent FTUE nudge introduces the reorder
+            <FlowRow
+              reverse
+              title="FTUE and Storytelling"
+              videoSrc={videoFtue}
+              videoTitle="FTUE"
+            >
+              <ul className={styles.flowList}>
+                <li>
+                  <strong>Guided Onboarding:</strong> A prominent FTUE nudge introduces the reorder
                   feature, ensuring users are aware of its value proposition from the start.
                 </li>
-                <li data-node-id="143:821">
-                  <strong>engaging animation:</strong> a scanning animation explains how reimbursement
-                  data is digitized into reorder cards, doubling as a loading screen while APIs fetch
-                  data.
+                <li>
+                  <strong>Engaging Animation:</strong> A scanning animation explains how
+                  reimbursement data is digitized into reorder cards, doubling as a loading screen
+                  while APIs fetch data.
                 </li>
-                <li data-node-id="143:822">
-                  <strong>delightful introduction:</strong> the animation creates a &quot;wow&quot;
-                  moment, highlighting the platform&apos;s ability to simplify healthcare reordering and
-                  build user confidence.
-                </li>
-              </ul>
-            </div>
-          </section>
-
-          <MediaVideo src={videoFtue} bordered title="FTUE" />
-
-          <section className={styles.sectionText} data-node-id="143:824">
-            <div className={`${styles.textBlock} ${styles.stack12}`} data-node-id="143:834">
-              <p className={styles.heading} data-node-id="143:836">
-                component playground and design system
-              </p>
-              <p className={styles.primary} data-node-id="143:838">
-                facilitated developer independence by creating a <strong>component playground</strong>{' '}
-                for component states and edge case testing. this enabled seamless UI builds, especially
-                for junior developers, and contributed reusable organisms to our mozaic design system.
-              </p>
-            </div>
-          </section>
-
-          <MediaImage src={imgDesignSystem} bordered cardBg />
-
-          <section className={styles.sectionText} data-node-id="143:841">
-            <div className={`${styles.textBlock} ${styles.stack28}`} data-node-id="143:851">
-              <div className={styles.stack12} data-node-id="143:852">
-                <div className={styles.stack0} data-node-id="143:853">
-                  <p className={styles.heading} data-node-id="143:854">
-                    feedback and iterations
-                  </p>
-                  <p className={styles.subheading} data-node-id="143:855">
-                    validating the design with more users
-                  </p>
-                </div>
-                <p className={styles.primary} data-node-id="143:856">
-                  conducted usability tests with 15 random medibuddy employees and 10 external
-                  corporate users to gather actionable feedbacks to improve upon.
-                </p>
-                <p className={styles.primary} data-node-id="143:858">
-                  usability testing feedback
-                </p>
-                <div className={styles.statGridFour} data-node-id="143:862">
-                  <div className={styles.statCard} data-node-id="143:863">
-                    <p className={styles.statValue} data-node-id="143:864">
-                      4.7
-                    </p>
-                    <p className={styles.statLabel} data-node-id="143:865">
-                      ease of navigation
-                    </p>
-                  </div>
-                  <div className={styles.statCard} data-node-id="143:866">
-                    <p className={styles.statValue} data-node-id="143:867">
-                      4.2
-                    </p>
-                    <p className={styles.statLabel} data-node-id="143:868">
-                      user trust
-                    </p>
-                  </div>
-                  <div className={styles.statCard} data-node-id="143:869">
-                    <p className={styles.statValue} data-node-id="143:870">
-                      4.6
-                    </p>
-                    <p className={styles.statLabel} data-node-id="143:871">
-                      information clarity
-                    </p>
-                  </div>
-                  <div className={styles.statCard} data-node-id="143:872">
-                    <p className={styles.statValue} data-node-id="143:873">
-                      4.5
-                    </p>
-                    <p className={styles.statLabel} data-node-id="143:874">
-                      overall satisfaction
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className={styles.stack16} data-node-id="143:875">
-                <p className={styles.heading} data-node-id="143:877">
-                  actionable insights
-                </p>
-                <div className={styles.stack12} data-node-id="143:879">
-                  <div className={styles.insightRow} data-node-id="143:880">
-                    <span className={styles.insightIndex} data-node-id="143:881">
-                      01
-                    </span>
-                    <div className={styles.insightBody} data-node-id="143:882">
-                      <p className={styles.strong} data-node-id="143:883">
-                        user missed the &apos;reorder&apos; tab.
-                      </p>
-                      <p className={styles.primary} data-node-id="143:884">
-                        added FTUE with a tooltip nudging on the reorder tab.
-                      </p>
-                    </div>
-                  </div>
-                  <div className={styles.insightRow} data-node-id="143:885">
-                    <span className={styles.insightIndex} data-node-id="143:886">
-                      02
-                    </span>
-                    <div className={styles.insightBody} data-node-id="143:887">
-                      <p className={styles.strong} data-node-id="143:888">
-                        improving cart differentiation
-                      </p>
-                      <p className={styles.primary} data-node-id="143:889">
-                        some users struggled to distinguish between similar carts. to resolve this,
-                        added order dates to reorder cards, providing clear differentiation.
-                      </p>
-                    </div>
-                  </div>
-                  <div className={styles.insightRow} data-node-id="143:890">
-                    <span className={styles.insightIndex} data-node-id="143:891">
-                      03
-                    </span>
-                    <div className={styles.insightBody} data-node-id="143:892">
-                      <p className={styles.strong} data-node-id="143:893">
-                        dead-end flow when verifying reimbursement records
-                      </p>
-                      <p className={styles.primary} data-node-id="143:894">
-                        added an &quot;order again&quot; CTA on the record verification page.
-                      </p>
-                    </div>
-                  </div>
-                  <div className={styles.insightRow} data-node-id="143:895">
-                    <span className={styles.insightIndex} data-node-id="143:896">
-                      04
-                    </span>
-                    <div className={styles.insightBody} data-node-id="143:897">
-                      <p className={styles.strong} data-node-id="143:898">
-                        successful unified checkout test
-                      </p>
-                      <p className={styles.primary} data-node-id="143:899">
-                        users found the new checkout positive, but a tech-stack upgrade is required for
-                        future release.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className={styles.sectionText} data-node-id="143:900">
-            <div className={`${styles.textBlock} ${styles.stack28}`} data-node-id="143:910">
-              <div className={styles.stack12} data-node-id="143:911">
-                <div className={styles.stack0} data-node-id="143:912">
-                  <p className={styles.heading} data-node-id="143:913">
-                    impact created
-                  </p>
-                  <p className={styles.subheading} data-node-id="143:914">
-                    positive results and road to 100 cr
-                  </p>
-                </div>
-                <p className={styles.primary} data-node-id="143:916">
-                  behaviour shift towards cashless adoption
-                </p>
-                <div className={styles.impactGrid} data-node-id="143:920">
-                  <div className={`${styles.statCard} ${styles.statCardTall}`} data-node-id="143:921">
-                    <p className={styles.strong} data-node-id="143:922">
-                      cashless adoption rate increase
-                    </p>
-                    <div className={styles.stack8} data-node-id="143:923">
-                      <p className={styles.cardText} data-node-id="143:924">
-                        15% to <strong>23%</strong>
-                      </p>
-                      <p className={styles.cardText} data-node-id="143:925">
-                        within 3 months of launching the r2c reorder feature
-                      </p>
-                    </div>
-                  </div>
-                  <div className={`${styles.statCard} ${styles.statCardTall}`} data-node-id="143:926">
-                    <p className={styles.strong} data-node-id="143:927">
-                      &apos;only reimbursement&apos; percentage decrease
-                    </p>
-                    <div className={styles.stack8} data-node-id="143:928">
-                      <p className={styles.cardText} data-node-id="143:929">
-                        40% to <strong>21.7%</strong>
-                      </p>
-                      <p className={styles.cardText} data-node-id="143:930">
-                        of total users did pure reimbursement, showing strong cashless signals
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className={styles.stack16} data-node-id="143:931">
-                <p className={styles.heading} data-node-id="143:933">
-                  user engagement improved
-                </p>
-                <div className={styles.stack12} data-node-id="143:935">
-                  <div className={styles.metricRow} data-node-id="143:936">
-                    <span className={styles.metricDash} data-node-id="143:937">
-                      -
-                    </span>
-                    <div className={styles.metricBody} data-node-id="143:938">
-                      <p className={styles.strong} data-node-id="143:939">
-                        MAU for release month
-                      </p>
-                      <p className={styles.secondary} data-node-id="143:940">
-                        31% to 35%
-                      </p>
-                    </div>
-                  </div>
-                  <div className={styles.metricRow} data-node-id="143:941">
-                    <span className={styles.metricDash} data-node-id="143:942">
-                      -
-                    </span>
-                    <div className={styles.metricBody} data-node-id="143:943">
-                      <p className={styles.strong} data-node-id="143:944">
-                        DAU for release month
-                      </p>
-                      <p className={styles.secondary} data-node-id="143:945">
-                        14% to 20%
-                      </p>
-                    </div>
-                  </div>
-                  <div className={styles.metricRow} data-node-id="143:946">
-                    <span className={styles.metricDash} data-node-id="143:947">
-                      -
-                    </span>
-                    <div className={styles.metricBody} data-node-id="143:948">
-                      <p className={styles.strong} data-node-id="143:949">
-                        login rates after 3 months
-                      </p>
-                      <p className={styles.secondary} data-node-id="143:950">
-                        60% to 80%
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className={styles.stack0} data-node-id="143:951">
-                <p className={styles.heading} data-node-id="143:953">
-                  revenue projections exceeded
-                </p>
-                <div className={styles.stack0} data-node-id="143:955">
-                  <div className={styles.revenueItem} data-node-id="143:956">
-                    <p className={styles.strong} data-node-id="143:957">
-                      average GMV after 3 months
-                    </p>
-                    <p className={styles.secondary} data-node-id="143:958">
-                      12 cr
-                    </p>
-                  </div>
-                  <div className={styles.revenueItem} data-node-id="143:959">
-                    <p className={styles.strong} data-node-id="143:960">
-                      estimated revenue from r2c for FY26-27
-                    </p>
-                    <p className={styles.secondary} data-node-id="143:961">
-                      200 cr!
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className={styles.sectionText} data-node-id="143:962">
-            <div className={`${styles.textBlock} ${styles.stack12}`} data-node-id="143:972">
-              <p className={styles.heading} data-node-id="143:974">
-                learnings
-              </p>
-              <ul className={styles.bulletList} data-node-id="143:976">
-                <li data-node-id="143:977">
-                  <strong>transparency builds trust:</strong> clearly explaining how reimbursement data
-                  was digitized helped build trust and encouraged adoption.
-                </li>
-                <li data-node-id="143:978">
-                  <strong>dynamic personalization works:</strong> dynamically arranging service carousels
-                  based on user behavior improved engagement.
-                </li>
-                <li data-node-id="143:979">
-                  <strong>iterative testing is key:</strong> usability testing uncovered critical issues
-                  that were addressed before launch.
+                <li>
+                  <strong>Delightful Introduction:</strong> The animation creates a &quot;wow&quot;
+                  moment, highlighting the platform&apos;s ability to simplify healthcare reordering
+                  and build user confidence.
                 </li>
               </ul>
+            </FlowRow>
+          </div>
+
+          <div className={styles.block}>
+            <Copy>
+              <h3 className={styles.subheading}>component playground and design system</h3>
+              <p className={styles.proseSingle}>
+                Facilitated developer independence by creating a <strong>Component Playground</strong>{' '}
+                for component states and edge-case testing. This enabled seamless UI builds,
+                especially for junior developers, and contributed reusable organisms to our Mozaic
+                Design System.
+              </p>
+            </Copy>
+            <div className={styles.playground}>
+              <div className={styles.playgroundVideo}>
+                <video
+                  src={videoPlayground}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  title="Component playground"
+                />
+              </div>
+              <div className={styles.playgroundPages}>
+                <OptimizedImage src={imgPlaygroundPages} alt="" />
+              </div>
+              <div className={styles.playgroundFlows}>
+                <OptimizedImage
+                  className={styles.playgroundFlowsDesktop}
+                  src={imgPlaygroundFlows}
+                  alt=""
+                />
+                <OptimizedImage
+                  className={styles.playgroundFlowsMobile}
+                  src={imgPlaygroundFlowsMobile}
+                  alt=""
+                />
+              </div>
+              <div className={styles.playgroundLabel}>
+                <picture>
+                  <source media="(max-width: 767px)" srcSet={imgPlaygroundLabelMobile} />
+                  <OptimizedImage src={imgPlaygroundLabel} alt="" />
+                </picture>
+              </div>
             </div>
-          </section>
-        </div>
+          </div>
+
+          <Copy label="feedback & iterations" title="Validating the Design with More Users">
+            <div className={styles.stack32}>
+              <p className={styles.proseSingle}>
+                Conducted usability tests with <strong>15 random Medibuddy employees</strong> and{' '}
+                <strong>10 external corporate users</strong> to gather actionable feedbacks to improve
+                upon.
+              </p>
+              <div className={styles.stack20}>
+              <h3 className={styles.subheading}>usability testing feedback</h3>
+              <div className={styles.statGridFour}>
+                <div className={styles.statCard}>
+                  <p className={styles.statValue}>4.7</p>
+                  <p className={styles.statLabel}>ease of navigation</p>
+                </div>
+                <div className={styles.statCard}>
+                  <p className={styles.statValue}>4.2</p>
+                  <p className={styles.statLabel}>user trust</p>
+                </div>
+                <div className={styles.statCard}>
+                  <p className={styles.statValue}>4.6</p>
+                  <p className={styles.statLabel}>information clarity</p>
+                </div>
+                <div className={styles.statCard}>
+                  <p className={styles.statValue}>4.5</p>
+                  <p className={styles.statLabel}>overall satisfaction</p>
+                </div>
+              </div>
+            </div>
+            <div className={styles.stack20}>
+              <h3 className={styles.subheading}>actionable insights</h3>
+              <div className={styles.insights}>
+                <div className={styles.insight}>
+                  <span className={styles.insightIndex}>01</span>
+                  <div>
+                    <p className={styles.insightTitle}>user missed the &apos;reorder&apos; tab.</p>
+                    <p className={styles.insightBody}>
+                      added FTUE with a tooltip nudging on the reorder tab.
+                    </p>
+                  </div>
+                </div>
+                <div className={styles.insight}>
+                  <span className={styles.insightIndex}>02</span>
+                  <div>
+                    <p className={styles.insightTitle}>improving cart differentiation</p>
+                    <p className={styles.insightBody}>
+                      some users struggled to distinguish between similar carts. to resolve this,
+                      added order dates to reorder cards, providing clear differentiation.
+                    </p>
+                  </div>
+                </div>
+                <div className={styles.insight}>
+                  <span className={styles.insightIndex}>03</span>
+                  <div>
+                    <p className={styles.insightTitle}>
+                      dead-end flow when verifying reimbursement records
+                    </p>
+                    <p className={styles.insightBody}>
+                      added an &quot;<strong>order again</strong>&quot; <strong>CTA</strong> on the
+                      record verification page.
+                    </p>
+                  </div>
+                </div>
+                <div className={styles.insight}>
+                  <span className={styles.insightIndex}>04</span>
+                  <div>
+                    <p className={styles.insightTitle}>successful unified checkout test</p>
+                    <p className={styles.insightBody}>
+                      users found the new checkout positive, but a tech-stack upgrade is required
+                      for future release.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </Copy>
+
+          <div className={`${styles.block} ${styles.block40}`}>
+            <Copy label="impact created" title="positive results and road to 100cr" />
+            <div className={styles.impact}>
+              <div className={styles.copy}>
+                <h3 className={styles.subheading}>Behaviour Shift Towards Cashless Adoption</h3>
+              </div>
+              <div className={styles.impactCards}>
+                <div className={styles.impactCard}>
+                  <p className={styles.impactEyebrow}>Cashless Adoption Rate Increase</p>
+                  <p className={styles.impactValue}>
+                    <span className={styles.impactFrom}>15% to</span>
+                    <span className={styles.impactTo}>23%</span>
+                  </p>
+                  <p className={styles.impactBody}>
+                    within 3 months of launching the R2C Reorder feature
+                  </p>
+                </div>
+                <div className={styles.impactCard}>
+                  <p className={styles.impactEyebrow}>&apos;Only Reimbursement&apos; Percentage Decrease</p>
+                  <p className={styles.impactValue}>
+                    <span className={styles.impactFrom}>40% to</span>
+                    <span className={styles.impactTo}>21.7%</span>
+                  </p>
+                  <p className={styles.impactBody}>
+                    of total users did Pure Reimbursement, showing strong Cashless Signals
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className={styles.engagement}>
+              <div className={styles.copy}>
+                <h3 className={styles.subheading}>User Engagement Improved</h3>
+              </div>
+              <div className={styles.engagementRow}>
+                <div className={styles.metricItem}>
+                  <p className={styles.metricLabel}>MAU for Release Month</p>
+                  <p className={styles.impactValue}>
+                    <span className={styles.impactFrom}>31% to</span>
+                    <span className={styles.impactTo}>35%</span>
+                  </p>
+                </div>
+                <div className={styles.metricItem}>
+                  <p className={styles.metricLabel}>dAU for Release Month</p>
+                  <p className={styles.impactValue}>
+                    <span className={styles.impactFrom}>14% to</span>
+                    <span className={styles.impactTo}>20%</span>
+                  </p>
+                </div>
+                <div className={styles.metricItem}>
+                  <p className={styles.metricLabel}>login rates after 3 months</p>
+                  <p className={styles.impactValue}>
+                    <span className={styles.impactFrom}>60% to</span>
+                    <span className={styles.impactTo}>82%</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className={`${styles.divider} ${styles.dividerWide}`} role="separator" />
+            <div className={styles.copy}>
+              <h3 className={styles.subheading}>revenue projections exceeded</h3>
+              <div className={styles.metricStack}>
+                <div className={styles.metricItem}>
+                  <p className={styles.metricLabel}>average gmv after 3 months</p>
+                  <p className={styles.revenueValue}>12cr</p>
+                </div>
+                <div className={styles.metricItem}>
+                  <p className={styles.metricLabel}>Estimated Revenue from R2C for FY26-27</p>
+                  <p className={styles.revenueValue}>200cr!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <Figure src={imgClosing} wide />
+
+          <Copy label="learnings" title="key takeaways">
+            <ol className={styles.learnings}>
+              <li>
+                <strong>Transparency Builds Trust:</strong> Clearly explaining how reimbursement
+                data was digitized helped build trust and encouraged adoption.
+              </li>
+              <li>
+                <strong>Dynamic Personalization Works:</strong> Dynamically arranging service
+                carousels based on user behavior improved engagement.
+              </li>
+              <li>
+                <strong>Iterative Testing is Key:</strong> Usability testing uncovered critical
+                issues that were addressed before launch.
+              </li>
+            </ol>
+          </Copy>
+        </main>
       </div>
     </div>
   );

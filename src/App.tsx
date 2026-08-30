@@ -9,14 +9,13 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { PortfolioHome } from './pages/PortfolioHome/PortfolioHome';
-import { PortfolioHomeV2 } from './pages/PortfolioHomeV2/PortfolioHomeV2';
-import { R2cProjectV2 } from './pages/R2cProjectV2/R2cProjectV2';
-import { VisionProjectV2 } from './pages/VisionProjectV2/VisionProjectV2';
-import { DesignSystemBlogV2 } from './pages/DesignSystemBlogV2/DesignSystemBlogV2';
-import { TypographyBlogV2 } from './pages/TypographyBlogV2/TypographyBlogV2';
-import { MozaicProjectV2 } from './pages/MozaicProjectV2/MozaicProjectV2';
-import { MozaicFoundationsV2 } from './pages/MozaicFoundationsV2/MozaicFoundationsV2';
-import { InclinicProjectV2 } from './pages/InclinicProjectV2/InclinicProjectV2';
+import { R2cProject } from './pages/R2cProject/R2cProject';
+import { VisionProject } from './pages/VisionProject/VisionProject';
+import { DesignSystemBlog } from './pages/DesignSystemBlog/DesignSystemBlog';
+import { TypographyBlog } from './pages/TypographyBlog/TypographyBlog';
+import { MozaicProject } from './pages/MozaicProject/MozaicProject';
+import { MozaicFoundations } from './pages/MozaicFoundations/MozaicFoundations';
+import { InclinicProject } from './pages/InclinicProject/InclinicProject';
 
 const BLOG_SCROLL_OFFSET = 120;
 const SCROLL_STORAGE_KEY = 'portfolio-scroll-positions';
@@ -155,19 +154,19 @@ const router = createBrowserRouter([
   {
     element: <RootLayout />,
     children: [
-      { path: '/', element: <PortfolioHomeV2 /> },
-      { path: '/v1', element: <PortfolioHome /> },
-      { path: '/work/inclinic-search-filters', element: <InclinicProjectV2 /> },
-      { path: '/work/r2c-reorder', element: <R2cProjectV2 /> },
-      { path: '/work/vision-revamp', element: <VisionProjectV2 /> },
-      { path: '/work/mozaic-design-system', element: <MozaicProjectV2 /> },
-      { path: '/work/mozaic-design-system/foundations', element: <MozaicFoundationsV2 /> },
-      { path: '/notes/ds-component', element: <DesignSystemBlogV2 /> },
+      { path: '/', element: <PortfolioHome /> },
+      { path: '/v1', element: <Navigate to="/" replace /> },
+      { path: '/work/inclinic-search-filters', element: <InclinicProject /> },
+      { path: '/work/r2c-reorder', element: <R2cProject /> },
+      { path: '/work/vision-revamp', element: <VisionProject /> },
+      { path: '/work/mozaic-design-system', element: <MozaicProject /> },
+      { path: '/work/mozaic-design-system/foundations', element: <MozaicFoundations /> },
+      { path: '/notes/ds-component', element: <DesignSystemBlog /> },
       {
         path: '/notes/design-system-component',
         element: <Navigate to="/notes/ds-component" replace />,
       },
-      { path: '/notes/responsive-typographic-system', element: <TypographyBlogV2 /> },
+      { path: '/notes/responsive-typographic-system', element: <TypographyBlog /> },
       { path: '/blog/ds-component', element: <Navigate to="/notes/ds-component" replace /> },
       {
         path: '/blog/design-system-component',

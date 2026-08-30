@@ -1,24 +1,18 @@
 ---
-description: v1.0 is the full original site; v2.0 is the new UI. Production home is v2.
+description: This repo is the current portfolio. The original site lives in old-portfolio.
 alwaysApply: true
 ---
 
-# Portfolio versions
+# Portfolio
 
-## v1.0 = the full original production site
+This repo is the current site. The original version is a separate public repo: https://github.com/monicaaddepalli/old-portfolio
 
-When the user says **v1.0**, **v1**, or **the old site**, they mean the complete original portfolio — original home plus every existing case study and note. Not a partial or restyled stand-in.
+If the user asks for **v1**, **v1.0**, or **the old site**, point them to that repo. Do not restore old pages here.
 
-- Frozen as git tag `v1.0` on commit `e5ce338`
-- Route: `/v1` → `PortfolioHome` (name/logo stays on `/v1`)
-- If they ask to “give me v1.0” or switch back, restore that full original experience
+## This repo
 
-## v2.0 = the new UI
-
-When the user says **v2.0**, **v2**, or **the new UI**, they mean the redesigned homepage and any new UI that follows. Home shipped first; project pages get rebuilt one by one. Until a case study is rebuilt, keep using the existing production project/note pages.
-
-- Route: `/` → `PortfolioHomeV2`
-- Case study / note “back” links go to `/` (the v2 home)
+- Route: `/` → `PortfolioHome`
+- Case study / note “back” links go to `/`
 - Work continues on branch `v2`
 - Do not merge to `main` or deploy unless the user explicitly says to go live
 
@@ -26,11 +20,10 @@ When the user says **v2.0**, **v2**, or **the new UI**, they mean the redesigned
 
 Live site deploys from `main` via Vercel: https://github.com/monicaaddepalli/portfolio.git
 
-- `/` — v2.0 home
-- `/v1` — full v1.0 home
-- `/work/*` and `/notes/*` — existing production case studies and notes
+- `/` — current home
+- `/work/*` and `/notes/*` — case studies and notes
+- `/v1` redirects to `/`
 
 ## Local
 
-- v2 home: http://localhost:5173/
-- v1 home: http://localhost:5173/v1
+- Home: http://localhost:5173/
