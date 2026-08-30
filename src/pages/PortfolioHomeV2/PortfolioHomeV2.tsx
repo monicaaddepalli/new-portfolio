@@ -26,14 +26,14 @@ const projects: ListItem[] = [
     path: '/work/r2c-reorder',
   },
   {
-    title: 'Making it easier to use vision benefits',
-    year: '2025',
-    path: '/work/vision-revamp',
-  },
-  {
     title: 'building mozaic design system',
     year: '2026',
     path: '/work/mozaic-design-system',
+  },
+  {
+    title: 'Making it easier to use vision benefits',
+    year: '2025',
+    path: '/work/vision-revamp',
   },
 ];
 
