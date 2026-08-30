@@ -1,6 +1,6 @@
 export type Theme = 'light' | 'dark';
 
-const FAVICON = '/favicon.png?v=20260823-2';
+const FAVICON = '/favicon.png?v=20260830';
 
 export function getInitialTheme(): Theme {
   const stored = localStorage.getItem('theme');
