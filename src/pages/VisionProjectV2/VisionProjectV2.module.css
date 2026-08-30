@@ -147,8 +147,8 @@
 .title {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: 24px;
-  line-height: 36px;
+  font-size: 32px;
+  line-height: 48px;
   font-weight: 800;
   color: var(--primary);
   text-transform: lowercase;
@@ -411,8 +411,8 @@
   }
 
   .title {
-    font-size: 48px;
-    line-height: 60px;
+    font-size: 60px;
+    line-height: 72px;
   }
 
   .copy {

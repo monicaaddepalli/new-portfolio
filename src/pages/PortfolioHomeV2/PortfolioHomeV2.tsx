@@ -30,6 +30,11 @@ const projects: ListItem[] = [
     year: '2025',
     path: '/work/vision-revamp',
   },
+  {
+    title: 'building mozaic design system',
+    year: '2026',
+    path: '/work/mozaic-design-system',
+  },
 ];
 
 const writings: ListItem[] = [

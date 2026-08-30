@@ -14,8 +14,8 @@ import { R2cProjectV2 } from './pages/R2cProjectV2/R2cProjectV2';
 import { VisionProjectV2 } from './pages/VisionProjectV2/VisionProjectV2';
 import { DesignSystemBlogV2 } from './pages/DesignSystemBlogV2/DesignSystemBlogV2';
 import { TypographyBlogV2 } from './pages/TypographyBlogV2/TypographyBlogV2';
-import { MozaicProject } from './pages/MozaicProject/MozaicProject';
-import { MozaicFoundations } from './pages/MozaicFoundations/MozaicFoundations';
+import { MozaicProjectV2 } from './pages/MozaicProjectV2/MozaicProjectV2';
+import { MozaicFoundationsV2 } from './pages/MozaicFoundationsV2/MozaicFoundationsV2';
 import { InclinicProjectV2 } from './pages/InclinicProjectV2/InclinicProjectV2';
 
 const BLOG_SCROLL_OFFSET = 120;
@@ -160,8 +160,8 @@ const router = createBrowserRouter([
       { path: '/work/inclinic-search-filters', element: <InclinicProjectV2 /> },
       { path: '/work/r2c-reorder', element: <R2cProjectV2 /> },
       { path: '/work/vision-revamp', element: <VisionProjectV2 /> },
-      { path: '/work/mozaic-design-system', element: <MozaicProject /> },
-      { path: '/work/mozaic-design-system/foundations', element: <MozaicFoundations /> },
+      { path: '/work/mozaic-design-system', element: <MozaicProjectV2 /> },
+      { path: '/work/mozaic-design-system/foundations', element: <MozaicFoundationsV2 /> },
       { path: '/notes/ds-component', element: <DesignSystemBlogV2 /> },
       {
         path: '/notes/design-system-component',
