@@ -305,6 +305,7 @@
 .statFrom {
   color: var(--primary);
   -webkit-text-fill-color: var(--primary);
+  text-transform: none;
 }
 
 .statLabel {

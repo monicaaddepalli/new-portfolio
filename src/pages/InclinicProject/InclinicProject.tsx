@@ -217,13 +217,13 @@ export function InclinicProject() {
               <div className={styles.statGrid}>
                 <div className={styles.statCard}>
                   <p className={styles.statValue}>
-                    <span className={styles.statFrom}>18% → </span>32%
+                    <span className={styles.statFrom}>18% to </span>32%
                   </p>
                   <p className={styles.statLabel}>Search conversion</p>
                 </div>
                 <div className={styles.statCard}>
                   <p className={styles.statValue}>
-                    <span className={styles.statFrom}>22% → </span>47%
+                    <span className={styles.statFrom}>22% to </span>47%
                   </p>
                   <p className={styles.statLabel}>Filter-led conversion</p>
                 </div>
@@ -238,7 +238,7 @@ export function InclinicProject() {
                     </span>
                     <span>
                       <span className={styles.metricName}>null searches</span>
-                      <span className={styles.metricValue}>40% → 5%</span>
+                      <span className={styles.metricValue}>40% to 5%</span>
                     </span>
                   </li>
                   <li>
