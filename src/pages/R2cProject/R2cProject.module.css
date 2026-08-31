@@ -142,7 +142,7 @@
   font-family: var(--text-meta-family);
   font-size: var(--text-meta-size);
   line-height: var(--text-meta-line);
-  font-weight: 300;
+  font-weight: var(--text-year-weight);
   font-variation-settings: var(--font-mono-variation);
   color: var(--secondary);
   -webkit-text-fill-color: var(--secondary);
@@ -154,7 +154,7 @@
   font-family: var(--font-sans);
   font-size: 32px;
   line-height: 48px;
-  font-weight: 800;
+  font-weight: var(--text-h1-weight);
   color: var(--primary);
   text-transform: lowercase;
 }
@@ -179,19 +179,6 @@
   background: var(--card-tint);
   border-radius: 12px;
   overflow: hidden;
-}
-
-.figureHero .media {
-  aspect-ratio: 800 / 378;
-  background: #f2f2f2;
-}
-
-.figureHero .media img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .media {
@@ -227,7 +214,7 @@
   font-family: var(--font-sans);
   font-size: var(--text-body-size);
   line-height: var(--text-body-line);
-  font-weight: 700;
+  font-weight: var(--text-heading-weight);
   color: var(--accent);
   -webkit-text-fill-color: var(--accent);
   text-transform: uppercase;
@@ -238,7 +225,7 @@
   font-family: var(--font-sans);
   font-size: 24px;
   line-height: 36px;
-  font-weight: 700;
+  font-weight: var(--text-heading-weight);
   color: var(--primary);
   text-transform: lowercase;
 }
@@ -248,7 +235,7 @@
   font-family: var(--font-sans);
   font-size: 20px;
   line-height: 32px;
-  font-weight: 700;
+  font-weight: var(--text-heading-weight);
   color: var(--primary);
   text-transform: lowercase;
 }
@@ -258,7 +245,7 @@
   font-family: var(--font-sans);
   font-size: 16px;
   line-height: 24px;
-  font-weight: 700;
+  font-weight: var(--text-heading-weight);
   color: var(--primary);
   text-transform: lowercase;
 }
@@ -290,13 +277,13 @@
 .flowList strong,
 .learnings strong,
 .insightBody strong {
-  font-weight: 700;
+  font-weight: var(--text-emphasis-weight);
 }
 
 .emphasis {
   font-size: 20px;
   line-height: 32px;
-  font-weight: 700;
+  font-weight: var(--text-heading-weight);
   text-transform: lowercase;
 }
 
@@ -471,7 +458,7 @@
   font-family: var(--font-sans);
   font-size: var(--text-body-size);
   line-height: var(--text-body-line);
-  font-weight: 700;
+  font-weight: var(--text-heading-weight);
   color: var(--primary);
   text-transform: lowercase;
 }
@@ -595,7 +582,7 @@
   font-family: var(--font-sans);
   font-size: var(--text-body-size);
   line-height: var(--text-body-line);
-  font-weight: 700;
+  font-weight: var(--text-heading-weight);
   color: var(--accent);
   -webkit-text-fill-color: var(--accent);
 }
@@ -606,7 +593,7 @@
   font-family: var(--font-sans);
   font-size: 14px;
   line-height: 20px;
-  font-weight: 600;
+  font-weight: var(--text-heading-weight);
   color: var(--primary);
   text-transform: lowercase;
 }
@@ -782,7 +769,7 @@
   font-family: var(--font-sans);
   font-size: var(--text-body-size);
   line-height: var(--text-body-line);
-  font-weight: 700;
+  font-weight: var(--text-heading-weight);
   color: var(--accent);
   -webkit-text-fill-color: var(--accent);
   text-transform: lowercase;
@@ -841,7 +828,7 @@
   font-family: var(--font-sans);
   font-size: var(--text-body-size);
   line-height: var(--text-body-line);
-  font-weight: 700;
+  font-weight: var(--text-heading-weight);
   color: var(--accent);
   -webkit-text-fill-color: var(--accent);
 }
@@ -856,7 +843,7 @@
 }
 
 .insightTitle {
-  font-weight: 700;
+  font-weight: var(--text-heading-weight);
   color: var(--primary);
 }
 
@@ -889,7 +876,7 @@
   font-family: var(--font-sans);
   font-size: 14px;
   line-height: 20px;
-  font-weight: 600;
+  font-weight: var(--text-heading-weight);
   color: var(--primary);
   text-transform: lowercase;
   text-align: left;

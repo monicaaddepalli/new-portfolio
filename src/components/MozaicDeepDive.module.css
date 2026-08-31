@@ -31,7 +31,7 @@
 .italic {
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
   font-style: italic;
-  font-weight: 600;
+  font-weight: var(--text-emphasis-weight);
   font-synthesis: none;
 }
 
@@ -40,7 +40,7 @@
   font-family: var(--font-sans);
   font-size: var(--text-body-size);
   line-height: var(--text-body-line);
-  font-weight: 700;
+  font-weight: var(--text-heading-weight);
   color: var(--primary);
   text-transform: lowercase;
 }

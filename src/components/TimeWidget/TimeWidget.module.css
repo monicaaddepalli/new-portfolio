@@ -189,7 +189,7 @@
   font-family: var(--font-sans);
   font-size: 10px;
   line-height: 16px;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--primary);
   white-space: nowrap;
 }
@@ -199,7 +199,7 @@
   font-family: var(--font-sans);
   font-size: 20px;
   line-height: 28px;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.2px;
   font-variant-numeric: tabular-nums;
   color: var(--primary);

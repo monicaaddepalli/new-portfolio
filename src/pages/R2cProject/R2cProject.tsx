@@ -4,7 +4,6 @@ import { OptimizedImage } from '../../components/OptimizedImage';
 import { applyTheme } from '../../lib/theme';
 import styles from './R2cProject.module.css';
 
-const imgHero = '/assets/v2/r2c/hero.png';
 const imgUserCalls = '/assets/r2c/user-calls.png';
 const imgPrioritisation = '/assets/r2c/prioritisation.png';
 const imgIA = '/assets/r2c/ia.png';
@@ -74,22 +73,17 @@ function Figure({
   wide,
   ia,
   surface,
-  hero,
-  priority,
 }: {
   src: string;
   wide?: boolean;
   ia?: boolean;
   surface?: boolean;
-  hero?: boolean;
-  priority?: boolean;
 }) {
   const figureClass = [
     styles.figure,
     wide && styles.figureWide,
     ia && styles.figureIa,
     surface && styles.figureSurface,
-    hero && styles.figureHero,
   ]
     .filter(Boolean)
     .join(' ');
@@ -97,7 +91,7 @@ function Figure({
   return (
     <figure className={figureClass}>
       <div className={styles.media}>
-        <OptimizedImage src={src} alt="" priority={priority} />
+        <OptimizedImage src={src} alt="" />
       </div>
     </figure>
   );
@@ -234,7 +228,6 @@ export function R2cProject() {
 
         <main className={styles.main}>
           <div className={styles.hero}>
-            <Figure src={imgHero} hero priority />
             <div className={styles.intro}>
               <p className={styles.year}>2025</p>
               <h1 className={styles.title}>
