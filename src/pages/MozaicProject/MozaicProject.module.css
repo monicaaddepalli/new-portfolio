@@ -131,7 +131,7 @@
   font-family: var(--text-meta-family);
   font-size: var(--text-meta-size);
   line-height: var(--text-meta-line);
-  font-weight: var(--text-year-weight);
+  font-weight: 300;
   font-variation-settings: var(--font-mono-variation);
   color: var(--secondary);
   -webkit-text-fill-color: var(--secondary);
@@ -143,7 +143,7 @@
   font-family: var(--font-sans);
   font-size: 32px;
   line-height: 48px;
-  font-weight: var(--text-h1-weight);
+  font-weight: 800;
   color: var(--primary);
   text-transform: lowercase;
 }
@@ -174,7 +174,7 @@
   font-family: var(--font-sans);
   font-size: var(--text-body-size);
   line-height: var(--text-body-line);
-  font-weight: var(--text-heading-weight);
+  font-weight: 700;
   color: var(--accent);
   -webkit-text-fill-color: var(--accent);
   text-transform: uppercase;
@@ -210,7 +210,7 @@
 .bullets strong,
 .numbers strong,
 .insightTitle {
-  font-weight: var(--text-emphasis-weight);
+  font-weight: 700;
 }
 
 .quote {
@@ -220,7 +220,7 @@
 }
 
 .quoteText {
-  font-weight: var(--text-emphasis-weight);
+  font-weight: 600;
   font-style: italic;
 }
 
@@ -242,7 +242,7 @@
   font-family: var(--font-sans);
   font-size: var(--text-body-size);
   line-height: var(--text-body-line);
-  font-weight: var(--text-heading-weight);
+  font-weight: 700;
   color: var(--accent);
   -webkit-text-fill-color: var(--accent);
 }
@@ -281,7 +281,7 @@
   font-family: var(--font-sans);
   font-size: 40px;
   line-height: 48px;
-  font-weight: var(--text-stat-weight);
+  font-weight: 800;
   text-transform: uppercase;
   background-image: linear-gradient(to bottom, #6cb5ff, #fff);
   -webkit-background-clip: text;
@@ -295,7 +295,7 @@
   font-family: var(--font-sans);
   font-size: 16px;
   line-height: 24px;
-  font-weight: var(--text-heading-weight);
+  font-weight: 700;
   color: var(--card-text);
   text-transform: lowercase;
 }
@@ -335,7 +335,7 @@
   font-family: var(--font-sans);
   font-size: var(--text-body-size);
   line-height: var(--text-body-line);
-  font-weight: var(--text-heading-weight);
+  font-weight: 700;
   color: var(--accent);
   -webkit-text-fill-color: var(--accent);
   text-transform: lowercase;
@@ -346,7 +346,7 @@
   font-family: var(--font-sans);
   font-size: 16px;
   line-height: 24px;
-  font-weight: var(--text-heading-weight);
+  font-weight: 700;
   color: var(--primary);
   text-transform: lowercase;
 }
@@ -418,7 +418,7 @@
   font-family: var(--font-sans);
   font-size: 16px;
   line-height: 24px;
-  font-weight: var(--text-heading-weight);
+  font-weight: 700;
   color: var(--accent);
   -webkit-text-fill-color: var(--accent);
   text-transform: lowercase;
@@ -494,7 +494,7 @@
   font-family: var(--font-sans);
   font-size: 32px;
   line-height: 40px;
-  font-weight: var(--text-stat-weight);
+  font-weight: 700;
   color: var(--accent);
   -webkit-text-fill-color: var(--accent);
 }

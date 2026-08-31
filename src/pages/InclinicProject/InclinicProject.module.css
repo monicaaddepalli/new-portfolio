@@ -137,7 +137,7 @@
   font-family: var(--text-meta-family);
   font-size: var(--text-meta-size);
   line-height: var(--text-meta-line);
-  font-weight: var(--text-year-weight);
+  font-weight: 300;
   font-variation-settings: var(--font-mono-variation);
   color: var(--secondary);
   -webkit-text-fill-color: var(--secondary);
@@ -149,7 +149,7 @@
   font-family: var(--font-sans);
   font-size: 32px;
   line-height: 48px;
-  font-weight: var(--text-h1-weight);
+  font-weight: 800;
   color: var(--primary);
   text-transform: lowercase;
 }
@@ -211,7 +211,7 @@
   font-family: var(--font-sans);
   font-size: var(--text-body-size);
   line-height: var(--text-body-line);
-  font-weight: var(--text-heading-weight);
+  font-weight: 700;
   color: var(--accent);
   -webkit-text-fill-color: var(--accent);
   text-transform: uppercase;
@@ -234,7 +234,7 @@
 }
 
 .prose strong {
-  font-weight: var(--text-emphasis-weight);
+  font-weight: 700;
 }
 
 .opportunities {
@@ -329,7 +329,7 @@
   font-family: var(--font-sans);
   font-size: var(--text-body-size);
   line-height: var(--text-body-line);
-  font-weight: var(--text-heading-weight);
+  font-weight: 700;
   color: var(--primary);
   text-transform: lowercase;
 }
