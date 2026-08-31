@@ -32,9 +32,9 @@ body {
    * Mobile-first: 360 frame values, then desktop 1920 frame values at 768px.
    */
   --text-identity-family: var(--font-sans);
-  --text-identity-size: 14px;
-  --text-identity-line: 20px;
-  --text-identity-weight: 400;
+  --text-identity-size: 16px;
+  --text-identity-line: 24px;
+  --text-identity-weight: 500;
   --text-identity-letter: 0;
   --text-identity-transform: lowercase;
 
