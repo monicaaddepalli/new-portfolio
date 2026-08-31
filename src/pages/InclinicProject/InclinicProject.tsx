@@ -3,7 +3,6 @@ import { OptimizedImage } from '../../components/OptimizedImage';
 import { applyTheme } from '../../lib/theme';
 import styles from './InclinicProject.module.css';
 
-const imgHero = '/assets/v2/inclinic/hero.png?v=20260829-1';
 const imgContext = '/assets/v2/inclinic/context.png?v=20260828-3';
 const imgPainPoints = '/assets/v2/inclinic/pain-points.png?v=20260828-3';
 const imgSymptomSearch = '/assets/v2/inclinic/symptom-search.png?v=20260828-3';
@@ -15,18 +14,14 @@ const imgFiltersSheet = '/assets/v2/inclinic/filters-sheet.png?v=20260828-3';
 function Figure({
   src,
   caption,
-  priority,
-  hero,
 }: {
   src: string;
   caption?: string;
-  priority?: boolean;
-  hero?: boolean;
 }) {
   return (
-    <figure className={`${styles.figure} ${caption ? styles.figureCaptioned : ''} ${hero ? styles.figureHero : ''}`}>
+    <figure className={`${styles.figure} ${caption ? styles.figureCaptioned : ''}`}>
       <div className={styles.media}>
-        <OptimizedImage src={src} alt="" width={1600} height={756} priority={priority} />
+        <OptimizedImage src={src} alt="" width={1600} height={756} />
       </div>
       {caption ? <figcaption className={styles.caption}>{caption}</figcaption> : null}
     </figure>
@@ -72,7 +67,6 @@ export function InclinicProject() {
 
         <main className={styles.main}>
           <div className={styles.hero}>
-            <Figure src={imgHero} hero priority />
             <div className={styles.intro}>
               <p className={styles.year}>2026</p>
               <h1 className={styles.title}>Improving Doctor Booking Conversion to 32%</h1>
@@ -222,11 +216,15 @@ export function InclinicProject() {
             <div className={styles.impact}>
               <div className={styles.statGrid}>
                 <div className={styles.statCard}>
-                  <p className={styles.statValue}>18% → 32%</p>
+                  <p className={styles.statValue}>
+                    <span className={styles.statFrom}>18% → </span>32%
+                  </p>
                   <p className={styles.statLabel}>Search conversion</p>
                 </div>
                 <div className={styles.statCard}>
-                  <p className={styles.statValue}>22% → 47%</p>
+                  <p className={styles.statValue}>
+                    <span className={styles.statFrom}>22% → </span>47%
+                  </p>
                   <p className={styles.statLabel}>Filter-led conversion</p>
                 </div>
               </div>

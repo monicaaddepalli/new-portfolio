@@ -137,7 +137,7 @@
   font-family: var(--text-meta-family);
   font-size: var(--text-meta-size);
   line-height: var(--text-meta-line);
-  font-weight: 400;
+  font-weight: 300;
   font-variation-settings: var(--font-mono-variation);
   color: var(--secondary);
   -webkit-text-fill-color: var(--secondary);
