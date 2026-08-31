@@ -14,6 +14,11 @@
   --hero-gap: calc(8px - 4px * var(--hero-t));
   --fold-space: min(calc(40px + 20px * var(--hero-t)), 6dvh);
   --gutter: calc(16px * (1 - var(--hero-t)));
+  --text-body-weight: 500;
+  --text-action-weight: 500;
+  --text-label-weight: 400;
+  --text-list-weight: 500;
+  --text-meta-weight: 400;
   min-height: 100dvh;
   background: var(--page-bg);
   color: var(--primary);
@@ -393,17 +398,6 @@
   font-variation-settings: var(--font-mono-variation);
   color: var(--secondary);
   -webkit-text-fill-color: var(--secondary);
-}
-
-.footer {
-  margin: 0;
-  font-family: var(--text-label-family);
-  font-size: var(--text-label-size);
-  line-height: var(--text-label-line);
-  font-weight: var(--text-label-weight);
-  letter-spacing: var(--text-label-letter);
-  text-transform: var(--text-label-transform);
-  color: var(--secondary);
 }
 
 @media (prefers-reduced-motion: reduce) {

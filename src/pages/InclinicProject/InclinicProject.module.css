@@ -157,7 +157,7 @@
 .figure {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
   width: 100%;
   max-width: 800px;
   min-width: 0;
@@ -424,6 +424,10 @@
   .title {
     font-size: 60px;
     line-height: 72px;
+  }
+
+  .figure {
+    gap: 24px;
   }
 
   .copy {

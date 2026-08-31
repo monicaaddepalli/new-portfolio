@@ -441,8 +441,8 @@
 
 .themeIcon {
   display: block;
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -456,16 +456,16 @@
 .themeTitle {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: var(--text-body-size);
-  line-height: var(--text-body-line);
+  font-size: 16px;
+  line-height: 24px;
   font-weight: var(--text-heading-weight);
   color: var(--primary);
   text-transform: lowercase;
 }
 
 .themeList {
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 24px;
   font-weight: 400;
 }
 
@@ -553,7 +553,7 @@
   font-family: var(--text-stat-family);
   font-size: var(--text-stat-size);
   line-height: var(--text-stat-line);
-  font-weight: var(--text-stat-weight);
+  font-weight: 600;
   color: var(--accent);
   -webkit-text-fill-color: var(--accent);
   text-transform: lowercase;
@@ -562,8 +562,8 @@
 .wireframesStoriesBody {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 24px;
   font-weight: 400;
   color: var(--primary);
   text-transform: lowercase;
@@ -580,8 +580,8 @@
   margin: 0;
   flex-shrink: 0;
   font-family: var(--font-sans);
-  font-size: var(--text-body-size);
-  line-height: var(--text-body-line);
+  font-size: 16px;
+  line-height: 24px;
   font-weight: var(--text-heading-weight);
   color: var(--accent);
   -webkit-text-fill-color: var(--accent);
@@ -591,8 +591,8 @@
   margin: 0;
   min-width: 0;
   font-family: var(--font-sans);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 24px;
   font-weight: var(--text-heading-weight);
   color: var(--primary);
   text-transform: lowercase;
@@ -874,8 +874,8 @@
 .impactEyebrow {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 24px;
   font-weight: var(--text-heading-weight);
   color: var(--primary);
   text-transform: lowercase;
@@ -1073,6 +1073,19 @@
   .featureHeading {
     font-size: 24px;
     line-height: 36px;
+  }
+
+  .wireframesStatValue {
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-line);
+  }
+
+  .themeList,
+  .wireframesStoriesBody,
+  .impactEyebrow,
+  .wireframesStatLabel {
+    font-size: 14px;
+    line-height: 20px;
   }
 
   .badge {

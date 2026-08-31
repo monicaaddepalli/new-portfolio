@@ -186,8 +186,6 @@ export function PortfolioHome() {
             <ListSection label="select projects" items={projects} />
             <ListSection label="writings" items={writings} />
           </div>
-
-          <p className={styles.footer}>made with cursor</p>
         </div>
       </div>
     </div>
