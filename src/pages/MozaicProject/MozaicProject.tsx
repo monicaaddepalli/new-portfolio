@@ -25,6 +25,7 @@ const applicationSlides = [
 ];
 
 const FOUNDATIONS_PATH = '/work/mozaic-design-system/foundations';
+const COMPONENTS_PATH = '/work/mozaic-design-system/components-patterns';
 
 const problemItems = [
   {
@@ -361,6 +362,7 @@ export function MozaicProject() {
                     the core system once repeated reuse was proven.
                   </li>
                 </ul>
+                <DeepDive title="components & patterns" href={COMPONENTS_PATH} />
               </div>
 
               <div className={styles.phase}>

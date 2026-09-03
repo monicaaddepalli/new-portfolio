@@ -121,7 +121,7 @@
 .intro {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   width: min(800px, 100%);
   text-align: center;
 }
@@ -397,12 +397,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
   box-sizing: border-box;
   width: 100%;
-  padding: 24px 28px;
+  padding: 12px 16px;
   border: 1px solid var(--deep-dive-border);
-  border-radius: 12px;
+  border-radius: 8px;
   text-decoration: none;
   color: inherit;
 }
@@ -410,14 +410,14 @@
 .deepDiveCopy {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   min-width: 0;
 }
 
 .deepDiveTitle {
   font-family: var(--font-sans);
   font-size: 16px;
-  line-height: 24px;
+  line-height: 22px;
   font-weight: 700;
   color: var(--accent);
   -webkit-text-fill-color: var(--accent);
@@ -439,8 +439,8 @@
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   padding: 6px;
   box-sizing: border-box;
   border-radius: 999px;
@@ -450,8 +450,8 @@
 
 .deepDiveIcon img {
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
 }
 
 .impactGrid {
@@ -467,8 +467,8 @@
 
 .impactIcon {
   position: relative;
-  width: 140px;
-  height: 140px;
+  width: 100px;
+  height: 100px;
   overflow: hidden;
   flex: 0 0 auto;
 }
@@ -487,6 +487,7 @@
   flex-direction: column;
   gap: 12px;
   width: 100%;
+  text-align: center;
 }
 
 .impactValue {
@@ -654,6 +655,10 @@
     gap: 20px;
   }
 
+  .intro {
+    gap: 12px;
+  }
+
   .title {
     font-size: 60px;
     line-height: 72px;
@@ -668,8 +673,7 @@
     line-height: 72px;
   }
 
-  .principleTitle,
-  .deepDiveTitle {
+  .principleTitle {
     font-size: 20px;
     line-height: 28px;
   }
@@ -694,6 +698,15 @@
     min-width: 0;
   }
 
+  .impactIcon {
+    width: 140px;
+    height: 140px;
+  }
+
+  .impactCopy {
+    text-align: left;
+  }
+
   .impactValue {
     font-size: 40px;
     line-height: 52px;
@@ -707,5 +720,32 @@
   .carouselBtn {
     width: 32px;
     height: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .deepDive {
+    gap: 16px;
+    padding: 24px 28px;
+    border-radius: 12px;
+  }
+
+  .deepDiveCopy {
+    gap: 12px;
+  }
+
+  .deepDiveTitle {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .deepDiveIcon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .deepDiveIcon img {
+    width: 20px;
+    height: 20px;
   }
 }

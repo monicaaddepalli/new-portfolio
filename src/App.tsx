@@ -15,6 +15,7 @@ import { DesignSystemBlog } from './pages/DesignSystemBlog/DesignSystemBlog';
 import { TypographyBlog } from './pages/TypographyBlog/TypographyBlog';
 import { MozaicProject } from './pages/MozaicProject/MozaicProject';
 import { MozaicFoundations } from './pages/MozaicFoundations/MozaicFoundations';
+import { MozaicComponents } from './pages/MozaicComponents/MozaicComponents';
 import { InclinicProject } from './pages/InclinicProject/InclinicProject';
 
 const BLOG_SCROLL_OFFSET = 120;
@@ -161,6 +162,10 @@ const router = createBrowserRouter([
       { path: '/work/vision-revamp', element: <VisionProject /> },
       { path: '/work/mozaic-design-system', element: <MozaicProject /> },
       { path: '/work/mozaic-design-system/foundations', element: <MozaicFoundations /> },
+      {
+        path: '/work/mozaic-design-system/components-patterns',
+        element: <MozaicComponents />,
+      },
       { path: '/notes/ds-component', element: <DesignSystemBlog /> },
       {
         path: '/notes/design-system-component',

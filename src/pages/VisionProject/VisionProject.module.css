@@ -126,7 +126,7 @@
 .intro {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   width: 100%;
   max-width: 800px;
   text-align: center;
@@ -408,6 +408,10 @@
   .stack,
   .flowRow {
     padding: 0;
+  }
+
+  .intro {
+    gap: 12px;
   }
 
   .title {
