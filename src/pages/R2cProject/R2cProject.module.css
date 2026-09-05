@@ -621,12 +621,29 @@
   background: transparent;
 }
 
-.playgroundVideo video,
+.playgroundVideo {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  background: transparent;
+  isolation: isolate;
+  clip-path: inset(0 round 8px);
+}
+
 .playgroundPages img,
 .playgroundFlows img {
   display: block;
   width: 100%;
   height: auto;
+  border-radius: 12px;
+}
+
+.playgroundVideo video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
 
 .playgroundFlows .playgroundFlowsDesktop {
@@ -1191,7 +1208,14 @@
     left: 4%;
     width: 43.1%;
     height: 45%;
+    overflow: hidden;
+    border-radius: 12px;
+    clip-path: inset(0 round 12px);
     aspect-ratio: 431 / 360;
+  }
+
+  .playgroundVideo video {
+    border-radius: 12px;
   }
 
   .playgroundPages {
