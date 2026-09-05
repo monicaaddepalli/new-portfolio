@@ -167,7 +167,7 @@
   font-weight: 400;
   letter-spacing: var(--text-hand-letter);
   text-transform: var(--text-hand-transform);
-  color: var(--secondary);
+  color: #a3a3a3;
   text-align: right;
   transform: rotate(4deg);
   transform-origin: center center;
