@@ -5,7 +5,7 @@ import { TimeWidget } from '../../components/TimeWidget/TimeWidget';
 import { applyTheme } from '../../lib/theme';
 import styles from './PortfolioHome.module.css';
 
-const resumePdf = '/assets/monica-addepalli-resume.pdf?v=20260816-3';
+const resumePdf = '/assets/monica-addepalli-resume.pdf?v=20260905-1';
 const imgCamera = '/assets/v2/hero-camera.png';
 const imgObsessed = '/assets/v2/obsessed.gif';
 type ListItem = {
