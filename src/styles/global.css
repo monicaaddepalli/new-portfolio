@@ -29,7 +29,7 @@ body {
 
   /*
    * v2 text tokens from Figma Home Desktop (415:47) and Mobile (437:1822).
-   * Mobile-first: 360 frame values, then desktop 1920 frame values at 768px.
+   * Mobile-first: body/action/meta 16/24, then desktop 1920 frame values at 768px.
    */
   --text-identity-family: var(--font-sans);
   --text-identity-size: 16px;
@@ -46,8 +46,8 @@ body {
   --text-h1-transform: uppercase;
 
   --text-body-family: var(--font-sans);
-  --text-body-size: 14px;
-  --text-body-line: 20px;
+  --text-body-size: 16px;
+  --text-body-line: 24px;
   --text-body-weight: 400;
   --text-body-letter: 0;
 
@@ -61,8 +61,8 @@ body {
   --page-pad-bottom: 100px;
 
   --text-action-family: var(--font-sans);
-  --text-action-size: 14px;
-  --text-action-line: 20px;
+  --text-action-size: 16px;
+  --text-action-line: 24px;
   --text-action-weight: 400;
   --text-action-letter: 0;
   --text-action-transform: lowercase;
@@ -81,8 +81,8 @@ body {
   --text-list-letter: 0;
 
   --text-meta-family: var(--font-mono);
-  --text-meta-size: 14px;
-  --text-meta-line: 20px;
+  --text-meta-size: 16px;
+  --text-meta-line: 24px;
   --text-meta-weight: 400;
   --text-meta-letter: 0;
 

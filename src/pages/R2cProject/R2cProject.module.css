@@ -464,8 +464,8 @@
 }
 
 .themeList {
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 24px;
   font-weight: 400;
 }
 
@@ -562,8 +562,8 @@
 .wireframesStoriesBody {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 24px;
   font-weight: 400;
   color: var(--primary);
   text-transform: lowercase;
@@ -591,8 +591,8 @@
   margin: 0;
   min-width: 0;
   font-family: var(--font-sans);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 24px;
   font-weight: 600;
   color: var(--primary);
   text-transform: lowercase;
@@ -891,8 +891,8 @@
 .impactEyebrow {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 24px;
   font-weight: 600;
   color: var(--primary);
   text-transform: lowercase;
@@ -1149,6 +1149,14 @@
 
   .themeGrid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .themeList,
+  .wireframesStoriesBody,
+  .impactEyebrow,
+  .wireframesStatLabel {
+    font-size: 14px;
+    line-height: 20px;
   }
 
   .wireframesTop {
