@@ -12,6 +12,7 @@ type ListItem = {
   title: string;
   year: string;
   path: string;
+  published?: boolean;
 };
 
 const projects: ListItem[] = [
@@ -34,6 +35,7 @@ const projects: ListItem[] = [
     title: 'Making it easier to use vision benefits',
     year: '2025',
     path: '/work/vision-revamp',
+    published: false,
   },
 ];
 
@@ -183,7 +185,10 @@ export function PortfolioHome() {
           </section>
 
           <div className={styles.lists}>
-            <ListSection label="select projects" items={projects} />
+            <ListSection
+              label="select projects"
+              items={projects.filter((item) => item.published !== false)}
+            />
             <ListSection label="writings" items={writings} />
           </div>
         </div>
