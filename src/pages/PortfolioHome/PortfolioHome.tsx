@@ -22,6 +22,11 @@ const projects: ListItem[] = [
     path: '/work/inclinic-search-filters',
   },
   {
+    title: 'making healthcare payments rewarding',
+    year: '2026',
+    path: '/work/mb-pay',
+  },
+  {
     title: 'boosting 23% cashless adoption with behavioural design',
     year: '2025',
     path: '/work/r2c-reorder',
