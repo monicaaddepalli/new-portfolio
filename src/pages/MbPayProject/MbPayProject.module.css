@@ -137,7 +137,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  aspect-ratio: 800 / 378;
+  height: 240px;
   overflow: hidden;
   background: #f2f2f2;
   border-radius: 8px;
@@ -149,7 +149,7 @@
   width: auto;
   max-width: 100%;
   object-fit: contain;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 .intro {
@@ -186,7 +186,7 @@
 .copy {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 20px;
   width: 100%;
   max-width: 620px;
 }
@@ -201,7 +201,7 @@
 .groups {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 20px;
   width: 100%;
 }
 
@@ -226,8 +226,8 @@
 .display {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: 24px;
-  line-height: 36px;
+  font-size: 20px;
+  line-height: 32px;
   font-weight: 700;
   color: var(--primary);
   text-transform: lowercase;
@@ -342,5 +342,23 @@
 
   .copy {
     gap: 28px;
+  }
+
+  .groups {
+    gap: 28px;
+  }
+
+  .display {
+    font-size: 24px;
+    line-height: 36px;
+  }
+
+  .media {
+    height: auto;
+    aspect-ratio: 800 / 378;
+  }
+
+  .media video {
+    border-radius: 12px;
   }
 }
