@@ -17,14 +17,14 @@ type ListItem = {
 
 const projects: ListItem[] = [
   {
-    title: 'Improving Doctor Booking Conversion to 32%',
-    year: '2026',
-    path: '/work/inclinic-search-filters',
-  },
-  {
     title: 'making healthcare payments rewarding',
     year: '2026',
     path: '/work/mb-pay',
+  },
+  {
+    title: 'Improving Doctor Booking Conversion to 32%',
+    year: '2026',
+    path: '/work/inclinic-search-filters',
   },
   {
     title: 'boosting 23% cashless adoption with behavioural design',
