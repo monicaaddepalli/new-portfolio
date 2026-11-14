@@ -867,6 +867,11 @@
   margin-inline: auto;
 }
 
+:global(:root[data-theme='dark']) .playgroundPages,
+:global(:root[data-theme='dark']) .playgroundFlows {
+  background: transparent;
+}
+
 /* R2C mobile (≤809) — case-study-specific */
 @media (max-width: 809px) {
   .article {
