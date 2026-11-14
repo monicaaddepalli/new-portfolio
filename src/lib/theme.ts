@@ -1,6 +1,9 @@
 export type Theme = 'light' | 'dark';
 
-const FAVICON = '/favicon.png?v=20260830';
+const FAVICON: Record<Theme, string> = {
+  light: '/favicon-dark.png?v=20261112-5',
+  dark: '/favicon-light.png?v=20261112-5',
+};
 
 export function getInitialTheme(): Theme {
   const stored = localStorage.getItem('theme');
@@ -17,10 +20,21 @@ function updateFavicon(theme: Theme) {
     document.head.appendChild(link);
   }
   link.type = 'image/png';
-  link.href = FAVICON;
+  link.href = FAVICON[theme];
 }
 
 export function applyTheme(theme: Theme) {
   document.documentElement.dataset.theme = theme;
   updateFavicon(theme);
+}
+
+export function toggleTheme(current: Theme): Theme {
+  const next: Theme = current === 'light' ? 'dark' : 'light';
+  applyTheme(next);
+  try {
+    localStorage.setItem('theme', next);
+  } catch {
+    // private mode
+  }
+  return next;
 }

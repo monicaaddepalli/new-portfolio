@@ -1,52 +1,32 @@
-import { useLayoutEffect, type ReactNode } from 'react';
-import { applyTheme } from '../../lib/theme';
+import { useLayoutEffect } from 'react';
 import styles from './MbPayProject.module.css';
 
-const videoHero = '/assets/v2/mb-pay/hero.mp4';
+const hero = '/assets/v3/home/mb-pay.png?v=20261109-1';
 
 const learnings = [
   {
-    title: 'Designed a payment flow for the first time:',
-    body: 'understanding how payment methods, offers, transaction states and post-payment actions come together.',
+    lead: 'Designed a payment flow for the first time:',
+    detail:
+      'Understanding how payment methods, offers, transaction states and post-payment actions come together.',
   },
   {
-    title: 'No direct competitor meant more room to explore:',
-    body: 'I could experiment with different approaches instead of following an established pattern.',
+    lead: 'No direct competitor meant more room to explore:',
+    detail:
+      'I could experiment with different approaches instead of following an established pattern.',
   },
   {
-    title: 'Designing for a new behaviour:',
-    body: 'the challenge wasn\u2019t just making payment easy, but giving users a reason to pay through MediBuddy.',
+    lead: 'Designing for a new behaviour:',
+    detail:
+      'The challenge wasn\u2019t just making payment easy, but giving users a reason to pay through MediBuddy.',
   },
   {
-    title: 'AI made experimentation faster:',
-    body: 'building the MVP helped me move beyond static screens and experience the product more realistically.',
+    lead: 'AI made experimentation faster:',
+    detail:
+      'Building the MVP helped me move beyond static screens and experience the product more realistically.',
   },
 ];
 
-function Copy({
-  heading,
-  title,
-  children,
-}: {
-  heading?: string;
-  title?: string;
-  children: ReactNode;
-}) {
-  return (
-    <section className={styles.copy}>
-      {heading ? <p className={styles.heading}>{heading}</p> : null}
-      <div className={styles.stack}>
-        {title ? <h2 className={styles.display}>{title}</h2> : null}
-        {children}
-      </div>
-    </section>
-  );
-}
-
 export function MbPayProject() {
-  useLayoutEffect(() => {
-    applyTheme('light');
-  }, []);
 
   return (
     <div className={styles.page} data-name="mb pay">
@@ -58,164 +38,149 @@ export function MbPayProject() {
         <div className={`${styles.headerBlurFilter} ${styles.headerBlurExtra}`} />
       </div>
 
-      <div className={styles.shell}>
-        <header className={styles.header}>
-          <a className={styles.identity} href="/" aria-label="Home">
-            monica addepalli
+      <article className={styles.article}>
+        <div className={styles.media}>
+          <img
+            className={styles.image}
+            src={hero}
+            alt="MB Pay rewards screen on a phone"
+            width={280}
+            height={420}
+          />
+          <a className={styles.back} href="/" data-header-link="" data-style="Body Mono">
+            <svg width="12" height="12" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M6.7 2.3 1.6 8l5.1 5.7.9-.8L3.6 8.6H15V7.4H3.6l4-4.3z"
+              />
+            </svg>
+            Back to home
           </a>
-        </header>
+        </div>
 
-        <main className={styles.main}>
-          <div className={styles.hero}>
-            <figure className={styles.figure}>
-              <div className={styles.media}>
-                <video
-                  src={videoHero}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  title="MB Pay hero"
-                />
-              </div>
-            </figure>
-            <div className={styles.intro}>
-              <p className={styles.year}>2026</p>
-              <h1 className={styles.title}>making healthcare payments rewarding</h1>
-            </div>
-          </div>
+        <div className={styles.copy}>
+          <h1 className={styles.title}>MB Pay</h1>
 
-          <Copy heading="what's medibuddy?">
+          <section className={styles.section}>
+            <h2 className={styles.label}>
+              What&rsquo;s MediBuddy?
+            </h2>
+            <p>
+              MediBuddy is a digital healthcare platform that brings different healthcare needs
+              together in one place, from consultations and diagnostics to medicines and other
+              healthcare services.
+            </p>
+          </section>
+
+          <section className={styles.section}>
+            <h2 className={styles.label}>
+              What is MB Pay?
+            </h2>
+            <h3 className={styles.subhead}>
+              What if healthcare payments worked like Dineout?
+            </h3>
             <div className={styles.prose}>
               <p>
-                MediBuddy is a digital healthcare platform that brings different healthcare needs
-                together in one place, from consultations and diagnostics to medicines and other
-                healthcare services.
+                Healthcare payments are usually straightforward. You receive the bill, pay the
+                provider, and move on. But MB Pay explored a different idea: what if paying through
+                MediBuddy gave users something back?
+              </p>
+              <p>
+                The vision was to make MediBuddy the &ldquo;Dineout of healthcare&rdquo;, allowing
+                users to pay healthcare providers through the platform and unlock exclusive offers
+                and rewards along the way.
               </p>
             </div>
-          </Copy>
+          </section>
 
-          <Copy
-            heading="what is mb pay?"
-            title="What if healthcare payments worked like Dineout?"
-          >
+          <section className={styles.section}>
+            <h2 className={styles.label}>
+              Problem
+            </h2>
+            <h3 className={styles.subhead}>
+              Why would anyone pay through MediBuddy?
+            </h3>
+            <p>
+              Adding another payment method wasn&rsquo;t enough; users needed a reason to change
+              their existing payment habits. MB Pay aimed to provide that incentive through offers
+              such as discounts, cashback, provider offers, and healthcare vouchers.
+            </p>
+          </section>
+
+          <section className={`${styles.section} ${styles.experience}`}>
+            <h2 className={styles.label}>
+              The Experience
+            </h2>
+            <h3 className={styles.subhead}>
+              It wasn&rsquo;t just a payment flow.
+            </h3>
             <div className={styles.prose}>
               <p>
-                Healthcare payments are usually pretty straightforward &mdash; get the bill, pay the
-                provider, and move on.
+                The journey brought together multiple steps, from service selection and provider
+                discovery to payment, offer redemption, and invoice upload. Users could choose a
+                service, find a provider, enter the amount, apply an offer, complete the payment,
+                and upload their invoice.
               </p>
               <p>
-                MB Pay explored a different idea:{' '}
-                <strong>what if paying through MediBuddy gave you something back?</strong>
-              </p>
-              <p>
-                The vision was to make MediBuddy the{' '}
-                <strong>&ldquo;Dineout of healthcare&rdquo;</strong>, where users could pay
-                healthcare providers through MediBuddy and unlock offers along the way.
+                There were two ways to discover providers: users could search for mapped providers
+                on the platform or scan a QR code to make payments at other providers.
               </p>
             </div>
-          </Copy>
+            <h3 className={styles.subhead}>
+              The tricky part was the offers.
+            </h3>
+            <p>
+              Offer eligibility depended on factors like the provider, service, payment method,
+              transaction amount, and usage limits. The challenge was to handle this complexity
+              behind the scenes while keeping the experience simple for users.
+            </p>
+            <h3 className={styles.subhead}>
+              And then came the invoice.
+            </h3>
+            <p>
+              The payment wasn&rsquo;t quite the end. Users also had to upload their invoice, which
+              was important for transaction verification and abuse control.
+            </p>
+          </section>
 
-          <Copy heading="problem" title="Why would anyone pay through MediBuddy?">
+          <section className={styles.section}>
+            <h2 className={styles.label}>
+              Building the MVP
+            </h2>
             <div className={styles.prose}>
               <p>
-                Adding another payment method isn&apos;t enough. There needs to be a reason to
-                change something users already know how to do.
+                I wanted to see the idea work beyond static screens, so I used AI to turn my Figma
+                designs and product logic into a working MVP that I could interact with.
               </p>
               <p>
-                For MB Pay, that reason was offers &mdash; discounts, cashback, provider offers and
-                healthcare vouchers.
+                Going from Figma to AI-assisted development helped me experience the actual flow,
+                test how different interactions came together, and iterate on details that are
+                difficult to evaluate in a static prototype.
               </p>
             </div>
-          </Copy>
+          </section>
 
-          <Copy heading="the experience">
-            <div className={styles.groups}>
-              <div className={styles.group}>
-                <h2 className={styles.display}>It wasn&apos;t just a payment flow.</h2>
-                <div className={styles.prose}>
-                  <p>
-                    The journey had to bring together service selection, provider discovery,
-                    payment, offers and invoice upload.
-                  </p>
-                  <p>
-                    Choose a service → Find a provider → Enter amount → Apply offer → Pay → Upload
-                    invoice
-                  </p>
-                  <p>
-                    There were also two ways to find a provider:{' '}
-                    <strong>search for mapped providers</strong> or{' '}
-                    <strong>scan a QR code for others</strong>.
-                  </p>
-                </div>
-              </div>
-              <div className={styles.group}>
-                <h3 className={styles.display}>The tricky part was the offers.</h3>
-                <div className={styles.prose}>
-                  <p>
-                    An offer could depend on the provider, service, payment method, transaction
-                    amount and usage limits.
-                  </p>
-                  <p>There was a lot happening behind the scenes.</p>
-                  <p>The user shouldn&apos;t have to care about any of it.</p>
-                </div>
-              </div>
-              <div className={styles.group}>
-                <h3 className={styles.display}>And then came the invoice.</h3>
-                <div className={styles.prose}>
-                  <p>
-                    The payment wasn&apos;t quite the end. Users also had to upload their invoice,
-                    which was important for transaction verification and abuse control.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </Copy>
-
-          <Copy heading="building the mvp">
-            <div className={styles.groups}>
-              <div className={styles.group}>
-                <h2 className={styles.display}>I wanted to see it work.</h2>
-                <div className={styles.prose}>
-                  <p>
-                    Instead of stopping at Figma, I used AI to <strong>build the MVP</strong>.
-                  </p>
-                  <p>
-                    I took the product logic and designs and turned them into a working experience
-                    that I <strong>could actually interact with</strong>.
-                  </p>
-                </div>
-              </div>
-              <div className={styles.group}>
-                <h3 className={styles.display}>From design to build</h3>
-                <div className={styles.prose}>
-                  <p>Figma → AI-assisted development → Working MVP</p>
-                  <p>
-                    The interesting part wasn&apos;t just getting the screens into code. Building
-                    the experience made it possible to see how the flow actually behaved and iterate
-                    on things that are difficult to judge in a static prototype.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </Copy>
-
-          <Copy heading="learnings">
-            <ol className={styles.learnings}>
+          <section className={styles.section}>
+            <h2 className={styles.label}>
+              Learnings
+            </h2>
+            <ul className={styles.learnings}>
               {learnings.map((item) => (
-                <li key={item.title}>
-                  <strong>{item.title}</strong> {item.body}
+                <li key={item.lead}>
+                  <span className={styles.lead} data-style="Large">
+                    {item.lead}
+                  </span>{' '}
+                  <span className={styles.detail}>{item.detail}</span>
                 </li>
               ))}
-            </ol>
-          </Copy>
+            </ul>
+          </section>
 
-          <p className={styles.note}>
+          <p className={styles.note} data-style="Heading 2">
             P.S. Due to NDA restrictions, this project can be presented in detail over a call.
           </p>
-        </main>
-      </div>
+        </div>
+      </article>
     </div>
   );
 }

@@ -1,0 +1,34 @@
+.bar {
+  position: fixed;
+  top: 12px;
+  right: 16px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.bar > * {
+  pointer-events: auto;
+}
+
+@media (min-width: 810px) {
+  .bar {
+    top: 16px;
+    right: 48px;
+  }
+}
+
+/* Home uses tighter inset (--pad: 8px) aligned with header / carousel */
+.barHome {
+  top: 12px;
+  right: 16px;
+}
+
+@media (min-width: 810px) {
+  .barHome {
+    top: 8px;
+    right: 8px;
+  }
+}

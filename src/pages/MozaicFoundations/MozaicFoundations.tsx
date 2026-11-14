@@ -1,16 +1,15 @@
-import { useLayoutEffect, type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import { OptimizedImage } from '../../components/OptimizedImage';
-import { applyTheme } from '../../lib/theme';
-import chrome from '../MozaicProject/MozaicProject.module.css';
-import extras from '../../components/MozaicDeepDive.module.css';
+import styles from './MozaicFoundations.module.css';
 
 const imgTokenisation = '/assets/mozaic/foundations/tokenisation.png';
 const imgTypography = '/assets/v2/mozaic/typography.png';
 const imgObjectStyles = '/assets/mozaic/foundations/object-styles.png';
-const videoTypography = '/assets/mozaic/foundations/trial 1.mp4';
+const videoTypography = '/assets/mozaic/foundations/trial%201.mp4';
 const iconText = '/assets/v2/mozaic/icon-text.png';
 const iconToken = '/assets/v2/mozaic/icon-token.png';
+
+const MOZAIC_PATH = '/work/mozaicds';
 
 const goalItems = [
   'Create a shared language across services',
@@ -62,182 +61,115 @@ const strategies = [
   },
 ];
 
-function Chip({
-  label,
-  icon,
-}: {
-  label: string;
-  icon: 'text' | 'token';
-}) {
+function Chip({ label, icon }: { label: string; icon: 'text' | 'token' }) {
   return (
-    <span className={extras.chip}>
-      <span className={extras.chipIcon} aria-hidden="true">
-        <img
-          src={icon === 'text' ? iconText : iconToken}
-          alt=""
-          width={24}
-          height={24}
-        />
+    <span className={styles.chip}>
+      <span className={styles.chipIcon} aria-hidden="true">
+        <img src={icon === 'text' ? iconText : iconToken} alt="" width={20} height={20} />
       </span>
       {label}
     </span>
   );
 }
 
-function Copy({
-  heading,
-  children,
-}: {
-  heading: string;
-  children: ReactNode;
-}) {
-  return (
-    <section className={chrome.copy}>
-      <h2 className={chrome.heading}>{heading}</h2>
-      {children}
-    </section>
-  );
-}
-
-function Figure({
-  src,
-  width,
-  height,
-  caption,
-  maxWidth,
-}: {
-  src: string;
-  width: number;
-  height: number;
-  caption?: string;
-  maxWidth?: number;
-}) {
-  return (
-    <div
-      className={`${extras.mediaBlock} ${maxWidth === 800 ? extras.figure800 : ''}`}
-    >
-      <figure className={`${extras.figureNatural} ${maxWidth === 800 ? extras.figure800 : ''}`}>
-        <OptimizedImage src={src} alt="" width={width} height={height} />
-      </figure>
-      {caption ? <p className={extras.caption}>{caption}</p> : null}
-    </div>
-  );
-}
-
 export function MozaicFoundations() {
-  useLayoutEffect(() => {
-    applyTheme('light');
-  }, []);
 
   return (
-    <div className={chrome.page} data-name="mozaic foundations">
-      <div className={chrome.headerBlur} aria-hidden="true">
-        <div className={chrome.headerBlurBg} />
-        <div className={`${chrome.headerBlurFilter} ${chrome.headerBlurSoft}`} />
-        <div className={`${chrome.headerBlurFilter} ${chrome.headerBlurMedium}`} />
-        <div className={`${chrome.headerBlurFilter} ${chrome.headerBlurStrong}`} />
-        <div className={`${chrome.headerBlurFilter} ${chrome.headerBlurExtra}`} />
+    <div className={styles.page} data-name="mozaic foundations">
+      <div className={styles.headerBlur} aria-hidden="true">
+        <div className={styles.headerBlurBg} />
+        <div className={`${styles.headerBlurFilter} ${styles.headerBlurSoft}`} />
+        <div className={`${styles.headerBlurFilter} ${styles.headerBlurMedium}`} />
+        <div className={`${styles.headerBlurFilter} ${styles.headerBlurStrong}`} />
+        <div className={`${styles.headerBlurFilter} ${styles.headerBlurExtra}`} />
       </div>
 
-      <div className={chrome.shell}>
-        <header className={chrome.header}>
-          <a className={chrome.identity} href="/" aria-label="Home">
-            monica addepalli
-          </a>
-        </header>
+      <article className={styles.article}>
+        <div className={styles.media}>
+          <Link className={styles.back} to={MOZAIC_PATH} data-header-link="" data-style="Body Mono">
+            <svg width="12" height="12" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M6.7 2.3 1.6 8l5.1 5.7.9-.8L3.6 8.6H15V7.4H3.6l4-4.3z"
+              />
+            </svg>
+            Mozaic DS
+          </Link>
+        </div>
 
-        <main className={chrome.main}>
-          <div className={chrome.intro}>
-            <nav className={extras.crumb} aria-label="Breadcrumb">
-              <Link className={extras.crumbBrand} to="/work/mozaic-design-system">
-                <span className={extras.crumbBrandText}>mozaic ds</span>
-              </Link>
-              <span className={extras.crumbSep} aria-hidden="true">/</span>
-              <span className={extras.crumbCurrent}>foundations</span>
-            </nav>
-            <h1 className={chrome.title}>
-              foundation &amp;
-              <br />
-              token architecture
-            </h1>
-          </div>
+        <div className={styles.copy}>
+          <h1 className={styles.title}>Foundation &amp; Token Architecture</h1>
 
-          <Copy heading="overview">
-            <div className={chrome.prose}>
+          <section className={styles.section}>
+            <div className={styles.prose}>
               <p>
                 When I joined MediBuddy, designers were shipping independently across services, with
                 no shared design foundations to ensure visual consistency.
               </p>
-              <p className={extras.subhead}>goal:</p>
-              <ul className={chrome.bullets}>
+              <p data-style="Heading 2">Goal:</p>
+              <ul className={styles.steps}>
                 {goalItems.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
             </div>
-          </Copy>
+          </section>
 
-          <section className={chrome.wide}>
-            <h2 className={`${chrome.heading} ${chrome.wideHeading}`}>tokenisation</h2>
-            <div className={extras.mediaThenCopy}>
-              <Figure src={imgTokenisation} width={2000} height={624} maxWidth={800} />
-              <div className={chrome.copy}>
-                <div className={chrome.prose}>
-                  <p>
-                    Designers directly interacted with semantic tokens instead of primitive values.
-                    Primitive tokens existed underneath, but were intentionally hidden from
-                    day-to-day usage.
-                  </p>
-                  <p>This decision reduced ambiguity.</p>
-                  <p>
-                    Designers chose <span className={extras.italic}>intent</span> (“body text”,
-                    “surface fill”, “subtle border”) rather than <strong>values</strong> (“#FFFFFF”,
-                    “#E5E7EB”).
-                  </p>
-                </div>
+          <section className={styles.section}>
+            <h2 className={styles.label}>Tokenisation</h2>
+            <img
+              className={styles.figure}
+              src={imgTokenisation}
+              alt="Mozaic tokenisation diagram"
+            />
+            <div className={styles.prose}>
+              <p>
+                Designers directly interacted with semantic tokens instead of primitive values.
+                Primitive tokens existed underneath, but were intentionally hidden from day-to-day
+                usage.
+              </p>
+              <p>This decision reduced ambiguity.</p>
+              <p>
+                Designers chose <span className={styles.emphasis}>intent</span> (“body text”, “surface
+                fill”, “subtle border”) rather than <strong>values</strong> (“#FFFFFF”, “#E5E7EB”).
+              </p>
+            </div>
+          </section>
+
+          <section className={styles.section}>
+            <h2 className={styles.label}>Building Typography System</h2>
+            <img className={styles.figure} src={imgTypography} alt="Mozaic typography system" />
+            <div className={styles.prose}>
+              <p>
+                Setting up a responsive typographic system was crucial in baking in consistency in
+                the system.
+              </p>
+              <ol className={styles.steps}>
+                {typographySteps.map((step, index) => (
+                  <li key={index}>{step}</li>
+                ))}
+              </ol>
+              <p>
+                Now, instead of exposing raw typographic variables to designers, Mozaic used{' '}
+                <strong>Semantic text styles</strong> such as:
+              </p>
+              <div className={styles.chipRow}>
+                {semanticStyles.map((style) => (
+                  <Chip key={style} label={style} icon="text" />
+                ))}
+              </div>
+              <p>Each style internally referenced variables for:</p>
+              <div className={styles.chipRow}>
+                {styleVariables.map((variable) => (
+                  <Chip key={variable} label={variable} icon="token" />
+                ))}
               </div>
             </div>
           </section>
 
-          <section className={chrome.wide}>
-            <h2 className={`${chrome.heading} ${chrome.wideHeading}`}>building typography system</h2>
-            <div className={extras.mediaThenCopy}>
-              <Figure src={imgTypography} width={3260} height={2160} maxWidth={800} />
-              <div className={chrome.copy}>
-                <div className={chrome.prose}>
-                  <p>
-                    Setting up a responsive typographic system was crucial in baking in consistency
-                    in the system.
-                  </p>
-                  <ol className={chrome.numbers}>
-                    {typographySteps.map((step, index) => (
-                      <li key={index}>{step}</li>
-                    ))}
-                  </ol>
-                  <p>
-                    Now, instead of exposing raw typographic variables to designers, Mozaic used{' '}
-                    <strong>semantic text styles</strong> such as:
-                  </p>
-                  <div className={extras.chipRow}>
-                    {semanticStyles.map((style) => (
-                      <Chip key={style} label={style} icon="text" />
-                    ))}
-                  </div>
-                  <p>Each style internally referenced variables for:</p>
-                  <div className={extras.chipRow}>
-                    {styleVariables.map((variable) => (
-                      <Chip key={variable} label={variable} icon="token" />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className={chrome.wide}>
-            <div className={extras.videoFrame}>
+          <section className={styles.section}>
+            <div className={styles.videoFrame}>
               <video
-                className={extras.video}
                 src={videoTypography}
                 autoPlay
                 loop
@@ -249,46 +181,41 @@ export function MozaicFoundations() {
             </div>
           </section>
 
-          <section className={chrome.wide}>
-            <h2 className={`${chrome.heading} ${chrome.wideHeading}`}>defining object styles</h2>
-            <div className={extras.mediaThenCopy}>
-              <div className={chrome.copy}>
-                <p className={chrome.proseSingle}>
-                  We also defined other core foundational elements like Border Width, Border
-                  Radius, Elevation etc. in a similar semantic format keeping scalability and
-                  headless architecture in mind.
-                </p>
-              </div>
-              <Figure
-                src={imgObjectStyles}
-                width={2000}
-                height={1917}
-                maxWidth={800}
-              />
+          <section className={styles.section}>
+            <h2 className={styles.label}>Defining Object Styles</h2>
+            <div className={styles.prose}>
+              <p>
+                We also defined other core foundational elements like Border Width, Border Radius,
+                Elevation etc. in a similar semantic format keeping scalability and headless
+                architecture in mind.
+              </p>
             </div>
+            <img
+              className={styles.figure}
+              src={imgObjectStyles}
+              alt="Mozaic object styles"
+            />
           </section>
 
-          <section className={chrome.wide}>
-            <div className={extras.mediaThenCopy}>
-              <div className={chrome.copyInner}>
-                <h2 className={chrome.heading}>applied strategies</h2>
-                <p className={chrome.proseSingle}>
-                  As the system evolved, some key decisions were taken
-                </p>
-              </div>
-              <div className={chrome.principleGrid}>
-                {strategies.map((strategy) => (
-                  <article key={strategy.index} className={chrome.principleCard}>
-                    <p className={chrome.principleIndex}>{strategy.index}</p>
-                    <h3 className={chrome.principleTitle}>{strategy.title}</h3>
-                    <p className={chrome.principleBody}>{strategy.body}</p>
-                  </article>
-                ))}
-              </div>
+          <section className={styles.section}>
+            <h2 className={styles.label}>Applied Strategies</h2>
+            <p className={styles.proseLead}>
+              As the system evolved, some key decisions were taken
+            </p>
+            <div className={styles.principleGrid}>
+              {strategies.map((strategy) => (
+                <article key={strategy.index} className={styles.principleCard}>
+                  <span className={styles.principleIndex} aria-hidden="true">
+                    {strategy.index}
+                  </span>
+                  <p className={styles.principleTitle}>{strategy.title}</p>
+                  <p className={styles.principleBody}>{strategy.body}</p>
+                </article>
+              ))}
             </div>
           </section>
-        </main>
-      </div>
+        </div>
+      </article>
     </div>
   );
 }

@@ -35,24 +35,11 @@ export function ThemeToggle({ theme, onToggle, className }: ThemeToggleProps) {
   return (
     <button
       type="button"
-      role="switch"
-      aria-checked={isDark}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className={[styles.toggle, className].filter(Boolean).join(' ')}
-      data-theme={theme}
+      className={[styles.button, className].filter(Boolean).join(' ')}
       onClick={onToggle}
     >
-      <span className={styles.track}>
-        <span className={styles.iconSlot} aria-hidden="true">
-          <BrightnessIcon />
-        </span>
-        <span className={styles.iconSlot} aria-hidden="true">
-          <MoonIcon />
-        </span>
-        <span className={styles.thumb} aria-hidden="true">
-          {isDark ? <MoonIcon /> : <BrightnessIcon />}
-        </span>
-      </span>
+      {isDark ? <BrightnessIcon /> : <MoonIcon />}
     </button>
   );
 }

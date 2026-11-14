@@ -5,6 +5,21 @@
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
   "redirects": [
     {
+      "source": "/work/mozaic-design-system",
+      "destination": "/work/mozaicds",
+      "permanent": true
+    },
+    {
+      "source": "/work/mozaic-design-system/foundations",
+      "destination": "/work/mozaicds/foundations",
+      "permanent": true
+    },
+    {
+      "source": "/work/mozaic-design-system/components-patterns",
+      "destination": "/work/mozaicds/components-patterns",
+      "permanent": true
+    },
+    {
       "source": "/blog/design-system-component",
       "destination": "/notes/ds-component",
       "permanent": true

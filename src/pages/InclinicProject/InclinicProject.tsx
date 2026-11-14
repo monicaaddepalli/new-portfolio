@@ -1,8 +1,7 @@
-import { useLayoutEffect, type ReactNode } from 'react';
-import { OptimizedImage } from '../../components/OptimizedImage';
-import { applyTheme } from '../../lib/theme';
+import { useLayoutEffect } from 'react';
 import styles from './InclinicProject.module.css';
 
+const hero = '/assets/v3/home/inclinic.png?v=20261109-1';
 const imgContext = '/assets/v2/inclinic/context.png?v=20260828-3';
 const imgPainPoints = '/assets/v2/inclinic/pain-points.png?v=20260828-3';
 const imgSymptomSearch = '/assets/v2/inclinic/symptom-search.png?v=20260828-3';
@@ -11,45 +10,10 @@ const imgGuidedSearch = '/assets/v2/inclinic/guided-search.png?v=20260828-3';
 const imgFiltersListing = '/assets/v2/inclinic/filters-listing.png?v=20260828-3';
 const imgFiltersSheet = '/assets/v2/inclinic/filters-sheet.png?v=20260828-3';
 
-function Figure({
-  src,
-  caption,
-}: {
-  src: string;
-  caption?: string;
-}) {
-  return (
-    <figure className={`${styles.figure} ${caption ? styles.figureCaptioned : ''}`}>
-      <div className={styles.media}>
-        <OptimizedImage src={src} alt="" width={1600} height={756} />
-      </div>
-      {caption ? <figcaption className={styles.caption}>{caption}</figcaption> : null}
-    </figure>
-  );
-}
-
-function Copy({
-  heading,
-  children,
-}: {
-  heading: string;
-  children: ReactNode;
-}) {
-  return (
-    <section className={styles.copy}>
-      <h2 className={styles.heading}>{heading}</h2>
-      {children}
-    </section>
-  );
-}
-
 export function InclinicProject() {
-  useLayoutEffect(() => {
-    applyTheme('light');
-  }, []);
 
   return (
-    <div className={styles.page} data-name="inclinic search and filters">
+    <div className={styles.page} data-name="in clinic">
       <div className={styles.headerBlur} aria-hidden="true">
         <div className={styles.headerBlurBg} />
         <div className={`${styles.headerBlurFilter} ${styles.headerBlurSoft}`} />
@@ -58,22 +22,31 @@ export function InclinicProject() {
         <div className={`${styles.headerBlurFilter} ${styles.headerBlurExtra}`} />
       </div>
 
-      <div className={styles.shell}>
-        <header className={styles.header}>
-          <a className={styles.identity} href="/" aria-label="Home">
-            monica addepalli
+      <article className={styles.article}>
+        <div className={styles.media}>
+          <img
+            className={styles.image}
+            src={hero}
+            alt="In Clinic search screen on a phone"
+            width={280}
+            height={420}
+          />
+          <a className={styles.back} href="/" data-header-link="" data-style="Body Mono">
+            <svg width="12" height="12" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M6.7 2.3 1.6 8l5.1 5.7.9-.8L3.6 8.6H15V7.4H3.6l4-4.3z"
+              />
+            </svg>
+            Back to home
           </a>
-        </header>
+        </div>
 
-        <main className={styles.main}>
-          <div className={styles.hero}>
-            <div className={styles.intro}>
-              <p className={styles.year}>2026</p>
-              <h1 className={styles.title}>Improving Doctor Booking Conversion to 32%</h1>
-            </div>
-          </div>
+        <div className={styles.copy}>
+          <h1 className={styles.title}>In Clinic</h1>
 
-          <Copy heading="background">
+          <section className={styles.section}>
+            <h2 className={styles.label}>Background</h2>
             <div className={styles.prose}>
               <p>
                 Doctor discovery is one of the most important stages in the in-clinic consultation
@@ -87,38 +60,36 @@ export function InclinicProject() {
                 experiences were not effectively supporting how users naturally searched for care.
               </p>
             </div>
-          </Copy>
+            <img className={styles.figure} src={imgContext} alt="Doctor listing page" />
+          </section>
 
-          <Figure src={imgContext} />
+          <section className={styles.section}>
+            <h2 className={styles.label}>Problem</h2>
+            <p>
+              Search was a key entry point for doctor discovery, but it underperformed compared to
+              filter-led journeys, converting at 18.36% versus 22%. Nearly 40% of searches resulted
+              in no outcome, with symptom-based queries accounting for 8% of all searches. More
+              importantly, around 80% of users didn&apos;t have a specific doctor or hospital in
+              mind, revealing an opportunity to reduce discovery friction and consultation drop-offs.
+            </p>
+            <figure className={styles.pain}>
+              <img src={imgPainPoints} alt="Quotes from people who struggled to find a doctor" />
+              <figcaption>User pain points identified from our research</figcaption>
+            </figure>
+          </section>
 
-          <Copy heading="problem">
-            <div className={styles.prose}>
-              <p>
-                Search was a key entry point for doctor discovery, but it underperformed compared to
-                filter-led journeys, converting at 18.36% versus 22%. Nearly 40% of searches
-                resulted in no outcome, with symptom-based queries accounting for 8% of all
-                searches. More importantly, around 80% of users didn&apos;t have a specific doctor
-                or hospital in mind, revealing an opportunity to reduce discovery friction and
-                consultation drop-offs.
-              </p>
-            </div>
-          </Copy>
-
-          <Figure
-            src={imgPainPoints}
-            caption="User pain points identified from our research"
-          />
-
-          <Copy heading="opportunities">
-            <ol className={styles.opportunities}>
+          <section className={styles.section}>
+            <h2 className={styles.label}>Opportunities</h2>
+            <ol className={styles.steps}>
               <li>Symptom-based doctor discovery</li>
               <li>Multi-category search results</li>
               <li>Guided search suggestions</li>
               <li>Structured &amp; scalable filters</li>
             </ol>
-          </Copy>
+          </section>
 
-          <Copy heading="Symptom-based doctor discovery">
+          <section className={styles.section}>
+            <h2 className={styles.label}>Symptom-Based Doctor Discovery</h2>
             <div className={styles.prose}>
               <p>
                 Search analysis revealed that{' '}
@@ -132,37 +103,37 @@ export function InclinicProject() {
                 were experiencing and discover doctors related to those symptoms.
               </p>
             </div>
-          </Copy>
+            <img className={styles.figure} src={imgSymptomSearch} alt="Default state of symptom search" />
+          </section>
 
-          <Figure src={imgSymptomSearch} />
-
-          <Copy heading="Multi-category Search Results">
+          <section className={styles.section}>
+            <h2 className={styles.label}>Multi-category Search Results</h2>
             <div className={styles.prose}>
               <p>
                 Search analysis showed that{' '}
-                <strong>
-                  nearly 80% of users didn&apos;t have a specific doctor or hospital preference
-                </strong>
+                <strong>nearly 80% of users didn&apos;t have a specific doctor or hospital preference</strong>
                 , indicating that most users were exploring rather than searching for someone
                 specific. Search behaviour also revealed multiple discovery paths, with users
                 searching for{' '}
-                <strong>
-                  Doctors (27.6%), Specialities (27.6%), Hospitals (27.2%), and Symptoms (7.7%)
-                </strong>
+                <strong>Doctors (27.6%), Specialities (27.6%), Hospitals (27.2%), and Symptoms (7.7%)</strong>
                 .
               </p>
               <p>
                 Instead of treating every query the same, we redesigned search to surface results
-                across <strong>Symptoms, Specializations, Hospitals, and Doctors,</strong> making it
+                across <strong>Symptoms, Specializations, Hospitals, and Doctors</strong>, making it
                 easier for users to understand what they were searching for and discover the right
                 doctor through multiple entry points.
               </p>
             </div>
-          </Copy>
+            <img
+              className={styles.figure}
+              src={imgMultiCategory}
+              alt="Listing page, default state, and results after typing"
+            />
+          </section>
 
-          <Figure src={imgMultiCategory} />
-
-          <Copy heading="Guided Search Suggestions">
+          <section className={styles.section}>
+            <h2 className={styles.label}>Guided Search Suggestions</h2>
             <div className={styles.prose}>
               <p>
                 Search-led journeys converted at <strong>18.36%</strong>, compared to{' '}
@@ -179,11 +150,15 @@ export function InclinicProject() {
                 and more forgiving.
               </p>
             </div>
-          </Copy>
+            <img
+              className={styles.figure}
+              src={imgGuidedSearch}
+              alt="Guided search from the default state through a doctor profile"
+            />
+          </section>
 
-          <Figure src={imgGuidedSearch} />
-
-          <Copy heading="Structured & Scalable Filters">
+          <section className={styles.section}>
+            <h2 className={styles.label}>Structured &amp; Scalable Filters</h2>
             <div className={styles.prose}>
               <p>
                 While search helped users discover doctors, filters played a critical role in
@@ -205,66 +180,48 @@ export function InclinicProject() {
                 advanced refinement, helping users reach the right doctor with less effort.
               </p>
             </div>
-          </Copy>
+            <img
+              className={styles.figure}
+              src={imgFiltersListing}
+              alt="Listing page and the filters bottom sheet"
+            />
+            <img
+              className={styles.figure}
+              src={imgFiltersSheet}
+              alt="Listing page with quick filters applied"
+            />
+          </section>
 
-          <div className={styles.filterPair}>
-            <Figure src={imgFiltersListing} />
-            <Figure src={imgFiltersSheet} />
-          </div>
-
-          <Copy heading="impact">
-            <div className={styles.impact}>
-              <div className={styles.statGrid}>
-                <div className={styles.statCard}>
-                  <p className={styles.statValue}>
-                    <span className={styles.statFrom}>18% to </span>32%
-                  </p>
-                  <p className={styles.statLabel}>Search conversion</p>
-                </div>
-                <div className={styles.statCard}>
-                  <p className={styles.statValue}>
-                    <span className={styles.statFrom}>22% to </span>47%
-                  </p>
-                  <p className={styles.statLabel}>Filter-led conversion</p>
-                </div>
+          <section className={styles.section}>
+            <h2 className={styles.label}>Impact</h2>
+            <div className={styles.statGrid}>
+              <div className={styles.statCard}>
+                <p className={styles.statValue}>18% → 32%</p>
+                <p className={styles.statName}>Search Conversion</p>
               </div>
-
-              <div className={styles.metrics}>
-                <p className={styles.metricsTitle}>search &amp; discovery improved</p>
-                <ul className={styles.metricList}>
-                  <li>
-                    <span className={styles.metricDash} aria-hidden="true">
-                      -
-                    </span>
-                    <span>
-                      <span className={styles.metricName}>null searches</span>
-                      <span className={styles.metricValue}>40% to 5%</span>
-                    </span>
-                  </li>
-                  <li>
-                    <span className={styles.metricDash} aria-hidden="true">
-                      -
-                    </span>
-                    <span>
-                      <span className={styles.metricName}>monthly gmv</span>
-                      <span className={styles.metricValue}>₹3 Cr+</span>
-                    </span>
-                  </li>
-                  <li>
-                    <span className={styles.metricDash} aria-hidden="true">
-                      -
-                    </span>
-                    <span>
-                      <span className={styles.metricName}>Daily doctor slot checks</span>
-                      <span className={styles.metricValue}>1,300+</span>
-                    </span>
-                  </li>
-                </ul>
+              <div className={styles.statCard}>
+                <p className={styles.statValue}>22% → 47%</p>
+                <p className={styles.statName}>Filter-led Conversion</p>
               </div>
             </div>
-          </Copy>
-        </main>
-      </div>
+            <h3 className={styles.impactTitle}>Search &amp; Discovery Improved</h3>
+            <ul className={styles.metrics}>
+              <li>
+                <p className={styles.metricName}>Null Searches</p>
+                <p className={styles.metricValue}>40% → 5%</p>
+              </li>
+              <li>
+                <p className={styles.metricName}>Monthly GMV</p>
+                <p className={styles.metricValue}>₹3 Cr+</p>
+              </li>
+              <li>
+                <p className={styles.metricName}>Daily Doctor Slot Checks</p>
+                <p className={styles.metricValue}>1,300+</p>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </article>
     </div>
   );
 }

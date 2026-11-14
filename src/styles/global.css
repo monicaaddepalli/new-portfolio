@@ -102,6 +102,31 @@ body {
   --text-stat-line: 36px;
   --text-stat-weight: 700;
   --text-stat-letter: 0;
+
+  /*
+   * v3 text styles. Names match Figma: Heading 1, Heading 2, Large, Body, Body Mono.
+   * Letter-spacing percentages are of the font size.
+   * Paragraph spacing is 20, except Heading 1, which has none.
+   */
+  --font-display: 'Inter Display', 'Inter', sans-serif;
+  --font-switzer: Switzer, sans-serif;
+  --font-geist-mono: 'Geist Mono', monospace;
+
+  /* v3 colours — overridden per data-theme below; light values as SSR fallback */
+  --Subtle: #787878;
+  --Orange: #ff462e;
+  --Default: #050505;
+  --Muted: #7d7d7d;
+  --Border: rgb(204 204 204 / 20%);
+  --Blue: #0066de;
+  --Background: #ffffff;
+  --Surface-tint: rgb(239 248 255 / 48%);
+  --Surface-muted: #f6f7f9;
+  --Surface-warm: #f6efe6;
+  --Accent-sky: #6cb5ff;
+  --Carousel-fade: rgb(232 232 234 / 92%);
+  --Carousel-scrim: rgb(0 0 0 / 6%);
+  --card-tint: var(--Surface-tint);
 }
 
 @media (min-width: 768px) {
@@ -145,6 +170,22 @@ body {
   --card-text: #000000;
   --media-surface: #ffffff;
   --hero-media-surface: #f2f2f2;
+
+  --page-bg: #ffffff;
+  --Subtle: #787878;
+  --Orange: #ff462e;
+  --Default: #050505;
+  --Muted: #7d7d7d;
+  --Border: rgb(204 204 204 / 20%);
+  --Blue: #0066de;
+  --Background: #ffffff;
+  --Surface-tint: rgb(239 248 255 / 48%);
+  --Surface-muted: #f6f7f9;
+  --Surface-warm: #f6efe6;
+  --Accent-sky: #6cb5ff;
+  --Carousel-fade: rgb(232 232 234 / 92%);
+  --Carousel-scrim: rgb(0 0 0 / 6%);
+  --card-tint: var(--Surface-tint);
 }
 
 :root[data-theme='dark'] {
@@ -163,6 +204,22 @@ body {
   --card-text: #e5e5e5;
   --media-surface: var(--card-bg);
   --hero-media-surface: var(--card-bg);
+
+  --page-bg: #0a0a0a;
+  --Subtle: #9a9a9a;
+  --Orange: #ff6b52;
+  --Default: #ededed;
+  --Muted: #6e6e73;
+  --Border: rgb(255 255 255 / 14%);
+  --Blue: #5ba8ff;
+  --Background: #0a0a0a;
+  --Surface-tint: rgb(91 168 255 / 14%);
+  --Surface-muted: #161618;
+  --Surface-warm: #221e18;
+  --Accent-sky: #7eb8ff;
+  --Carousel-fade: rgb(42 42 46 / 92%);
+  --Carousel-scrim: rgb(255 255 255 / 8%);
+  --card-tint: var(--Surface-tint);
 }
 
 /*
@@ -170,22 +227,22 @@ body {
  * outrank a single CSS-module class. !important + theme tokens removes them sitewide.
  */
 :is(:root[data-theme='light'], :root[data-theme='dark'])
-  a:any-link:not([data-work-hit-area]):not([data-muted]):not([data-secondary-link]):not([data-accent-link]),
+  a:any-link:not([data-work-hit-area]):not([data-muted]):not([data-secondary-link]):not([data-accent-link]):not([data-header-link]),
 :is(:root[data-theme='light'], :root[data-theme='dark'])
-  a:any-link:not([data-work-hit-area]):not([data-muted]):not([data-secondary-link]):not([data-accent-link]):visited {
+  a:any-link:not([data-work-hit-area]):not([data-muted]):not([data-secondary-link]):not([data-accent-link]):not([data-header-link]):visited {
   color: var(--primary) !important;
   -webkit-text-fill-color: var(--primary) !important;
   text-decoration-color: var(--primary) !important;
 }
 
 :is(:root[data-theme='light'], :root[data-theme='dark'])
-  a:any-link:not([data-work-hit-area]):not([data-muted]):not([data-secondary-link]):not([data-accent-link]):hover,
+  a:any-link:not([data-work-hit-area]):not([data-muted]):not([data-secondary-link]):not([data-accent-link]):not([data-header-link]):hover,
 :is(:root[data-theme='light'], :root[data-theme='dark'])
-  a:any-link:not([data-work-hit-area]):not([data-muted]):not([data-secondary-link]):not([data-accent-link]):active,
+  a:any-link:not([data-work-hit-area]):not([data-muted]):not([data-secondary-link]):not([data-accent-link]):not([data-header-link]):active,
 :is(:root[data-theme='light'], :root[data-theme='dark'])
-  a:any-link:not([data-work-hit-area]):not([data-muted]):not([data-secondary-link]):not([data-accent-link]):focus,
+  a:any-link:not([data-work-hit-area]):not([data-muted]):not([data-secondary-link]):not([data-accent-link]):not([data-header-link]):focus,
 :is(:root[data-theme='light'], :root[data-theme='dark'])
-  a:any-link:not([data-work-hit-area]):not([data-muted]):not([data-secondary-link]):not([data-accent-link]):focus-visible {
+  a:any-link:not([data-work-hit-area]):not([data-muted]):not([data-secondary-link]):not([data-accent-link]):not([data-header-link]):focus-visible {
   color: var(--primary) !important;
   -webkit-text-fill-color: var(--primary) !important;
   text-decoration-color: var(--primary) !important;
@@ -297,3 +354,62 @@ a {
 button {
   color: inherit;
 }
+
+@font-face {
+  font-family: 'Inter Display';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/InterDisplay-Medium.woff2') format('woff2');
+}
+
+[data-style='Heading 1'] {
+  --paragraph-spacing: 0px;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 40px;
+  line-height: 40px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+[data-style='Heading 2'] {
+  --paragraph-spacing: 20px;
+  margin: 0 0 var(--paragraph-spacing);
+  font-family: var(--font-switzer);
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+[data-style='Large'] {
+  --paragraph-spacing: 20px;
+  margin: 0 0 var(--paragraph-spacing);
+  font-family: var(--font-switzer);
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+[data-style='Body'] {
+  --paragraph-spacing: 20px;
+  margin: 0 0 var(--paragraph-spacing);
+  font-family: var(--font-switzer);
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+[data-style='Body Mono'] {
+  --paragraph-spacing: 20px;
+  margin: 0 0 var(--paragraph-spacing);
+  font-family: var(--font-geist-mono);
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+

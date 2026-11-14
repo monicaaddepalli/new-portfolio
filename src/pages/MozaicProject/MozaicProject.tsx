@@ -1,15 +1,14 @@
-import { useLayoutEffect, useState, type ReactNode } from 'react';
+import { useLayoutEffect, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { OptimizedImage } from '../../components/OptimizedImage';
-import { applyTheme } from '../../lib/theme';
 import styles from './MozaicProject.module.css';
 
+const hero = '/assets/v3/home/mozaic.png?v=20261109-1';
 const imgFoundations = '/assets/v2/mozaic/foundations.png';
 const imgComponents = '/assets/v2/mozaic/components.png';
 const imgImpactPatterns = '/assets/v2/mozaic/impact-patterns.png';
 const imgImpactTat = '/assets/v2/mozaic/impact-tat.png';
 const imgImpactAi = '/assets/v2/mozaic/impact-ai.png';
-const iconArrow = '/assets/v2/mozaic/arrow-up-right.svg';
+const imgQuoteMark = '/assets/v2/mozaic/quote-mark.svg?v=20261114-4';
 const imgAppMobile1 = '/assets/v2/mozaic/application/mobile-1.png';
 const imgAppMobile2 = '/assets/v2/mozaic/application/mobile-2.png';
 const imgAppMobile3 = '/assets/v2/mozaic/application/mobile-3.png';
@@ -24,8 +23,10 @@ const applicationSlides = [
   imgAppDesktop2,
 ];
 
-const FOUNDATIONS_PATH = '/work/mozaic-design-system/foundations';
-const COMPONENTS_PATH = '/work/mozaic-design-system/components-patterns';
+const APPLICATION_AUTO_MS = 4000;
+
+const FOUNDATIONS_PATH = '/work/mozaicds/foundations';
+const COMPONENTS_PATH = '/work/mozaicds/components-patterns';
 
 const problemItems = [
   {
@@ -91,65 +92,161 @@ const impactItems = [
   },
 ];
 
-function Figure({ src }: { src: string }) {
-  return (
-    <figure className={styles.figure}>
-      <OptimizedImage src={src} alt="" width={1040} height={640} />
-    </figure>
-  );
-}
-
-function Copy({
-  heading,
-  children,
-}: {
-  heading: string;
-  children: ReactNode;
-}) {
-  return (
-    <section className={styles.copy}>
-      <h2 className={styles.heading}>{heading}</h2>
-      {children}
-    </section>
-  );
-}
-
 function ApplicationCarousel() {
-  const [index, setIndex] = useState(0);
-  const last = applicationSlides.length - 1;
+  const slideCount = applicationSlides.length;
+  const extendedSlides = [
+    applicationSlides[slideCount - 1],
+    ...applicationSlides,
+    applicationSlides[0],
+  ];
+  const extendedCount = extendedSlides.length;
+  /** 1 … slideCount are real slides; 0 and slideCount + 1 are edge clones for looping */
+  const [position, setPosition] = useState(1);
+  const [smoothScroll, setSmoothScroll] = useState(true);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const [slideWidthPx, setSlideWidthPx] = useState(0);
+  const isSnappingRef = useRef(false);
+
+  const logicalIndex =
+    position === 0 ? slideCount - 1 : position > slideCount ? 0 : position - 1;
+
+  const snapInfiniteEdges = () => {
+    if (isSnappingRef.current) return;
+    setPosition((current) => {
+      if (current === slideCount + 1) {
+        isSnappingRef.current = true;
+        setSmoothScroll(false);
+        return 1;
+      }
+      if (current === 0) {
+        isSnappingRef.current = true;
+        setSmoothScroll(false);
+        return slideCount;
+      }
+      return current;
+    });
+  };
+
+  useLayoutEffect(() => {
+    applicationSlides.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
+  useLayoutEffect(() => {
+    const stage = stageRef.current;
+    if (!stage) return undefined;
+
+    const updateWidth = () => setSlideWidthPx(stage.clientWidth);
+    updateWidth();
+
+    const observer = new ResizeObserver(updateWidth);
+    observer.observe(stage);
+    return () => observer.disconnect();
+  }, []);
+
+  useLayoutEffect(() => {
+    const stage = stageRef.current;
+    if (!stage || slideWidthPx <= 0) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const behavior = reducedMotion || !smoothScroll ? 'instant' : 'smooth';
+    stage.scrollTo({ left: position * slideWidthPx, behavior });
+    isSnappingRef.current = false;
+  }, [position, slideWidthPx, smoothScroll]);
+
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage) return undefined;
+
+    const onScrollEnd = () => snapInfiniteEdges();
+    stage.addEventListener('scrollend', onScrollEnd);
+    return () => stage.removeEventListener('scrollend', onScrollEnd);
+  }, [slideCount]);
+
+  useEffect(() => {
+    if (!smoothScroll) return undefined;
+    if (position !== slideCount + 1 && position !== 0) return undefined;
+    const id = window.setTimeout(() => snapInfiniteEdges(), 550);
+    return () => window.clearTimeout(id);
+  }, [position, slideCount, smoothScroll]);
+
+  useEffect(() => {
+    if (!smoothScroll) {
+      const id = window.requestAnimationFrame(() => setSmoothScroll(true));
+      return () => window.cancelAnimationFrame(id);
+    }
+    return undefined;
+  }, [smoothScroll]);
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setSmoothScroll(true);
+      setPosition((current) => current + 1);
+    }, APPLICATION_AUTO_MS);
+    return () => window.clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduced) return undefined;
+    if (position === slideCount + 1 || position === 0) {
+      snapInfiniteEdges();
+    }
+    return undefined;
+  }, [position, slideCount]);
 
   return (
     <div className={styles.application} aria-roledescription="carousel" aria-label="Application screens">
       <div className={styles.applicationFrame}>
-        <div className={styles.applicationStage}>
-          <OptimizedImage
-            src={applicationSlides[index]}
-            alt=""
-            width={1440}
-            height={960}
-          />
+        <div ref={stageRef} className={styles.applicationStage}>
+          <div
+            className={styles.applicationTrack}
+            style={{ width: `${extendedCount * 100}%` }}
+            aria-live="polite"
+          >
+            {extendedSlides.map((src, slideIndex) => (
+              <div
+                key={`${src}-${slideIndex}`}
+                className={styles.applicationCell}
+                style={{ width: `${100 / extendedCount}%` }}
+              >
+                <img src={src} alt="" />
+              </div>
+            ))}
+          </div>
         </div>
         <button
           type="button"
           className={`${styles.carouselBtn} ${styles.carouselPrev}`}
           aria-label="Previous screen"
-          onClick={() => setIndex((current) => (current === 0 ? last : current - 1))}
+          onClick={() => {
+            setSmoothScroll(true);
+            setPosition((current) => current - 1);
+          }}
         />
         <button
           type="button"
           className={`${styles.carouselBtn} ${styles.carouselNext}`}
           aria-label="Next screen"
-          onClick={() => setIndex((current) => (current === last ? 0 : current + 1))}
+          onClick={() => {
+            setSmoothScroll(true);
+            setPosition((current) => current + 1);
+          }}
         />
         <div className={styles.carouselDots} role="tablist" aria-label="Application slides">
           {applicationSlides.map((src, slideIndex) => (
             <button
               key={src}
               type="button"
-              className={`${styles.carouselDot} ${slideIndex === index ? styles.carouselDotActive : ''}`}
+              className={`${styles.carouselDot} ${slideIndex === logicalIndex ? styles.carouselDotActive : ''}`}
               aria-label={`Show screen ${slideIndex + 1}`}
-              aria-current={slideIndex === index ? 'true' : undefined}
-              onClick={() => setIndex(slideIndex)}
+              aria-current={slideIndex === logicalIndex ? 'true' : undefined}
+              onClick={() => {
+                setSmoothScroll(true);
+                setPosition(slideIndex + 1);
+              }}
             />
           ))}
         </div>
@@ -158,40 +255,36 @@ function ApplicationCarousel() {
   );
 }
 
-function DeepDive({
-  title,
-  href,
-}: {
-  title: string;
-  href?: string;
-}) {
-  const inner = (
-    <>
+function DeepDive({ title, href }: { title: string; href: string }) {
+  return (
+    <Link className={styles.deepDive} to={href}>
       <span className={styles.deepDiveCopy}>
         <span className={styles.deepDiveTitle}>{title}</span>
-        <span className={styles.deepDiveHint}>click to read more about this</span>
+        <span className={styles.deepDiveHint}>Click to read more about this</span>
       </span>
       <span className={styles.deepDiveIcon} aria-hidden="true">
-        <img src={iconArrow} alt="" width={20} height={20} />
+        <svg className={styles.deepDiveArrow} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M5 15L15 5"
+            stroke="currentColor"
+            strokeWidth="1.875"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M6.875 5H15V13.125"
+            stroke="currentColor"
+            strokeWidth="1.875"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
       </span>
-    </>
+    </Link>
   );
-
-  if (href) {
-    return (
-      <Link className={styles.deepDive} to={href}>
-        {inner}
-      </Link>
-    );
-  }
-
-  return <div className={styles.deepDive}>{inner}</div>;
 }
 
 export function MozaicProject() {
-  useLayoutEffect(() => {
-    applyTheme('light');
-  }, []);
 
   return (
     <div className={styles.page} data-name="mozaic ds">
@@ -203,24 +296,31 @@ export function MozaicProject() {
         <div className={`${styles.headerBlurFilter} ${styles.headerBlurExtra}`} />
       </div>
 
-      <div className={styles.shell}>
-        <header className={styles.header}>
-          <a className={styles.identity} href="/" aria-label="Home">
-            monica addepalli
+      <article className={styles.article}>
+        <div className={styles.media}>
+          <img
+            className={styles.image}
+            src={hero}
+            alt="Mozaic design system on a laptop"
+            width={280}
+            height={420}
+          />
+          <a className={styles.back} href="/" data-header-link="" data-style="Body Mono">
+            <svg width="12" height="12" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M6.7 2.3 1.6 8l5.1 5.7.9-.8L3.6 8.6H15V7.4H3.6l4-4.3z"
+              />
+            </svg>
+            Back to home
           </a>
-        </header>
+        </div>
 
-        <main className={styles.main}>
-          <div className={styles.intro}>
-            <p className={styles.year}>2026</p>
-            <h1 className={styles.title}>
-              building mozaic
-              <br />
-              design system
-            </h1>
-          </div>
+        <div className={styles.copy}>
+          <h1 className={styles.title}>Mozaic Design System</h1>
 
-          <Copy heading="overview">
+          <section className={styles.section}>
+            <h2 className={styles.label}>Overview</h2>
             <div className={styles.prose}>
               <p>
                 Mozaic is a design system built to support a rapidly growing B2B2C healthcare
@@ -234,51 +334,61 @@ export function MozaicProject() {
                 constraints.
               </p>
             </div>
-          </Copy>
+          </section>
 
-          <Copy heading="problem">
+          <section className={styles.section}>
+            <h2 className={styles.label}>Problem</h2>
             <div className={styles.prose}>
-              <div className={styles.quote}>
-                <p className={styles.quoteText}>
-                  “Each person is essentially building their own interpretation of the brand.”
-                </p>
-                <p>Head of Design during Problem Grooming</p>
-              </div>
+              <figure className={styles.quote}>
+                <img
+                  className={styles.quoteMark}
+                  src={imgQuoteMark}
+                  alt=""
+                  width={48}
+                  height={44}
+                  aria-hidden="true"
+                />
+                <blockquote data-style="Large">
+                  &ldquo;Each person is essentially building their own interpretation of the
+                  brand.&rdquo;
+                </blockquote>
+                <figcaption>Head of Design during Problem Grooming</figcaption>
+              </figure>
               <p>
                 As MediBuddy expanded into multiple healthcare services, individuals began shipping
                 independently, each evolving their own visual language, interaction patterns, and
                 implementation approaches.
               </p>
               <p>this led to:</p>
-              <div className={styles.insightList}>
-                {problemItems.map((item) => (
-                  <div key={item.index} className={styles.insightRow}>
-                    <p className={styles.insightIndex}>{item.index}</p>
-                    <div className={styles.insightBody}>
-                      <p className={styles.insightTitle}>{item.title}</p>
-                      <p>↪ {item.body}</p>
-                    </div>
+            </div>
+            <ol className={styles.insights}>
+              {problemItems.map((item) => (
+                <li key={item.index}>
+                  <span>{item.index}</span>
+                  <div>
+                    <p className={styles.insightTitle}>{item.title}</p>
+                    <p>↪ {item.body}</p>
                   </div>
-                ))}
-              </div>
-              <p>
-                We needed a unified, flexible system that could work across diverse product contexts
-                while staying stable, maintainable, and evolving with the brand.
-              </p>
-            </div>
-          </Copy>
+                </li>
+              ))}
+            </ol>
+            <p className={styles.proseLead}>
+              We needed a unified, flexible system that could work across diverse product contexts
+              while staying stable, maintainable, and evolving with the brand.
+            </p>
+          </section>
 
-          <section className={styles.wide}>
-            <div className={styles.copyInner}>
-              <h2 className={styles.heading}>Guiding Principles</h2>
-              <p className={styles.proseSingle}>
-                These principles shaped every major design decision in Mozaic:
-              </p>
-            </div>
+          <section className={styles.section}>
+            <h2 className={styles.label}>Guiding Principles</h2>
+            <p className={styles.proseLead}>
+              These principles shaped every major design decision in Mozaic:
+            </p>
             <div className={styles.principleGrid}>
               {principles.map((principle) => (
                 <article key={principle.index} className={styles.principleCard}>
-                  <p className={styles.principleIndex}>{principle.index}</p>
+                  <span className={styles.principleIndex} aria-hidden="true">
+                    {principle.index}
+                  </span>
                   <p className={styles.principleTitle}>{principle.title}</p>
                   <p className={styles.principleBody}>{principle.body}</p>
                 </article>
@@ -286,145 +396,130 @@ export function MozaicProject() {
             </div>
           </section>
 
-          <Copy heading="Building & Scaling Mozaic DS">
-            <p className={styles.proseSingle}>
+          <section className={styles.section}>
+            <h2 className={styles.label}>Building &amp; Scaling Mozaic DS</h2>
+            <p className={styles.proseLead}>
               Mozaic wasn&apos;t a static style guide. It evolved as a system in response to real
               product complexity, team behaviour, and delivery constraints
             </p>
-            <div className={styles.phaseList}>
-              <div className={styles.phase}>
-                <div className={styles.phaseHead}>
-                  <p className={styles.phaseLabel}>phase 1</p>
-                  <h3 className={styles.phaseTitle}>Identifying Fragmentation</h3>
-                </div>
-                <p className={styles.proseSingle}>
-                  The priority was diagnosing where and why products were diverging.
-                </p>
-                <ul className={styles.bullets}>
-                  <li>
-                    <strong>Audited</strong> existing UI across consultations, diagnostics,
-                    pharmacy, insurance, and wellness
-                  </li>
-                  <li>
-                    Identified repeated interaction patterns (beneficiary, upload module,
-                    navigation, badges)
-                  </li>
-                  <li>
-                    Highlighted <strong>behavioural inconsistencies</strong> and design-to-dev
-                    bottlenecks
-                  </li>
-                </ul>
-              </div>
 
-              <div className={styles.phase}>
-                <div className={styles.phaseHead}>
-                  <p className={styles.phaseLabel}>phase 2</p>
-                  <h3 className={styles.phaseTitle}>Establishing Shared Foundations</h3>
-                </div>
-                <Figure src={imgFoundations} />
-                <p className={styles.proseSingle}>
-                  We replaced raw values with a system of logic to reduce unnecessary &amp;
-                  repetitive decision-making.
-                </p>
-                <ul className={styles.bullets}>
-                  <li>
-                    Implemented <strong>semantic tokens</strong> and a responsive typography
-                    hierarchy.
-                  </li>
-                  <li>Standardized naming conventions between Figma and the codebase.</li>
-                  <li>
-                    Kept foundations lean to prioritize immediate adoption over exhaustive
-                    completeness.
-                  </li>
-                </ul>
-                <DeepDive title="Foundation & Token Architecture" href={FOUNDATIONS_PATH} />
-              </div>
-
-              <div className={styles.phase}>
-                <div className={styles.phaseHead}>
-                  <p className={styles.phaseLabel}>phase 3</p>
-                  <h3 className={styles.phaseTitle}>Scaling Through Components and Patterns</h3>
-                </div>
-                <Figure src={imgComponents} />
-                <p className={styles.proseSingle}>
-                  With foundations in place, we targeted <strong>seamless feature handoffs</strong>{' '}
-                  to developers and supporting <strong>faster iterations</strong> as product
-                  complexity increased. To achieve this we:
-                </p>
-                <ul className={styles.bullets}>
-                  <li>Designed components as contracts with predictable APIs.</li>
-                  <li>
-                    Defined elements by behaviour and intent rather than just visual layout.
-                  </li>
-                  <li>Mirrored component props between Figma and code.</li>
-                  <li>
-                    New patterns were held in a reference library and only &quot;promoted&quot; to
-                    the core system once repeated reuse was proven.
-                  </li>
-                </ul>
-                <DeepDive title="components & patterns" href={COMPONENTS_PATH} />
-              </div>
-
-              <div className={styles.phase}>
-                <div className={styles.phaseHead}>
-                  <p className={styles.phaseLabel}>phase 4</p>
-                  <h3 className={styles.phaseTitle}>Adoption, Governance, and Iteration</h3>
-                </div>
-                <p className={styles.proseSingle}>
-                  As usage increased, the focus moved to <strong>sustainability</strong>.
-                </p>
-                <ul className={styles.bullets}>
-                  <li>Initial governance done through shared judgment over individual bias.</li>
-                  <li>Followed regular release cycles with room for urgent fixes</li>
-                  <li>Training, walkthroughs, and recorded handovers</li>
-                  <li>Continuous refinement based on real usage and feedback</li>
-                </ul>
-                <p className={styles.proseSingle}>
-                  Governance was human centered by choice, using documented decisions to eventually
-                  transition from manual oversight to scalable processes.
-                </p>
-              </div>
+            <div className={styles.phase}>
+              <p className={styles.phaseLabel}>Phase 1</p>
+              <h3 className={styles.subhead}>Identifying Fragmentation</h3>
+              <p>
+                The priority was diagnosing where and why products were diverging.
+              </p>
+              <ul className={styles.steps}>
+                <li>
+                  <strong>Audited</strong> existing UI across consultations, diagnostics, pharmacy,
+                  insurance, and wellness
+                </li>
+                <li>
+                  Identified repeated interaction patterns (beneficiary, upload module, navigation,
+                  badges)
+                </li>
+                <li>
+                  Highlighted <strong>behavioural inconsistencies</strong> and design-to-dev
+                  bottlenecks
+                </li>
+              </ul>
             </div>
-          </Copy>
 
-          <section className={styles.wide}>
-            <h2 className={`${styles.heading} ${styles.wideHeading}`}>Impact</h2>
+            <div className={styles.phase}>
+              <p className={styles.phaseLabel}>Phase 2</p>
+              <h3 className={styles.subhead}>Establishing Shared Foundations</h3>
+              <img className={styles.figure} src={imgFoundations} alt="Mozaic foundations" />
+              <p>
+                We replaced raw values with a system of logic to reduce unnecessary &amp; repetitive
+                decision-making.
+              </p>
+              <ul className={styles.steps}>
+                <li>
+                  Implemented <strong>semantic tokens</strong> and a responsive typography hierarchy.
+                </li>
+                <li>Standardized naming conventions between Figma and the codebase.</li>
+                <li>
+                  Kept foundations lean to prioritize immediate adoption over exhaustive completeness.
+                </li>
+              </ul>
+              <DeepDive title="Foundation & Token Architecture" href={FOUNDATIONS_PATH} />
+            </div>
+
+            <div className={styles.phase}>
+              <p className={styles.phaseLabel}>Phase 3</p>
+              <h3 className={styles.subhead}>Scaling Through Components and Patterns</h3>
+              <img className={styles.figure} src={imgComponents} alt="Mozaic components" />
+              <p>
+                With foundations in place, we targeted <strong>seamless feature handoffs</strong> to
+                developers and supporting <strong>faster iterations</strong> as product complexity
+                increased. To achieve this we:
+              </p>
+              <ul className={styles.steps}>
+                <li>Designed components as contracts with predictable APIs.</li>
+                <li>Defined elements by behaviour and intent rather than just visual layout.</li>
+                <li>Mirrored component props between Figma and code.</li>
+                <li>
+                  New patterns were held in a reference library and only &quot;promoted&quot; to the
+                  core system once repeated reuse was proven.
+                </li>
+              </ul>
+              <DeepDive title="Components & Patterns" href={COMPONENTS_PATH} />
+            </div>
+
+            <div className={styles.phase}>
+              <p className={styles.phaseLabel}>Phase 4</p>
+              <h3 className={styles.subhead}>Adoption, Governance, and Iteration</h3>
+              <p>
+                As usage increased, the focus moved to <strong>sustainability</strong>.
+              </p>
+              <ul className={styles.steps}>
+                <li>Initial governance done through shared judgment over individual bias.</li>
+                <li>Followed regular release cycles with room for urgent fixes</li>
+                <li>Training, walkthroughs, and recorded handovers</li>
+                <li>Continuous refinement based on real usage and feedback</li>
+              </ul>
+              <p>
+                Governance was human centered by choice, using documented decisions to eventually
+                transition from manual oversight to scalable processes.
+              </p>
+            </div>
+          </section>
+
+          <section className={styles.section}>
+            <h2 className={styles.label}>Impact</h2>
             <div className={styles.impactGrid}>
               {impactItems.map((item) => (
                 <article key={item.value} className={styles.impactCard}>
-                  <div className={styles.impactIcon}>
-                    <OptimizedImage src={item.src} alt="" width={140} height={140} />
-                  </div>
-                  <div className={styles.impactCopy}>
-                    <p className={styles.impactValue}>{item.value}</p>
-                    <p className={styles.impactLabel}>{item.label}</p>
-                  </div>
+                  <img className={styles.impactIcon} src={item.src} alt="" />
+                  <p className={styles.impactValue}>{item.value}</p>
+                  <p className={styles.impactLabel}>{item.label}</p>
                 </article>
               ))}
             </div>
           </section>
 
-          <section className={styles.wide}>
-            <h2 className={`${styles.heading} ${styles.wideHeading}`}>application</h2>
+          <section className={styles.section}>
+            <h2 className={styles.label}>Application</h2>
             <ApplicationCarousel />
           </section>
 
-          <Copy heading="Reflection">
+          <section className={styles.section}>
+            <h2 className={styles.label}>Reflection</h2>
             <div className={styles.prose}>
               <p>
                 Building Mozaic improved my design and systems thinking skills through rigorous
                 trade-off analysis and evidence-based decision-making in a complex product
                 environment.
               </p>
-              <ol className={styles.numbers}>
+              <ol className={styles.steps}>
                 <li>
                   Practical constraints like team maturity and delivery deadlines are inevitable and
                   require a focus on <strong>accurate tradeoffs and restraint</strong> rather than
                   theoretical perfection.
                 </li>
                 <li>
-                  Components &amp; Patterns should <strong>earn their place</strong> in the system
-                  by resolving observed friction or repeated inconsistencies in active workflows.
+                  Components &amp; Patterns should <strong>earn their place</strong> in the system by
+                  resolving observed friction or repeated inconsistencies in active workflows.
                 </li>
                 <li>
                   <strong>Adoption</strong> is the true north star. Systems only remain relevant by
@@ -433,9 +528,9 @@ export function MozaicProject() {
                 </li>
               </ol>
             </div>
-          </Copy>
-        </main>
-      </div>
+          </section>
+        </div>
+      </article>
     </div>
   );
 }

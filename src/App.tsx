@@ -18,6 +18,7 @@ import { MozaicFoundations } from './pages/MozaicFoundations/MozaicFoundations';
 import { MozaicComponents } from './pages/MozaicComponents/MozaicComponents';
 import { InclinicProject } from './pages/InclinicProject/InclinicProject';
 import { MbPayProject } from './pages/MbPayProject/MbPayProject';
+import { V3ThemeChrome } from './components/V3ThemeChrome';
 
 const BLOG_SCROLL_OFFSET = 120;
 const SCROLL_STORAGE_KEY = 'portfolio-scroll-positions';
@@ -141,6 +142,7 @@ function RootLayout() {
 
   return (
     <>
+      <V3ThemeChrome pathname={location.pathname} />
       <ScrollRestoration
         getKey={(scrollLocation) => `${scrollLocation.pathname}${scrollLocation.search}`}
         storageKey={SCROLL_STORAGE_KEY}
@@ -162,11 +164,20 @@ const router = createBrowserRouter([
       { path: '/work/mb-pay', element: <MbPayProject /> },
       { path: '/work/r2c-reorder', element: <R2cProject /> },
       { path: '/work/vision-revamp', element: <VisionProject /> },
-      { path: '/work/mozaic-design-system', element: <MozaicProject /> },
-      { path: '/work/mozaic-design-system/foundations', element: <MozaicFoundations /> },
+      { path: '/work/mozaicds', element: <MozaicProject /> },
+      { path: '/work/mozaicds/foundations', element: <MozaicFoundations /> },
+      {
+        path: '/work/mozaicds/components-patterns',
+        element: <MozaicComponents />,
+      },
+      { path: '/work/mozaic-design-system', element: <Navigate to="/work/mozaicds" replace /> },
+      {
+        path: '/work/mozaic-design-system/foundations',
+        element: <Navigate to="/work/mozaicds/foundations" replace />,
+      },
       {
         path: '/work/mozaic-design-system/components-patterns',
-        element: <MozaicComponents />,
+        element: <Navigate to="/work/mozaicds/components-patterns" replace />,
       },
       { path: '/notes/ds-component', element: <DesignSystemBlog /> },
       {
