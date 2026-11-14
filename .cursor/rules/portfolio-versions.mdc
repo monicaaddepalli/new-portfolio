@@ -13,12 +13,12 @@ If the user asks for **v1**, **v1.0**, or **the old site**, point them to that r
 
 - Route: `/` → `PortfolioHome`
 - Case study / note “back” links go to `/`
-- Work continues on branch `v2`
+- Ongoing work often on `v3-home` or feature branches
 - Do not merge to `main` or deploy unless the user explicitly says to go live
 
 ## Production
 
-Live site deploys from `main` via Vercel: https://github.com/monicaaddepalli/portfolio.git
+Live site deploys from `main` via Vercel: https://github.com/monicaaddepalli/new-portfolio.git
 
 - `/` — current home
 - `/work/*` and `/notes/*` — case studies and notes

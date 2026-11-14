@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-light.png?v=20261112-5" data-theme-icon />
@@ -31,12 +31,12 @@
         }
         try {
           var t = localStorage.getItem('theme');
-          var theme = t === 'light' || t === 'dark' ? t : 'dark';
+          var theme = t === 'light' || t === 'dark' ? t : 'light';
           document.documentElement.dataset.theme = theme;
           setFavicon(theme);
         } catch (e) {
-          document.documentElement.dataset.theme = 'dark';
-          setFavicon('dark');
+          document.documentElement.dataset.theme = 'light';
+          setFavicon('light');
         }
       })();
     </script>

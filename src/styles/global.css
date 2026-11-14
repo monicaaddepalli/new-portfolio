@@ -4,10 +4,10 @@ body {
 }
 
 :root {
-  color-scheme: dark;
-  -webkit-tap-highlight-color: rgb(255 255 255 / 0.08);
+  color-scheme: light;
+  -webkit-tap-highlight-color: rgb(0 0 0 / 0.06);
 
-  /* Colours — dark is the site default */
+  /* Colours — legacy v2 tokens; v3 uses data-theme below */
   --black: #ffffff;
   --bg: #000000;
   --primary: #e5e5e5;
