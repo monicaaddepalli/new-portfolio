@@ -27,7 +27,7 @@
           var link = document.querySelector('link[data-theme-icon]');
           if (!link) return;
           link.type = 'image/png';
-          link.href = theme === 'light' ? '/favicon-dark.png?v=20261112-5' : '/favicon-light.png?v=20261112-5';
+          link.href = theme === 'light' ? '/favicon-light.png?v=20261112-5' : '/favicon-dark.png?v=20261112-5';
         }
         try {
           var t = localStorage.getItem('theme');
