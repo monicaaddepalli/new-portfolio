@@ -1,8 +1,8 @@
 export type Theme = 'light' | 'dark';
 
 const FAVICON: Record<Theme, string> = {
-  light: '/favicon-light.png?v=20261112-5',
-  dark: '/favicon-dark.png?v=20261112-5',
+  light: '/favicon-dark.png?v=20261112-5',
+  dark: '/favicon-light.png?v=20261112-5',
 };
 
 export function getInitialTheme(): Theme {

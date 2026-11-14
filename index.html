@@ -2,7 +2,7 @@
 <html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-light.png?v=20261112-5" data-theme-icon />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-dark.png?v=20261112-5" data-theme-icon />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20261112-5" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Monica Addepalli</title>
@@ -27,7 +27,7 @@
           var link = document.querySelector('link[data-theme-icon]');
           if (!link) return;
           link.type = 'image/png';
-          link.href = theme === 'light' ? '/favicon-light.png?v=20261112-5' : '/favicon-dark.png?v=20261112-5';
+          link.href = theme === 'light' ? '/favicon-dark.png?v=20261112-5' : '/favicon-light.png?v=20261112-5';
         }
         try {
           var t = localStorage.getItem('theme');
