@@ -121,8 +121,7 @@ export function PortfolioHome() {
               Monica
             </h1>
             <p className={styles.bio} data-style="Body">
-              Product Designer building and scaling impactful B2B and B2C experiences across
-              Healthcare and E-commerce.
+              Design Engineer and Serial Hobbyist
             </p>
           </div>
           <nav className={styles.links} aria-label="Contact">

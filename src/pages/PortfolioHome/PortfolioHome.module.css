@@ -30,8 +30,25 @@
 .intro {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
+  box-sizing: border-box;
+  width: 100%;
   max-width: 23.5rem;
+}
+
+@media (max-width: 809px) {
+  .header {
+    padding-right: calc(var(--pad) + 44px);
+  }
+
+  .intro {
+    max-width: none;
+  }
+
+  .page .bio {
+    max-width: none;
+    width: 100%;
+  }
 }
 
 .page ::selection {
