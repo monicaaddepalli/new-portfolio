@@ -50,6 +50,10 @@
   color: var(--Default);
 }
 
+.page .name {
+  font-weight: 400;
+}
+
 .page .bio {
   max-width: 23.5rem;
   font-weight: 400;
@@ -66,6 +70,7 @@
 
 .links .contactLink {
   margin: 0;
+  font-weight: 400;
   color: var(--Default) !important;
   -webkit-text-fill-color: var(--Default) !important;
   text-decoration: none;

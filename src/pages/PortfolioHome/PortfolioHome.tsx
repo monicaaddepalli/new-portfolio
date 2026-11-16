@@ -72,6 +72,24 @@ const projects = [
     path: '/work/vision-revamp',
     ...photo('vision'),
   },
+  {
+    index: '06',
+    title: 'Building a responsive typographic system',
+    summary: 'WRITING',
+    path: '/notes/responsive-typographic-system',
+    image: '/assets/v2/typography/hero.jpg?v=20261116-5',
+    width: 682,
+    height: 1024,
+  },
+  {
+    index: '07',
+    title: 'Building a design system component',
+    summary: 'WRITING',
+    path: '/notes/ds-component',
+    image: '/assets/v2/component-blog/hero.jpg',
+    width: 682,
+    height: 1024,
+  },
 ];
 
 export function PortfolioHome() {

@@ -135,9 +135,10 @@
 
 .page .title {
   margin: 0 0 36px;
+  text-transform: capitalize;
   font-family: 'Inter Display', sans-serif;
-  font-size: 32px;
-  line-height: 42px;
+  font-size: 28px;
+  line-height: 28px;
   font-weight: 500;
   letter-spacing: -0.04em;
   color: var(--Default);
@@ -371,6 +372,8 @@
 
   .page .title {
     margin-bottom: 40px;
+    font-size: 32px;
+    line-height: 32px;
   }
 }
 
@@ -422,5 +425,7 @@
 
   .page .title {
     margin-bottom: 48px;
+    font-size: 40px;
+    line-height: 40px;
   }
 }

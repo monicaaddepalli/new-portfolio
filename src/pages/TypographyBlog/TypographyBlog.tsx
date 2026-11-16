@@ -1,6 +1,5 @@
-import { useLayoutEffect, type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { OptimizedImage } from '../../components/OptimizedImage';
-import { applyTheme } from '../../lib/theme';
 import styles from './TypographyBlog.module.css';
 
 const imgMobileTypescale = '/assets/v2/typography/mobile-typescale.png';
@@ -40,10 +39,6 @@ function Copy({
 }
 
 export function TypographyBlog() {
-  useLayoutEffect(() => {
-    applyTheme('light');
-  }, []);
-
   return (
     <div className={styles.page} data-name="typography blog">
       <div className={styles.headerBlur} aria-hidden="true">
@@ -55,44 +50,45 @@ export function TypographyBlog() {
       </div>
 
       <div className={styles.shell}>
-        <header className={styles.header}>
-          <a className={styles.identity} href="/" aria-label="Home">
-            monica addepalli
-          </a>
-        </header>
+        <a className={styles.back} href="/" data-header-link="" data-style="Body Mono">
+          <svg width="12" height="12" viewBox="0 0 16 16" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M6.7 2.3 1.6 8l5.1 5.7.9-.8L3.6 8.6H15V7.4H3.6l4-4.3z"
+            />
+          </svg>
+          Back to home
+        </a>
 
         <main className={styles.main}>
           <div className={styles.intro}>
-            <p className={styles.year}>2026</p>
-            <h1 className={styles.title}>
-              building a responsive
-              <br />
-              typographic system
-            </h1>
+            <h1 className={styles.title}>Building a responsive typographic system</h1>
           </div>
 
-          <Copy title="background">
+          <Copy title="Background">
             <div className={styles.prose}>
               <p>Most of the UI is basically text, so why not get it right?</p>
               <p>
                 Setting up a good typographic system is crucial for modern product design. But wait,
                 what makes such a system good?
               </p>
-              <p className={styles.emphasis}>Well, a good system should:</p>
-              <ol className={styles.numbers}>
-                <li>
-                  Ensure design consistency and readability across all devices (mobile, tablets,
-                  laptops, desktops, and even large-screen TVs.)
-                </li>
-                <li>
-                  Adapt based on use cases: user interfaces, marketing pages, banners, or even
-                  internal dashboards.
-                </li>
-                <li>
-                  Set rules and guidelines for designers to effectively use typography in their
-                  designs.
-                </li>
-              </ol>
+              <div className={styles.stack12}>
+                <p className={styles.emphasis}>Well, a good system should:</p>
+                <ol className={styles.numbers}>
+                  <li>
+                    Ensure design consistency and readability across all devices (mobile, tablets,
+                    laptops, desktops, and even large-screen TVs.)
+                  </li>
+                  <li>
+                    Adapt based on use cases: user interfaces, marketing pages, banners, or even
+                    internal dashboards.
+                  </li>
+                  <li>
+                    Set rules and guidelines for designers to effectively use typography in their
+                    designs.
+                  </li>
+                </ol>
+              </div>
               <p>So, how might we build such a system?</p>
             </div>
           </Copy>
@@ -243,7 +239,7 @@ export function TypographyBlog() {
           </div>
 
           <div className={styles.block}>
-            <h3 className={styles.step}>step 4: Make it responsive - The TL:DR version</h3>
+            <h3 className={styles.step}>Step 4: Make it responsive - The TL:DR version</h3>
             <div className={styles.stack40}>
               <div className={styles.stack20}>
                 <div className={styles.stack12}>
@@ -292,9 +288,10 @@ export function TypographyBlog() {
             </div>
           </div>
 
-          <div className={styles.stack40}>
-            <h2 className={styles.display}>additional points to keep in mind</h2>
-            <div className={styles.stack20}>
+          <div className={styles.stackSection}>
+            <h2 className={styles.display}>Additional points to keep in mind</h2>
+            <div className={styles.stack40}>
+              <div className={styles.stack20}>
               <h3 className={styles.step}>1. Rounding the generated font sizes</h3>
               <p className={styles.proseSingle}>
                 Generated font sizes often include decimals, which can be tricky to work with.
@@ -332,8 +329,8 @@ export function TypographyBlog() {
                   </ul>
                 </div>
               </div>
-            </div>
-            <div className={styles.stack20}>
+              </div>
+              <div className={styles.stack20}>
               <h3 className={styles.step}>2. Effects of changing the responsiveness scale</h3>
               <p className={styles.proseSingle}>
                 We can use a different scale to fine-tune how font sizes change between breakpoints.
@@ -343,8 +340,8 @@ export function TypographyBlog() {
                 nearest even enabled
               </p>
               <Figure src={imgResponsivenessScale} ratio="1382 / 494" />
-            </div>
-            <div className={styles.stack20}>
+              </div>
+              <div className={styles.stack20}>
               <h3 className={styles.step}>3. Freezing the scale</h3>
               <p className={styles.proseSingle}>
                 Another strategy of building a responsive typography is to freeze the body and
@@ -356,8 +353,8 @@ export function TypographyBlog() {
                 follows:
               </p>
               <Figure src={imgFreezingScale} ratio="1382 / 492" />
-            </div>
-            <div className={styles.stack20}>
+              </div>
+              <div className={styles.stack20}>
               <h3 className={styles.step}>4. Incorporate letter spacing where needed</h3>
               <p className={styles.proseSingle}>
                 Letter spacing, also known as tracking, affects how text appears by adjusting the
@@ -372,6 +369,7 @@ export function TypographyBlog() {
                   Looser letter spacing can be used to enhance readability of text of smaller sizes.
                 </li>
               </ul>
+              </div>
             </div>
           </div>
 

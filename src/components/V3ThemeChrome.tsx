@@ -7,7 +7,7 @@ const V3_PATH_PREFIXES = ['/', '/work/'];
 
 function isV3Route(pathname: string) {
   if (pathname === '/') return true;
-  if (pathname.startsWith('/notes/') || pathname.startsWith('/blog/')) return false;
+  if (pathname.startsWith('/notes/')) return true;
   return V3_PATH_PREFIXES.some((prefix) => prefix !== '/' && pathname.startsWith(prefix));
 }
 
